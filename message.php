@@ -143,3 +143,8 @@ define("MSG_SUCCESS_CONNECTION", "<div class='m-4'>
 <strong><center><h2>La connexion a réussi</h2></center></strong>
 <button type='button' class='btn-close' data-bs-dismiss='alert'></button>
 </div></div>");
+define("MSG_ERROR_BD", "<div class='m-4'>
+<div class='alert alert-success alert-dismissible fade show'>
+<strong><center><h2>La connexion a réussi</h2></center></strong>
+<button type='button' class='btn-close' data-bs-dismiss='alert'></button>
+</div></div>");
