@@ -6,8 +6,8 @@ class DataBase
 
     protected const USERNAME = "root";
     protected const PASSWORD = "";
-    protected const DBNAME = "gitebd";
-    protected const NAMEDB = "gitebd";
+    public const DBNAME = "gitebd";
+    public const NAMEDB = "gitebd";
     protected const SERVERNAME = "localhost";
     protected $local;
     protected $serverName;
@@ -28,30 +28,30 @@ class DataBase
         try {
 
             $myDB = new PDO("mysql:host=" . self::SERVERNAME, self::USERNAME, self::PASSWORD);
-
             $myDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "CREATE DATABASE IF NOT EXISTS " . $newDB;
-            //liste requetes de creation de table
-            include_once '../elementDB.php';
-
-            //creation
-            foreach ($variable as $key => $value) {
-                if (
-                    $table[$key] == null
-                ) {
-
-                    $requete = "INSERT " . $variable . "(id_" . $variable . ");";
-                } else {
-                    $requete = "INSERT $variable" . $table[$variable];
-                }
-                $myBD->exec($requete[$variable]);
-            }
-
-
-
             $myDB->exec($sql);
         } catch (PDOException $e) {
-            echo "Message d'erreur : [" . $e->getMessage() . "]<br>:";
+            echo "acces";
+        }
+
+        try {
+            include_once 'elementDB.php';
+            $myDB = new PDO('mysql:host=' . self::SERVERNAME . ";dbname=" . $this->nameDB, self::USERNAME, self::PASSWORD);
+            $myDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            foreach ($table as $key => $value) {
+                $table[$key] = $value;
+
+                if ($value == "()") {
+
+                    $requete = "INSERT INTO" . $key . "(id_" . $key . " INT UNSIGNED PRIMARY KEY AUTO_INCREMENT)";
+                } else {
+                    $requete = "INSERT INTO" . $key . "(" . $value . ")";
+                }
+                $myDB->exec($requete);
+            }
+        } catch (PDOException $e) {
+            echo "probleme";
         }
     }
 }

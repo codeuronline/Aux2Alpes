@@ -1,7 +1,10 @@
-<?php 
+<?php
 
-$table['gite']= "();";
-$table['emplacement_geogprahique']="();";
-$table['sdb']=';';
-$table['couchage']="();";
-$table['sejour']="();";
+$table['gite'] = "()";
+$table['sejour'] = "()";
+$table['pays'] = "()";
+$table['emplacement_geogprahique'] = "()";
+$table['couchage'] = "()";
+$table['sdb'] = "()";
+$table['photo'] = "()";
+$table["categorie"] = "()";
