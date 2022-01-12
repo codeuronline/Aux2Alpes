@@ -1,5 +1,30 @@
+
+/* ----------------------------page inscription --------------------------------------------*/
+
 body {
     background-image: linear-gradient(rgb(238, 255, 0), rgb(0, 38, 255));
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;;
+    justify-content: center;
+    display: flex;
   }
+.row1 {
+  margin-top: 100px;
+  align-items: center;
+  background-color: tomato;
+} 
+/*ici les boutons*/
+.d-grid .btn-main-bg-text-light{
+  background-color: rgb(39, 67, 158);
+  color: white;
+  border-radius: 2%;
+  font-family : Helvetica, sans-serif; 
+}
+
+/*ici les titre */
+.form-label {
+  color: rgb(158, 55, 55);
+  text-align: center;
+}
+
