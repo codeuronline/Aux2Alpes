@@ -6,6 +6,7 @@ $query = $db->prepare($sql);
 $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 require_once('close.php');
+require_once('hebergement.class.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,60 +24,43 @@ require_once('close.php');
     <main class="container">
         <div class=row>
             <section class="col-12">
-                <?php 
-                
-                if(!empty($_SESSION['erreur'])){
-                    echo '<DIV class="alert alert-danger" role="alert"'.$_SESSION['message'].'
+                <?php
+
+                if (!empty($_SESSION['erreur'])) {
+                    echo '<DIV class="alert alert-danger" role="alert"' . $_SESSION['message'] . '
                     </DIV>';
-                    $_SESSION['erreur']= null;
+                    $_SESSION['erreur'] = null;
                 }
                 ?>
-                <h1>Liste des Gites</h1>
+                <h1>Liste des Hébergement(s)s</h1>
                 <table class="table">
-                    <th>Id_gite</th>
+                    <th>Id_Hebergement</th>
+                    <th>Id_categorie</th>
                     <th>Nom</th>
-                    <th>Description</th>
-                    <th>prix
+                    <th>prix</th>
                     <th>adresse</th>
                     <th>coordonnee_GPS</th>
-                    <th>Id_Animaux</th>
-                    <th>Id_classement</th>
-                    <th>id_jardin</th>
-                    <th>Id_piece</th>
-                    <th>Id_jour</th>
-                    <th>Id_periode</th>
-                    <th>Id_sdb</th>
-                    <th>Id_Emplacement_geographique</th>
-                    <th>Id_couchage</th>
-                    <th>Id_photo</th>
-                    <th>Id_categorie</th>
+                    <th>vacant</th>
+                    <th>action</th>
                     <tbody>
                         <?php
-                        foreach ($result as $gite) {
+                        foreach ($result as $hebergement) {
                         ?>
                         <tr>
-                            <td><?= $gite['Id_gite'] ?></td>
-                            <td><?= $gite['Nom'] ?></td>
-                            <td><?= $gite['Description'] ?></td>
-                            <td><?= $gite['prix'] ?></td>
-                            <td><?= $gite['adresse'] ?></td>
-                            <td><?= $gite['coordonnes_GPS'] ?></td>
-                            <td><?= $gite['Id_animaux'] ?></td>
-                            <td><?= $gite['Id_classement'] ?></td>
-                            <td><?= $gite['Id_jour'] ?></td>
-                            <td><?= $gite['Id_periode'] ?></td>
-                            <td><?= $gite['id_sdb'] ?></td>
-                            <td><?= $gite['Id_Emplacementgeographique'] ?></td>
-                            <td><?= $gite['Id_couchage'] ?></td>
-                            <td><?= $gite['Id_photo'] ?></td>
-                            <td><?= $gite['id_categorie'] ?></td>
-                            <td><a href="detail.php?Id_gite=<?= $gite['Id_gite'] ?>">Voir<a></td>
+                            <td><?= $hebergement['Id_Hebergement'] ?></td>
+                            <td><?= $hebergement['id_categorie'] ?></td>
+                            <td><?= $hebergement['Nom'] ?></td>
+                            <td><?= $hebergement['prix'] ?></td>
+                            <td><?= $hebergement['adresse'] ?></td>
+                            <td><?= $hebergement['coordonnee_GPS'] ?></td>
+                            <td><?= $hebergement['vacant'] ?></td>
+                            <td><a href="detail.php?Id_Hebergement=<?= $hebergement['Id_Hebergement'] ?>">Voir<a></td>
                         </tr>
                         <?php }
                         ?>
                     </tbody>
                 </table>
-                <a href='add.php' class='btn btn-primary'>Ajouter un produit<a>
+                <a href='add.php' class='btn btn-primary'>Ajouter d'un Hébergement<a>
             </section>
         </div>
     </main>
