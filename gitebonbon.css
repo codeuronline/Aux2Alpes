@@ -9,22 +9,35 @@ body {
     justify-content: center;
     display: flex;
   }
+
 .row1 {
   margin-top: 100px;
   align-items: center;
-  background-color: tomato;
+  justify-content: space-between;
+
 } 
 /*ici les boutons*/
 .d-grid .btn-main-bg-text-light{
   background-color: rgb(39, 67, 158);
   color: white;
   border-radius: 2%;
-  font-family : Helvetica, sans-serif; 
+  font-family : Helvetica, sans-serif;
+  display: flex;
+}
+
+.mb-4 {
+  border-radius: 50%;
 }
 
 /*ici les titre */
 .form-label {
-  color: rgb(158, 55, 55);
+  color: rgb(247, 244, 244);
+  text-align: center;
+  margin-top: 100px;
+}
+
+.mb-4 {
+  margin-top: 100px;
   text-align: center;
 }
 
