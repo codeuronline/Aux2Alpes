@@ -1,6 +1,6 @@
+
 <?php
 
-session_start();
 
 /*connexion a la table inscription*/
 $serveur = "localhost";
