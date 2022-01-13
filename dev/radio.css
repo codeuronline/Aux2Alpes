@@ -31,7 +31,9 @@ input[type="radio"].wifi3 {
     display: none;
   }
 
-
+  input[type="radio"].chien3 {
+    display: none;
+  }
   input[type="radio"].chien3 + label {
     display:inline-block;
     border: 2px solid rgb(0, 252, 126);
@@ -40,5 +42,19 @@ input[type="radio"].wifi3 {
     text-align:center;
   }
   input[type="radio"].chien3:checked + label {
+    display: none;
+  }
+  
+  input[type="radio"].piscine3 {
+    display: none;
+  }
+  input[type="radio"].piscine3 + label {
+    display:inline-block;
+    border: 2px solid rgb(0, 252, 126);
+    padding: 0.5rem 1rem;
+    min-width:50px;
+    text-align:center;
+  }
+  input[type="radio"].piscine3:checked + label {
     display: none;
   }
