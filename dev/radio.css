@@ -1,14 +1,44 @@
 
-input[type="radio"].demo3 {
+input[type="radio"].wifi3 {
     display: none;
   }
-  input[type="radio"].demo3 + label {
+  input[type="radio"].wifi3 + label {
     display:inline-block;
-    border: 1px solid #000;
+    border: 2px solid rgb(0, 252, 126);
     padding: 0.5rem 1rem;
     min-width:50px;
     text-align:center;
   }
-  input[type="radio"].demo3:checked + label {
+  input[type="radio"].wifi3:checked + label {
+    display: none;
+  }
+
+
+  input[type="radio"].fumeur3 {
+    display: none;
+  }
+  input[type="radio"].fumeur3 + label {
+    display:inline-block;
+    border: 2px solid rgb(0, 252, 126);
+    padding: 0.5rem 1rem;
+    min-width:50px;
+    text-align:center;
+  }
+  input[type="radio"].fumeur3:checked + label {
+    display: none;
+  }
+  input[type="radio"].fumeur3 {
+    display: none;
+  }
+
+
+  input[type="radio"].chien3 + label {
+    display:inline-block;
+    border: 2px solid rgb(0, 252, 126);
+    padding: 0.5rem 1rem;
+    min-width:50px;
+    text-align:center;
+  }
+  input[type="radio"].chien3:checked + label {
     display: none;
   }
