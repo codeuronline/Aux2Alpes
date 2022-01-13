@@ -7,6 +7,7 @@ if (isset($_GET['id_Gite']) && !empty($_GET['id_Gite'])) {
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_INT);
     $gite = $query->fetch();
+    //on virifie si le gite existe
     if (!$gite) {
         $_SESSION['erreur'] = "Cet ID n'existe pas";
         header('Location: index.php');
@@ -44,6 +45,8 @@ if (isset($_GET['id_Gite']) && !empty($_GET['id_Gite'])) {
                     <p>id_categorie<?= $gite['id_categorie'] ?></p>
                     <p>Id_Emplacement_geographique<?= $gite['Id_Emplacement_geographique'] ?></p>
                     <p>Id_periode<?= $gite['Id_periode'] ?></p>
+                    <p><a href="index.php">Retour</a><a href="edit.php?Id_Gite=" <?= $gite['Id_Gite']; ?>Modifier</a>
+                    </p>
             </section>
         </div>
     </main>

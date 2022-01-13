@@ -17,7 +17,7 @@ require_once('hebergement.class.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Liste des gite</title>
+    <title>Liste des Hebergement</title>
 </head>
 
 <body>
@@ -25,14 +25,13 @@ require_once('hebergement.class.php');
         <div class=row>
             <section class="col-12">
                 <?php
-
                 if (!empty($_SESSION['erreur'])) {
                     echo '<DIV class="alert alert-danger" role="alert"' . $_SESSION['message'] . '
                     </DIV>';
                     $_SESSION['erreur'] = null;
                 }
                 ?>
-                <h1>Liste des Hébergement(s)s</h1>
+                <h1>Liste des Hébergement(s)</h1>
                 <table class="table">
                     <th>Id_Hebergement</th>
                     <th>Id_categorie</th>
