@@ -58,28 +58,28 @@
                             <form action='validationformulaire.php' method='post'>
                                 <!--<form action='validationformulaire.php' method='post'>-->
                                 <div class='mb-4'>
-                                    <label for='name' class='form-label'>Nom</label>
+                                    <label for='name' class='form-label'>Nom</label><br>
                                     <input type='text' class='form-control' id='name' placeholder='Votre nom' required
                                         pattern="^[A-Za-z '-]+$" maxlength="20" name='name'>
                                 </div>
                                 <div class='mb-4'>
-                                    <label for='mail' class='form-label'>Email</label>
+                                    <label for='mail' class='form-label'>Email</label><br>
                                     <input type='email' class='form-control' id='mail' placeholder='Votre adresse Email'
                                         required='required' name='mail'>
                                 </div>
                                 <div class='mb-4'>
-                                    <label for='password' class='form-label'>Mot de passe</label>
+                                    <label for='password' class='form-label'>Mot de passe</label><br>
                                     <input type='password' class='form-control' id='password'
                                         placeholder='Votre mot de passe' required='required' name='password'>
                                 </div>
                                 <div class='mb-4'>
-                                    <label for='password_retype' class='form-label'>Confirmation mot de passe</label>
+                                    <label for='password_retype' class='form-label'>Confirmation mot de passe</label><br>
                                     <input type='password' class='form-control' id='password_retype'
                                         placeholder='Retapez votre mot de passe' required='required' name='password_retype'>
                                 </div>
                                 <div class='mb-4'>
                                     <input type='checkbox' class='form-check-input' id='form-cgv' required='required'>
-                                    <label for='form-cgv'>J'ai lu les conditions d'utilisation</label>
+                                    <label for='form-cgv'>J'ai lu les conditions d'utilisation</label><br>
                                 </div>
                                 <div class='d-grid'>
                                     <button type='submit' class='btn-main-bg-text-light'>Inscription</button>
@@ -87,9 +87,6 @@
                             </form>
                         </div>
                     </div>
-                    <div class='d-grid text-center'>
-                                    <a href='enregistrement.php'><button type='submit' class='btn main-bg text-light text-decoration-underline'>Se connecter ?</button></a>
-                                </div>
                 </div>
             </div>
         </div>
