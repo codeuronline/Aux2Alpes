@@ -45,7 +45,7 @@ require_once('hebergement.class.php');
                         ?>
                         <tr>
                             <td><?= $hebergement['Id_Hebergement'] ?></td>
-                            <td><?= $hebergement['id_categorie'] ?></td>
+                            <td><?= $hebergement['categorie'] ?></td>
                             <td><?= $hebergement['Nom'] ?></td>
                             <td><?= $hebergement['prix'] ?></td>
                             <td><?= $hebergement['adresse'] ?></td>

@@ -32,7 +32,7 @@ if (isset($_GET['Id_hebergement']) && !empty($_GET['Id_hebergement'])) {
         <div class="row">
             <section class="col-12">
                 <h1>Détails du hebergement <?= $hebergement['Nom'] ?>
-                    <p>Id: <?= $hebergement['Id_hebergement'] ?></p>
+                    <p>Id: <?= $hebergement['Id'] ?></p>
                     <p>Nom: <?= $hebergement['Nom'] ?></p>
                     <p>Description: <?= $hebergement['Description'] ?></p>
                     <p>prix<?= $hebergement['prix'] ?></p>
@@ -44,8 +44,8 @@ if (isset($_GET['Id_hebergement']) && !empty($_GET['Id_hebergement'])) {
                     <p>Id_sdb<?= $hebergement['id_sdb'] ?></p>
                     <p>Id_couchage<?= $hebergement['id_couchage'] ?></p>
                     <p>Id_photo<?= $hebergement['id'] ?></p>
-                    <p>id_categorie<?= $hebergement['id_categorie'] ?></p>
-                    <p>Id_Emplacement_geographique<?= $hebergement['Id_localisation_ville'] ?></p>
+                    <p>id_categorie<?= $hebergement['categorie'] ?></p>
+                    <p>Id_Emplacement_geographique<?= $hebergement['ville_gps'] ?></p>
                     <p>Id_periode<?= $hebergement['Id_periode'] ?></p>
                     <p><a href="index.php">Retour</a><a
                             href="edit.php?Id_hebergement="><?= $hebergement['Id_hebergement']; ?>>Modifier</a>

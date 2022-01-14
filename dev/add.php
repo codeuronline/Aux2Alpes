@@ -1,5 +1,7 @@
 <?php
 session_start();
+// il faut d'abord traité la table periode et albums pour ensuite traiter traiter la table hebergement
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,7 +21,7 @@ session_start();
         <div class="row">
             <section class="col-12">
                 <h1>Ajouter un Hébergement</h1>
-                <form method="post " action="">
+                <form method="post" action="">
                     <div class="form-group">
                         <label for="categorie">Type</label>
                         <input type="text" id="categorie" name="categorie" class="form-controls">
@@ -27,8 +29,6 @@ session_start();
                         <input type="text" id="nom" name="nom" class="form-controls">
                         <label for="ville">Ville</label>
                         <input type="text" id="Ville" name="ville" class="form-controls">
-                        <label for="coordonne_gps_ville"></label>
-                        <input type="text" id="coordonne_gps_ville" name="coordonne_gps_ville" class="form-controls">
                         <label for="Pays">Pays</label>
                         <input type="text" id="pays" name="pays" class="form-controls">
                     </div>
@@ -45,39 +45,35 @@ session_start();
                         <input type="number" id="couchage" name="couchage" class="form-controls">
                         <label for="sdb">Salle de bains</label>
                         <input type="number" id="sdb" name="sdb" class="form-controls">
-                        <label for="piece">Pièce</label>
-                        <input type="number" id="piece" name="piece" class="form-controls">
-                        <label for="classement">Classement</label>
-                        <input type="number" id="classement" name="classement" class="form-controls">
-
                     </div>
+                    <!--album photo de l hebergement-->
+                    <!--on besoin  id l'herbergement pour creer une entree dans albums -->
                     <div class="form-group">
                         <label for="Album">Album</label>
-                        <input type="file" id="photo1" name="photo1" class="form-controls">
-                        <input type="file" id="photo2" name="photo2" class="form-controls">
-                        <input type="file" id="photo3" name="photo3" class="form-controls">
-                        <input type="file" id="photo4" name="photo4" class="form-controls">
-                        <input type="file" id="photo5" name="photo5" class="form-controls">
+                        <input type="file" id="photo1" name="photo1" class="form-controls" accept=".jpg, .jpeg">
+                        <input type="file" id="photo2" name="photo2" class="form-controls" accept=".jpg, .jpeg">
+                        <input type="file" id="photo3" name="photo3" class="form-controls" accept=".jpg, .jpeg">
+                        <input type="file" id="photo4" name="photo4" class="form-controls" accept=".jpg, .jpeg">
+                        <input type="file" id="photo5" name="photo5" class="form-controls" accept=".jpg, .jpeg">
                     </div>
-
                     <!--creation en cascadeentree dans albums et entree dans periode-->
 
-                    <div class="form-group">
-                        <!--on besoin  id l'herbergement pour creer une entree dans albums -->
+                    <div class=" form-group">
+
 
                     </div>
 
                     <div class="form-group">
                         <!--on besoin  id l'herbergement pour creer une entree dans periode -->
                         <label for="periode">Période</label>
-                        <input type="date" id="h_debut" name="dispo_debut" class="form-controls">
-                        <input type="date" id="h_fin" name="dispo_fin" class="form-controls">
+                        <input type="date" id="h_debut" name="debut" class="form-controls">
+                        <input type="date" id="h_fin" name="fin" class="form-controls">
                     </div>
                     <div class="form-group">
-                        <input type="radio" name="chien" class="chien demoyes" id="chien-a" checked value="false">
-                        <label for="chien-a"><img src='../image/animauxpictorouge.png' width="60" alt=''></label>
-                        <input type="radio" name="chien" class="chien demono" id="chien-b" value="true">
-                        <label for="chien-b"><img src="../image/animauxpicto.png" width="60" alt=""></label>
+                        <input type="radio" name="animaux" class="animaux demoyes" id="animaux-a" checked value="false">
+                        <label for="animaux-a"><img src='../image/animauxpictorouge.png' width="60" alt=''></label>
+                        <input type="radio" name="aniamux" class="animaux demono" id="animaux-b" value="true">
+                        <label for="aniamux-b"><img src="../image/animauxpicto.png" width="60" alt=""></label>
 
                         <input type="radio" name="wifi" class="wifi demoyes" id="wifi-a" checked value="false">
                         <label for="wifi-a"><img src='../image/wifipictorouge.png' width="60" alt=''></label>
@@ -97,6 +93,8 @@ session_start();
                     </div>
 
                     <button class="btn btn-primary">Ajouter</button>
+                    <button class="btn btn-primary" type="reset">Annuler</button>
+                    <a href='index.php' class='btn btn-primary'>Retour<a>
                 </form>
 
             </section>
