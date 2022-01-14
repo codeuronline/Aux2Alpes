@@ -17,7 +17,7 @@ require_once('hebergement.class.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Liste des Hebergement</title>
+    <title>Liste des hébergement(s))</title>
 </head>
 
 <body>
@@ -26,9 +26,9 @@ require_once('hebergement.class.php');
             <section class="col-12">
                 <?php
                 if (!empty($_SESSION['erreur'])) {
-                    echo '<DIV class="alert alert-danger" role="alert"' . $_SESSION['message'] . '
+                    echo '<DIV class="alert alert-danger" role="alert">' . $_SESSION['erreur'] . '
                     </DIV>';
-                    $_SESSION['erreur'] = null;
+                    $_SESSION['erreur'] = "";
                 }
                 ?>
                 <h1>Liste des Hébergement(s)</h1>
@@ -38,8 +38,6 @@ require_once('hebergement.class.php');
                     <th>Nom</th>
                     <th>prix</th>
                     <th>adresse</th>
-                    <th>coordonnee_GPS</th>
-                    <th>vacant</th>
                     <th>action</th>
                     <tbody>
                         <?php
@@ -53,7 +51,7 @@ require_once('hebergement.class.php');
                             <td><?= $hebergement['adresse'] ?></td>
                             <td><?= $hebergement['coordonnee_GPS'] ?></td>
                             <td><?= $hebergement['vacant'] ?></td>
-                            <td><a href="detail.php?Id_Hebergement=<?= $hebergement['Id_Hebergement'] ?>">Voir<a></td>
+                            <td><a href="details.php?Id_Hebergement=<?= $hebergement['Id_Hebergement'] ?>">Voir<a></td>
                         </tr>
                         <?php }
                         ?>

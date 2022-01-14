@@ -1,60 +1,60 @@
 
-input[type="radio"].wifi3 {
+input[type="radio"].wifi {
     display: none;
   }
-  input[type="radio"].wifi3 + label {
+  input[type="radio"].wifi + label {
     display:inline-block;
     border: 2px solid rgb(0, 252, 126);
     padding: 0.5rem 1rem;
     min-width:50px;
     text-align:center;
   }
-  input[type="radio"].wifi3:checked + label {
+  input[type="radio"].wifi:checked + label {
     display: none;
   }
 
 
-  input[type="radio"].fumeur3 {
+  input[type="radio"].fumeur {
     display: none;
   }
-  input[type="radio"].fumeur3 + label {
+  input[type="radio"].fumeur + label {
     display:inline-block;
     border: 2px solid rgb(0, 252, 126);
     padding: 0.5rem 1rem;
     min-width:50px;
     text-align:center;
   }
-  input[type="radio"].fumeur3:checked + label {
-    display: none;
-  }
-  input[type="radio"].fumeur3 {
-    display: none;
-  }
-
-  input[type="radio"].chien3 {
-    display: none;
-  }
-  input[type="radio"].chien3 + label {
-    display:inline-block;
-    border: 2px solid rgb(0, 252, 126);
-    padding: 0.5rem 1rem;
-    min-width:50px;
-    text-align:center;
-  }
-  input[type="radio"].chien3:checked + label {
+  input[type="radio"].fumeur:checked + label {
     display: none;
   }
   
-  input[type="radio"].piscine3 {
+  
+  input[type="radio"].chien {
     display: none;
   }
-  input[type="radio"].piscine3 + label {
+  input[type="radio"].chien + label {
     display:inline-block;
     border: 2px solid rgb(0, 252, 126);
     padding: 0.5rem 1rem;
     min-width:50px;
     text-align:center;
   }
-  input[type="radio"].piscine3:checked + label {
+  input[type="radio"].chien:checked + label {
+    display: none;
+  }
+  
+
+
+  input[type="radio"].piscine {
+    display: none;
+  }
+  input[type="radio"].piscine + label {
+    display:inline-block;
+    border: 2px solid rgb(0, 252, 126);
+    padding: 0.5rem 1rem;
+    min-width:50px;
+    text-align:center;
+  }
+  input[type="radio"].piscine:checked + label {
     display: none;
   }

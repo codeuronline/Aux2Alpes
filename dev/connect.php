@@ -1,7 +1,7 @@
 <?php 
 try {
     //connection
-    $db = new PDO('mysql:host=localhost;dbname=gitebd','root','');
+    $db = new PDO('mysql:host=localhost;dbname=hebergementdb', 'root', '');
     $db->exec('SET NAMES "UTF8"');
 
 } catch (PDOException $e) {
