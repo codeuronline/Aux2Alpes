@@ -33,8 +33,8 @@ require_once('hebergement.class.php');
                 ?>
                 <h1>Liste des Hébergement(s)</h1>
                 <table class="table">
-                    <th>Id_Hebergement</th>
-                    <th>Id_categorie</th>
+                    <th>Id Hébergement</th>
+                    <th>Catégorie</th>
                     <th>Nom</th>
                     <th>prix</th>
                     <th>adresse</th>
@@ -49,8 +49,6 @@ require_once('hebergement.class.php');
                             <td><?= $hebergement['Nom'] ?></td>
                             <td><?= $hebergement['prix'] ?></td>
                             <td><?= $hebergement['adresse'] ?></td>
-                            <td><?= $hebergement['coordonnee_GPS'] ?></td>
-                            <td><?= $hebergement['vacant'] ?></td>
                             <td><a href="details.php?Id_Hebergement=<?= $hebergement['Id_Hebergement'] ?>">Voir<a></td>
                         </tr>
                         <?php }
