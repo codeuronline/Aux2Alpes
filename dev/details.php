@@ -1,17 +1,28 @@
 <?php
 session_start();
 
-if (isset($_GET['Id_hebergement']) && !empty($_GET['Id_hebergement'])) {
+if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     require_once('connect.php');
-    $id = strip_tags(($_GET['Id_hebergement']));
-    $sql = 'SELECT * FROM `hebergement` WHERE Id_hebergement = :id';
+    //traite les element de la table hebergement
+    $id = strip_tags(($_GET['id_hebergement']));
+    $sql = 'SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_INT);
+    $query->execute();
     $hebergement = $query->fetch();
-    //on virifie si le hebergement existe
+    //traite les elements de la table periode
+    $sql1 = 'SELECT * FROM `periode`  WHERE id_periode = :id';
+    $query1 = $db->prepare($sql1);
+    $query1->bindValue(':id', $hebergement['id_periode'], PDO::PARAM_INT);
+    $query1->execute();
+    $periode = $query1->fetch();
+
+    //trait les elmements de la table jours
+    //on verifie si le hebergement existe
+    echo $hebergement['id_hebergement'];
     if (!$hebergement) {
         $_SESSION['erreur'] = "Cet ID n'existe pas";
-        header('Location: index.php');
+        //header('Location: index.php');
     }
 } else {
     $_SESSION['erreur'] = "URL invalide";
@@ -24,6 +35,7 @@ if (isset($_GET['Id_hebergement']) && !empty($_GET['Id_hebergement'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Détails de l'hébergement</title>
 </head>
 
@@ -31,29 +43,34 @@ if (isset($_GET['Id_hebergement']) && !empty($_GET['Id_hebergement'])) {
     <main class="container">
         <div class="row">
             <section class="col-12">
-                <h1>Détails du hebergement <?= $hebergement['Nom'] ?>
-                    <p>Id: <?= $hebergement['Id_hebergement'] ?></p>
-                    <p>id_categorie<?= $hebergement['categorie'] ?></p>
+                <h1>Détails de l'hébergement :<?= $hebergement['nom'] ?>
+                    <p>Id: <?= $hebergement['id_hebergement'] ?></p>
+                    <p>Categorie:<?= $hebergement['categorie'] ?></p>
                     <p>Nom: <?= $hebergement['nom'] ?></p>
                     <p>Adresse: <?= $hebergement['adresse'] ?></p>
                     <p>Description: <?= $hebergement['description'] ?></p>
-                    <p>Prix<?= $hebergement['prix'] ?></p>
-                    <p>coordonne_GPS<?= $hebergement['coordonnee_GPS'] ?></p>
-                    <p>animaux<?= ($hebergement['animaux']) ? "<img src='../image/animauxpicto.png' width='25'>" : "<img src='..image/animauxpictorouge.png'>";  ?></p>
-                    <p>wifi<?= ($hebergement['wifi']) ? "<img src='../image/wifipicto.png' width='25'>" : "<img src='..image/wifipictorouge.png'>";  ?></p>
-                    <p>fumeur<?= ($hebergement['fumeur']) ? "<img src='../image/fumeurpicto.png' width='25'>" : "<img src='..image/fumeurpictorouge.png'>";  ?></p>
-                    <p>piscine<?= ($hebergement['piscine']) ? "<img src='../image/piscinepicto.png' width='25'>" : "<img src='..image/piscinepictorouge.png'>";  ?></p>
-                    <p>sdb<?= $hebergement['sdb'] ?></p>
-                    <p>couchage<?= $hebergement['couchage'] ?></p>
-                    <p>Id_photo<?= $hebergement['ville'] ?></p>
+                    <p>Prix:<?= $hebergement['prix'] ?></p>
+                    <p>Couchage:<?= $hebergement['couchage'] ?></p>
+                    <p>Sdb: <?= $hebergement['sdb'] ?></p>
+                    <p>
+                        <?= ($hebergement['animaux'] == 1) ? "<img src='../image/animauxpicto.png' width='50'>" : "<img src='../image/animauxpictorouge.png' width='50'>";  ?>
+                        <?= ($hebergement['wifi'] == 1) ? "<img src='../image/wifipicto.png' width='50'>" : "<img src='../image/wifipictorouge.png' width='50'>";  ?>
+                        <?= ($hebergement['fumeur'] == 1) ? "<img src='../image/fumeurpicto.png' width='50'>" : "<img src='../image/fumeurpictorouge.png' width='50'>";  ?>
+                        <?= ($hebergement['piscine'] == 1) ? "<img src='../image/piscinepicto.png' width='50'>" : "<img src='../image/piscinepictorouge.png' width='50'>";  ?>
+                    </p>
 
-                    <p>Id_Emplacement_geographique<?= $hebergement['ville_gps'] ?></p>
-                    <p>Id_periode<?= $hebergement['Id_periode'] ?></p>
-                    <p><a href="index.php">Retour</a><a href="edit.php?Id_hebergement="><?= $hebergement['Id_hebergement']; ?>>Modifier</a>
+                    <p>Photo 1:
+                        <?= ($hebergement['photo1'] == null) ? "<img src='../image/photovide.png' width='50'" : "<img src='" . $Hebergement['photo1'] . "' width='200'>"; ?>
+                    </p>
+                    <p>Debut: <?= $periode['debut'] ?></p>
+                    <p>Fin: <?= $periode['fin'] ?></p>
+                    <p>
+                        <a href='index.php' class='btn btn-primary'>Retour<a>
+                                <a href="edit.php?id_hebergement=" <?= $hebergement['id_hebergement']; ?> class='btn btn-primary'>>Modifier</a>
                     </p>
             </section>
         </div>
     </main>
 </body>
 
-</html>
+</html>$retVal = (condition) ? a : b ;
