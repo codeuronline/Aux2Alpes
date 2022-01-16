@@ -32,7 +32,7 @@ if ($_POST) {
         $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
         for ($i = 1; $i < 6; $i++) {
             if (empty($_FILES['photo' . $i]['name'])) {
-                $form['photo' . $i] = "";
+                unset($form['photo' . $i]);
             } elseif (is_uploaded_file($_FILES['photo' . $i]['tmp_name'])) {
                 // test si le repertoire de destination exist sinon il le crée
                 IsDir_or_CreateIt("photo");
@@ -51,13 +51,17 @@ if ($_POST) {
         }
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
-        $sql1 = 'INSERT INTO `periode` (`debut`,`fin`) VALUES (:debut :fin)';
+        $sql1 = 'INSERT INTO `periode` (`id_periode`,`debut`,`fin`) VALUES ( :id_periode, :debut, :fin )';
         $query1 = $db->prepare($sql1);
+        $form['id_periode'] = $form['debut'] . $form['fin'];
+        $query1->bindValue(':id_periode', $form['id_periode']);
         $query1->bindValue(':debut', $form['debut']);
         $query1->bindValue(':fin', $form['fin']);
         $query1->execute();
+        echo "c'est bon";
 
-        $sql2 = 'SELECT LAST_INSERT_ID() FROM `periode`';
+        $sql2 = 'SELECT LAST_INSERT_ID() from `periode`';
+        $query2 = $db->prepare($sql2);
         $query2->execute();
         $form['id_période'] = $query2->fetch();
         //on supprime les
@@ -143,10 +147,10 @@ if ($_POST) {
                         <label for="Album">Albums</label>
                         <input type="file" id="photo1" name="photo1" class="form-controls" accept=".jpg, .jpeg"
                             required><br>
-                        <input type="file" id="photo2" name="photo2" class="form-controls" accept=".jpg, .jpeg"><br>
+                        <!--<input type="file" id="photo2" name="photo2" class="form-controls" accept=".jpg, .jpeg"><br>
                         <input type="file" id="photo3" name="photo3" class="form-controls" accept=".jpg, .jpeg"><br>
                         <input type="file" id="photo4" name="photo4" class="form-controls" accept=".jpg, .jpeg"><br>
-                        <input type="file" id="photo5" name="photo5" class="form-controls" accept=".jpg, .jpeg"><br>
+                        <input type="file" id="photo5" name="photo5" class="form-controls" accept=".jpg, .jpeg"><br>-->
                     </div>
                     <!--creation en cascadeentree dans albums et entree dans periode-->
 

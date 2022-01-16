@@ -39,8 +39,6 @@ class DataBase
             
             $myDB = new PDO('mysql:host=' . self::SERVERNAME . ";dbname=" . $this->nameDB, self::USERNAME, self::PASSWORD);
             $myDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            
         } catch (PDOException $e) {
             echo "probleme";
         }

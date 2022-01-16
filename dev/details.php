@@ -32,23 +32,24 @@ if (isset($_GET['Id_hebergement']) && !empty($_GET['Id_hebergement'])) {
         <div class="row">
             <section class="col-12">
                 <h1>Détails du hebergement <?= $hebergement['Nom'] ?>
-                    <p>Id: <?= $hebergement['Id'] ?></p>
-                    <p>Nom: <?= $hebergement['Nom'] ?></p>
-                    <p>Description: <?= $hebergement['Description'] ?></p>
-                    <p>prix<?= $hebergement['prix'] ?></p>
-                    <p>coordonne_GPS<?= $hebergement['coordonnee_GPS'] ?></p>
-                    <p>Id_Animaux<?= $hebergement['animaux'] ?></p>
-                    <p>iD_jardin<?= $hebergement['jardin'] ?></p>
-                    <p>iD_jardin<?= $hebergement['fumeur'] ?></p>
-                    <p>Id_piece<?= $hebergement['piscine'] ?></p>
-                    <p>Id_sdb<?= $hebergement['id_sdb'] ?></p>
-                    <p>Id_couchage<?= $hebergement['id_couchage'] ?></p>
-                    <p>Id_photo<?= $hebergement['id'] ?></p>
+                    <p>Id: <?= $hebergement['Id_hebergement'] ?></p>
                     <p>id_categorie<?= $hebergement['categorie'] ?></p>
+                    <p>Nom: <?= $hebergement['nom'] ?></p>
+                    <p>Adresse: <?= $hebergement['adresse'] ?></p>
+                    <p>Description: <?= $hebergement['description'] ?></p>
+                    <p>Prix<?= $hebergement['prix'] ?></p>
+                    <p>coordonne_GPS<?= $hebergement['coordonnee_GPS'] ?></p>
+                    <p>animaux<?= ($hebergement['animaux']) ? "<img src='../image/animauxpicto.png' width='25'>" : "<img src='..image/animauxpictorouge.png'>";  ?></p>
+                    <p>wifi<?= ($hebergement['wifi']) ? "<img src='../image/wifipicto.png' width='25'>" : "<img src='..image/wifipictorouge.png'>";  ?></p>
+                    <p>fumeur<?= ($hebergement['fumeur']) ? "<img src='../image/fumeurpicto.png' width='25'>" : "<img src='..image/fumeurpictorouge.png'>";  ?></p>
+                    <p>piscine<?= ($hebergement['piscine']) ? "<img src='../image/piscinepicto.png' width='25'>" : "<img src='..image/piscinepictorouge.png'>";  ?></p>
+                    <p>sdb<?= $hebergement['sdb'] ?></p>
+                    <p>couchage<?= $hebergement['couchage'] ?></p>
+                    <p>Id_photo<?= $hebergement['ville'] ?></p>
+
                     <p>Id_Emplacement_geographique<?= $hebergement['ville_gps'] ?></p>
                     <p>Id_periode<?= $hebergement['Id_periode'] ?></p>
-                    <p><a href="index.php">Retour</a><a
-                            href="edit.php?Id_hebergement="><?= $hebergement['Id_hebergement']; ?>>Modifier</a>
+                    <p><a href="index.php">Retour</a><a href="edit.php?Id_hebergement="><?= $hebergement['Id_hebergement']; ?>>Modifier</a>
                     </p>
             </section>
         </div>
