@@ -30,6 +30,12 @@ require_once('hebergement.class.php');
                     </DIV>';
                     $_SESSION['erreur'] = "";
                 }
+                        if (!empty($_SESSION['message'])) {
+                            echo '<DIV class="alert alert-success" role="alert">' . $_SESSION['message'] . '
+                    </DIV>';
+                            $_SESSION['message'] = "";
+                        }
+                
                 ?>
                 <h1>Liste des Hébergement(s)</h1>
                 <table class="table">

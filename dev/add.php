@@ -8,20 +8,8 @@ if ($_POST) {
         && isset($_POST['ville']) && !empty($_POST['ville'])
         && isset($_POST['pays']) && !empty($_POST['pays'])
         && isset($_POST['description']) && !empty($_POST['description'])
-
-        && isset($_POST['prix']) && !empty($_POST['prix'])
-        && isset($_POST['couchage']) && !empty($_POST['couchage'])
-        && isset($_POST['sdb']) && !empty($_POST['sdb'])
-
-        && isset($_FILES['photo1']) && !empty($_FILES['photo1'])
-
         && isset($_POST['debut']) && !empty($_POST['debut'])
         && isset($_POST['fin']) && !empty($_POST['fin'])
-
-        && isset($_POST['chien']) && !empty($_POST['chien'])
-        && isset($_POST['wifi']) && !empty($_POST['prix'])
-        && isset($_POST['fumeur']) && !empty($_POST['fumeur'])
-        && isset($_POST['piscine']) && !empty($_POST['piscine'])
     ) {
         require_once 'connect.php';
         $form['categorie'] = strip_tags($_POST['categorie']);
@@ -29,6 +17,7 @@ if ($_POST) {
         $form['ville'] = strip_tags($_POST['ville']);
         $form['pays'] = strip_tags($_POST['pays']);
         $form['description'] = strip_tags($_POST['description']);
+        $form['adresse'] = strip_tags($_POST['adresse']);
         $form['prix'] = strip_tags($_POST['prix']);
         $form['couchage'] = strip_tags($_POST['couchage']);
         $form['sdb'] = strip_tags($_POST['sdb']);
@@ -39,30 +28,54 @@ if ($_POST) {
         $form['fumeur'] = strip_tags($_POST['fumeur']);
         $form['piscine'] = strip_tags($_POST['piscine']);
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
-        $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
 
+        $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
         for ($i = 1; $i < 6; $i++) {
             if (empty($_FILES['photo' . $i]['name'])) {
                 $form['photo' . $i] = "";
             } elseif (is_uploaded_file($_FILES['photo' . $i]['tmp_name'])) {
                 // test si le repertoire de destination exist sinon il le crée
                 IsDir_or_CreateIt("photo");
-
                 $maphoto = $_FILES['Cover']['name'];
-                $extension = substr($moncover, strrpos($moncover, '.'));
-                //$extension1 = pathinfo($_FILES['Cover']['name'], PATHINFO_EXTENSION);
-                //echo '||' . $extension1 . '||' . $extension . '||</br>';
+                $extension = substr($monphoto, strrpos($monphoto, '.'));
                 // Contrôle de l'extension du fichier
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
-                    die(MSG_PROBLEM_ADD_IMAGE);
+                    $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-                    $form['photo' . $i] = "/" . $form['categorie'] . '_' . $form[''] . '_' . $i . $extension;
+                    $form['photo' . $i] = "/" . $form['categorie'] . '_' . $form['ville'] . '_' . $i . $extension;
                     rename($_FILES['photo' . $i]['tmp_name'], $rep_photo . $form['photo' . $i]);
                 }
             } else {
-                $form['Cover'] = "";
+                $form['photo' . $i] = "";
             }
         }
+        //on insere les elements la table periode
+        //puis on insere les elements dans la table de hebergement et dans la table
+        $sql1 = 'INSERT INTO `periode` (`debut`,`fin`) VALUES (:debut :fin)';
+        $query1 = $db->prepare($sql1);
+        $query1->bindValue(':debut', $form['debut']);
+        $query1->bindValue(':fin', $form['fin']);
+        $query1->execute();
+
+        $sql2 = 'SELECT LAST_INSERT_ID() FROM `periode`';
+        $query2->execute();
+        $form['id_période'] = $query2->fetch();
+        //on supprime les
+        unset($form["debut"]);
+        unset($form["fin"]);
+
+        $sql3 = 'INSERT INTO 
+        `hebergement` 
+        (`nom`,`ville`,`pays`,`description`,`adresse`,`id_periode`,`prix`,`couchage`,`sbd`,`photo1`,`photo2`,`photo3`,`photo4`,`photo5`,`piscine`,`animaux`,`fumeur`,`wifi`)
+         VALUES 
+        (`:nom`,`:ville`,`:pays`,`:description`,`:adresse`,`:id_periode`,`:prix`,`:couchage`,`:sbd`,`:photo1`,`:photo2`,`:photo3`,`:photo4`,`:photo5`,`:piscine`,`:animaux`,`:fumeur`,`:wifi`)';
+        $query3 = $db->prepare($sql3);
+        foreach ($form as $key => $value) {
+            $query3->bindValue(':' . $key, $value);
+        }
+        $query3->execute();
+        $_SESSION['message'] = "Produit Ajouté";
+        header('Location index.php');
         require_once 'close.php';
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";
@@ -91,20 +104,22 @@ if ($_POST) {
                 if (!empty($_SESSION['erreur'])) {
                     echo '<DIV class="alert alert-danger" role="alert">' . $_SESSION['erreur'] . '
                     </DIV>';
-                    $_SESSION['erreur'] = "";
+                    $_SESSION['erreur '] = "";
                 }
                 ?>
                 <h1>Ajouter un Hébergement</h1>
                 <form method="post" action="add.php">
                     <div class="form-group">
-                        <label for="categorie">Type</label>
-                        <input type="text" id="categorie" name="categorie" class="form-controls" required>
+                        <label for="categorie">Catégorie</label>
+                        <input type="text" id="categorie" name="categorie" class="form-controls">
                         <label for="nom">Nom</label>
                         <input type="text" id="nom" name="nom" class="form-controls">
+                        <label for="adresse">Adresse</label>
+                        <input type="text" id="adresse" name="adresse" class="form-controls">
+                        <label for="pays">Pays</label>
+                        <input type="text" id="pays" name="pays" class="form-controls">
                         <label for="ville">Ville</label>
                         <input type="text" id="Ville" name="ville" class="form-controls">
-                        <label for="Pays">Pays</label>
-                        <input type="text" id="pays" name="pays" class="form-controls">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
@@ -115,11 +130,11 @@ if ($_POST) {
                     <div class="form-group">
                         <h2>Eléments numéraires(Obligatoire)</h2>
                         <label for="prix">Prix</label>
-                        <input type="number" id="Prix" name="Prix" class="form-controls">
+                        <input type="number" id="prix" name="prix" class="form-controls" min=0 value=0>
                         <label for="couchage">Couchage</label>
-                        <input type="number" id="couchage" name="couchage" class="form-controls">
+                        <input type="number" id="couchage" name="couchage" class="form-controls" min=1 value=1>
                         <label for="sdb">Salle de bains</label>
-                        <input type="number" id="sdb" name="sdb" class="form-controls">
+                        <input type="number" id="sdb" name="sdb" class="form-controls" min=1 value=1>
                     </div>
                     <!--album photo de l hebergement-->
                     <!--on besoin  id l'herbergement pour creer une entree dans albums -->
