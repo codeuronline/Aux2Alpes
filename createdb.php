@@ -32,15 +32,28 @@ try {
     $connectdb = new PDO('mysql:host=' . $servername . ';dbname=' . $namedb, $username, $password);
     $connectdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql =
-    "CREATE TABLE Musique(
-            `Id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT ,
-            `Titre` VarCHAR(100) NOT NULL,
-            `Album` VarCHAR(100) NOT NULL,
-            `Artiste` VarCHAR(100) NOT NULL,
-            `Genre` VarCHAR(30) NOT NULL,
-            `Cover` VarCHAR(255) NOT NULL,
-            `Sound` Varchar(255) NOT NULL ,
-            `User` Varchar(100) NOT NULL)";
+    "CREATE TABLE hebergement(
+            `id_hebergement` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT ,
+            `nom VARCHAR(50) ,
+            `description` VARCHAR(50) ,
+            `prix` SMALLINT,
+            `adresse VARCHAR(100) ,
+            `coordonnee_GPS VARCHAR(50) ,
+            `wifi BOOLEAN,
+            `fumeur BOOLEAN NOT NULL,
+            `piscine BOOLEAN,
+            `animaux BOOLEAN,
+            `categorie VARCHAR(50) ,
+            `couchage TINYINT,
+            `sdb TINYINT,
+            `ville VARCHAR(50) ,
+            `pays VARCHAR(50) ,
+            `photo1 VARCHAR(200) ,
+            `photo2 VARCHAR(200) ,
+            `photo3 VARCHAR(200) ,
+            `photo4 VARCHAR(200) ,
+            `photo5 VARCHAR(200) ,
+            `id_periode INT NOT NULL,";
     $connectdb->exec($sql);
     echo 'Table Musique bien créée !<br />';
 
