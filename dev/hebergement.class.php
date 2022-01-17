@@ -1,42 +1,54 @@
 <?php
-class Hebergement
+require_once '../database.class.php';
+class Hebergement extends DataBase
 {
    protected const NOM = "";
    protected const TYPE = "";
-   protected const ANIMAUXACCEPTE = true;
+   protected const ANIMAUX = true;
+   protected const PISCINE = true;
+   protected const WIFI = true;
+   protected const FUMEUR = true;
    protected const CATEGORIE = "Gite";
+   protected const PHOTOVIDE = "photo/photovide.jpeg";
+   protected $categorie = self::CATEGORIE;
    protected $prix; //correspond à une journee de reservation
-   protected $periode_debut;
-   protected $periode_fin;
+   protected $debut;
+   protected $fin;
    protected $description;
-   protected $nbpiece;
+   protected $piece;
    protected $adresse;
-   protected $photo = array();
-   protected $nbSdb;
-   protected $nbCouchage;
+   protected $photo1;
+   protected $photo2;
+   protected $photo3;
+   protected $photo4;
+   protected $photo5;
+   protected $sdb;
+   protected $couchage;
    protected $coordonnee_GPS = array('latitude', 'longitude');
    protected $ville;
    protected $pays;
-   protected $classement;
-   protected $categorie;
+   protected $tabAssoc;
 
-   // -> Constructeur
-   public function __construct($monPrix, $maPeriode_debut, $maPeriode_fin, $maDescription, $monNbpiece, $monAdresse, $mesPhotos, $monNbcouchage, $monNbSdb, $mesCoordonnee_GPS, $maVille, $monPays, $monClassement, $maCategorie = self::CATEGORIE)
+
+   // -> Constructeur neccesitant un tableau associatif
+
+   public function __construct($table)
    {
-      $this->prix = $monPrix; //correspond à une journee de reservation
-      $this->periode_debut = $maPeriode_debut;
-      $this->periode_fin = $maPeriode_fin;
-      $this->description = $maDescription;
-      $this->nbpiece = $monNbpiece;
-      $this->adresse = $monAdresse;
-      $this->photo = $mesPhotos;
-      $this->nbSdb = $monNbSdb;
-      $this->nbCouchage = $monNbcouchage;
-      $this->coordonnee_GPS = $mesCoordonnee_GPS;
-      $this->ville = $maVille;
-      $this->pays = $monPays;
-      $this->classement = $monClassement;
-      $this->categorie = $maCategorie;
+      //on 
+      //on  nettoies le code
+      foreach ($table as $key => $value) {
+         if (empty($table[$key]) && (($key == "photo1") || ($key == "photo2") || ($key == "photo3") || ($key == "photo4") || ($key == "photo5"))) {
+            $this->$key = self::PHOTOVIDE;
+         } else {
+            $table[$key] = strip_tags($value);
+            $this->$key = $table[$key];
+         }
+      }
+   }
+
+   public function  insert()
+   {
+
    }
    // -> Prix
    public function getPrix()
@@ -45,25 +57,26 @@ class Hebergement
    }
    public function setPrix($val)
    {
-      $this->prix = $val;
+      $this->prix = strip_tags($val);
+      
    }
    // -> periode_debut
    public function getPeriode_debut()
    {
-      return $this->periode_debut;
+      return $this->debut;
    }
    public function setPeriode_debut($val)
    {
-      $this->periode_debut = $val;
+      $this->debut = $val;
    }
    // -> periode_fin
    public function getPeriode_fin()
    {
-      return $this->periode_fin;
+      return $this->fin;
    }
    public function setPeriode_fin($val)
    {
-      $this->periode_fin = $val;
+      $this->fin = $val;
    }
    // -> description
    public function getDescription()
@@ -75,13 +88,13 @@ class Hebergement
       $this->description = $val;
    }
    // -> piece    
-   public function getNbPiece()
+   public function getPiece()
    {
-      return $this->nbpiece;
+      return $this->piece;
    }
-   public function setNbpiece($val)
+   public function setPiece($val)
    {
-      $this->nbpiece = $val;
+      $this->piece = $val;
    }
    // -> adresse    
    public function getAdresse()
@@ -92,14 +105,49 @@ class Hebergement
    {
       $this->adresse = $val;
    }
-   // -> photo
-   public function getPhoto()
+   // -> photo 1
+   public function getPhoto1()
    {
-      return $this->photo;
+      return $this->photo1;
    }
-   public function setPohto($val)
+   public function setPhoto1($val)
    {
-      $this->photo[] = $val;
+      $this->photo1 = $val;
+   }
+   // -> photo 2
+   public function getPhoto2()
+   {
+      return $this->photo2;
+   }
+   public function setPhoto2($val)
+   {
+      $this->photo2 = $val;
+   }
+   // -> photo 3
+   public function getPhoto3()
+   {
+      return $this->photo3;
+   }
+   public function setPhoto3($val)
+   {
+      $this->photo1 = $val;
+   } // -> photo 4
+   public function getPhoto4()
+   {
+      return $this->photo4;
+   }
+   public function setPhoto4($val)
+   {
+      $this->photo4 = $val;
+   }
+   // -> photo 5
+   public function getPhoto5()
+   {
+      return $this->photo5;
+   }
+   public function setPhoto5($val)
+   {
+      $this->photo5 = $val;
    }
    // -> nb salle de bains
    public function getNbSdb()
