@@ -68,7 +68,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 <p>Fin: <?= $periode['fin'] ?></p>
                 <p>
                     <a href='index.php' class='btn btn-primary'>Retour<a>
-                            <a href="edit.php?id_hebergement=<?= $hebergement['id_hebergement']; ?>" class='btn btn-primary'>Modifier</a>
+                    <a href="edit.php?id_hebergement=<?= $hebergement['id_hebergement']; ?>" class='btn btn-primary'>Modifier</a>
                 </p>
             </section>
         </div>

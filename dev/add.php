@@ -2,6 +2,7 @@
 session_start();
 // il faut d'abord traité la table periode et albums pour ensuite traiter traiter la table hebergement
 if ($_POST) {
+    var_dump($_POST);
     if (
         isset($_POST['categorie']) && !empty($_POST['categorie'])
         && isset($_POST['nom']) && !empty($_POST['nom'])
@@ -12,31 +13,35 @@ if ($_POST) {
         && isset($_POST['fin']) && !empty($_POST['fin'])
     ) {
         require_once 'connect.php';
-        $form['categorie'] = strip_tags($_POST['categorie']);
-        $form['nom'] = strip_tags($_POST['nom']);
-        $form['ville'] = strip_tags($_POST['ville']);
-        $form['pays'] = strip_tags($_POST['pays']);
-        $form['description'] = strip_tags($_POST['description']);
-        $form['adresse'] = strip_tags($_POST['adresse']);
-        $form['prix'] = strip_tags($_POST['prix']);
-        $form['couchage'] = strip_tags($_POST['couchage']);
-        $form['sdb'] = strip_tags($_POST['sdb']);
-        $form['debut'] = strip_tags($_POST['debut']);
-        $form['fin'] = strip_tags($_POST['fin']);
-        $form['animaux'] = (strip_tags($_POST['chien']) == "false") ? 0 : 1;
-        $form['wifi'] = (strip_tags($_POST['wifi']) == "false") ? 0 : 1;
-        $form['fumeur'] = (strip_tags($_POST['fumeur']) == "false") ? 0 : 1;
-        $form['piscine'] = (strip_tags($_POST['piscine']) == "false") ? 0 : 1;
-        $extensionsAutorisees_image = array(".jpeg", ".jpg");
+        //parcours du tableau post et constitution des elements d'entree des tables form et periode
 
+        foreach ($_POST as $key => $value) {
+            $elemntepb = ['chien', 'wifi', 'fumeur', 'piscine', 'debut', 'fin'];
+
+            $form[$key] = strip_tags($_POST[$key]);
+            if ($key == 'chien') {
+                $form['animaux'] = (strip_tags($_POST[$key]) == "false") ? 0 : 1;
+            }
+
+            if (($key == 'wifi') || ($key == 'fumeur') || ($key == 'piscine')) {
+                $form[$key] = (strip_tags($_POST[$key]) == "false") ? 0 : 1;
+            }
+            if (($key == 'debut') || ($key = "fin")) {
+                $periode[$key] = strip_tags($_POST[$key]);
+            }
+        }
+       
+    
+        //cas des image
         $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
+        $extensionsAutorisees_image = array(".jpeg", ".jpg");
         for ($i = 1; $i < 6; $i++) {
             if (empty($_FILES['photo' . $i]['name'])) {
-                unset($form['photo' . $i]);
+                //unset($form['photo' . $i]);
             } elseif (is_uploaded_file($_FILES['photo' . $i]['tmp_name'])) {
                 // test si le repertoire de destination exist sinon il le crée
                 IsDir_or_CreateIt("photo");
-                $maphoto = $_FILES['Cover']['name'];
+                $maphoto = $_FILES['photo' . $i]['name'];
                 $extension = substr($monphoto, strrpos($monphoto, '.'));
                 // Contrôle de l'extension du fichier
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
@@ -49,29 +54,33 @@ if ($_POST) {
                 $form['photo' . $i] = "";
             }
         }
+
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
-        $sql1 = 'INSERT INTO `periode` (`debut`,`fin`) VALUES ( :debut, :fin )';
+
+        $sql1 = 'INSERT INTO `periode` (`id_periode,`debut`,`fin`) VALUES ( NULL, :debut, :fin )';
         $query1 = $db->prepare($sql1);
-        $query1->bindValue(':id_periode', $form['id_periode']);
-        $query1->bindValue(':debut', $form['debut']);
-        $query1->bindValue(':fin', $form['fin']);
+        $query1->bindValue(':debut', $periode['debut']);
+        $query1->bindValue(':fin', $periode['fin']);
         $query1->execute();
         echo "c'est bon";
-
+        //on recupere l'id_periode
         $sql2 = 'SELECT LAST_INSERT_ID() from `periode`';
         $query2 = $db->prepare($sql2);
         $query2->execute();
-        $form['id_période'] = $query2->fetch();
-        //on supprime les
-        unset($form["debut"]);
-        unset($form["fin"]);
+        $last = $query2->fetch();
+        $form['id_periode'] = $last;
+        var_dump($last);
+        var_dump($form);
+        var_dump($periode);
 
-        $sql3 = 'INSERT INTO 
+        die;
+        $sql3 =
+            'INSERT INTO 
         `hebergement` 
-        (`nom`,`ville`,`pays`,`description`,`adresse`,`id_periode`,`prix`,`couchage`,`sbd`,`photo1`,`photo2`,`photo3`,`photo4`,`photo5`,`piscine`,`animaux`,`fumeur`,`wifi`)
+        (,`nom`,`ville`,`pays`,`description`,`adresse`,`id_periode`,`prix`,`couchage`,`sbd`,`photo1`,`photo2`,`photo3`,`photo4`,`photo5`,`piscine`,`animaux`,`fumeur`,`wifi`)
          VALUES 
-        (`:nom`,`:ville`,`:pays`,`:description`,`:adresse`,`:id_periode`,`:prix`,`:couchage`,`:sbd`,`:photo1`,`:photo2`,`:photo3`,`:photo4`,`:photo5`,`:piscine`,`:animaux`,`:fumeur`,`:wifi`)';
+        (,`:nom`,`:ville`,`:pays`,`:description`,`:adresse`,`:id_periode`,`:prix`,`:couchage`,`:sbd`,`:photo1`,`:photo2`,`:photo3`,`:photo4`,`:photo5`,`:piscine`,`:animaux`,`:fumeur`,`:wifi`)';
         $query3 = $db->prepare($sql3);
         foreach ($form as $key => $value) {
             $query3->bindValue(':' . $key, $value);
