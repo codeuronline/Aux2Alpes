@@ -2,6 +2,7 @@
 session_start();
 
 if ($_POST) {
+    var_dump($_POST);
     if (
         isset($_POST['categorie']) && !empty($_POST['categorie'])
         && isset($_POST['nom']) && !empty($_POST['nom'])
@@ -14,8 +15,9 @@ if ($_POST) {
         require_once 'connect.php';
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
+            echo $key;
         }
-
+        
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
         $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
         for ($i = 1; $i < 6; $i++) {
@@ -52,15 +54,14 @@ if ($_POST) {
                 $query1->bindValue(':' . $key, $value);
                 $query1->execute();
             }
-        }    //on insere les elements la table periode
-        //puis on insere les elements dans la table de hebergement et dans la table
+        }   
 
 
         $_SESSION['message'] = "Produit Modifié";
         header('Location index.php');
         require_once 'close.php';
     } else {
-        $_SESSION['erreur'] = "probleme dans la modfication";
+        $_SESSION['erreur'] = "probleme dans la modification methode post";
     }
 } elseif (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     require_once('connect.php');

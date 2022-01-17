@@ -23,10 +23,10 @@ if ($_POST) {
         $form['sdb'] = strip_tags($_POST['sdb']);
         $form['debut'] = strip_tags($_POST['debut']);
         $form['fin'] = strip_tags($_POST['fin']);
-        $form['animaux'] = strip_tags($_POST['chien']);
-        $form['wifi'] = strip_tags($_POST['wifi']);
-        $form['fumeur'] = strip_tags($_POST['fumeur']);
-        $form['piscine'] = strip_tags($_POST['piscine']);
+        $form['animaux'] = (strip_tags($_POST['chien']) == "false") ? 0 : 1;
+        $form['wifi'] = (strip_tags($_POST['wifi']) == "false") ? 0 : 1;
+        $form['fumeur'] = (strip_tags($_POST['fumeur']) == "false") ? 0 : 1;
+        $form['piscine'] = (strip_tags($_POST['piscine']) == "false") ? 0 : 1;
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
 
         $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
@@ -51,9 +51,8 @@ if ($_POST) {
         }
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
-        $sql1 = 'INSERT INTO `periode` (`id_periode`,`debut`,`fin`) VALUES ( :id_periode, :debut, :fin )';
+        $sql1 = 'INSERT INTO `periode` (`debut`,`fin`) VALUES ( :debut, :fin )';
         $query1 = $db->prepare($sql1);
-        $form['id_periode'] = $form['debut'] . $form['fin'];
         $query1->bindValue(':id_periode', $form['id_periode']);
         $query1->bindValue(':debut', $form['debut']);
         $query1->bindValue(':fin', $form['fin']);
