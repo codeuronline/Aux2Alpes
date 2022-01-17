@@ -104,6 +104,7 @@ if ($_POST) {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+<link rel="stylesheet" href=".\radio.css">
 
 <head>
     <meta charset="UTF-8" />
