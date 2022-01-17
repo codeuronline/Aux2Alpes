@@ -16,18 +16,20 @@ if ($_POST) {
         //parcours du tableau post et constitution des elements d'entree des tables form et periode
 
         foreach ($_POST as $key => $value) {
-            $elemntepb = ['chien', 'wifi', 'fumeur', 'piscine', 'debut', 'fin'];
-
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {
                 $form['animaux'] = (strip_tags($_POST[$key]) == "false") ? 0 : 1;
+                unset($form[$key]);
             }
-
             if (($key == 'wifi') || ($key == 'fumeur') || ($key == 'piscine')) {
                 $form[$key] = (strip_tags($_POST[$key]) == "false") ? 0 : 1;
             }
             if (($key == 'debut') || ($key = "fin")) {
                 $periode[$key] = strip_tags($_POST[$key]);
+                unset($form[$key]);
+            }
+            if (($key == 'prix') || ($key == 'couchage') || ($key == 'sdb')) {
+                $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
        
@@ -57,37 +59,42 @@ if ($_POST) {
 
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
+        $form['prix'] = intval($form['prix']);
+        $form['couchage'] = intval($form['couchage']);
+        $form['sdb'] = intval($form['sdb']);
 
-        $sql1 = 'INSERT INTO `periode` (`id_periode,`debut`,`fin`) VALUES ( NULL, :debut, :fin )';
+        $sql1 = 'INSERT INTO periode (debut,fin ) VALUES ( :debut, :fin )';
         $query1 = $db->prepare($sql1);
         $query1->bindValue(':debut', $periode['debut']);
         $query1->bindValue(':fin', $periode['fin']);
         $query1->execute();
-        echo "c'est bon";
-        //on recupere l'id_periode
+               //on recupere l'id_periode
         $sql2 = 'SELECT LAST_INSERT_ID() from `periode`';
         $query2 = $db->prepare($sql2);
         $query2->execute();
         $last = $query2->fetch();
-        $form['id_periode'] = $last;
-        var_dump($last);
-        var_dump($form);
-        var_dump($periode);
-
-        die;
+        $form['id_periode'] = intval($last[0]);
+        for ($i = 2; $i < 6; $i++) {
+            $form['photo' . $i] = "";
+        }
+        $form['gps'] = "";
         $sql3 =
-            'INSERT INTO 
-        `hebergement` 
-        (,`nom`,`ville`,`pays`,`description`,`adresse`,`id_periode`,`prix`,`couchage`,`sbd`,`photo1`,`photo2`,`photo3`,`photo4`,`photo5`,`piscine`,`animaux`,`fumeur`,`wifi`)
-         VALUES 
-        (,`:nom`,`:ville`,`:pays`,`:description`,`:adresse`,`:id_periode`,`:prix`,`:couchage`,`:sbd`,`:photo1`,`:photo2`,`:photo3`,`:photo4`,`:photo5`,`:piscine`,`:animaux`,`:fumeur`,`:wifi`)';
+        'INSERT INTO hebergement 
+        (nom,description,prix,adresse,gps,wifi,fumeur,piscine,animaux,categorie,couchage,sdb,ville,pays,photo1,photo2,photo3,photo4,photo5,id_periode)
+        VALUES 
+        (:nom, :description, :prix, :adresse, :gps, :wifi, :fumeur,:piscine, :animaux, :categorie, :couchage, :sdb, :ville, :pays, :photo1, :photo2, :photo3, :photo4, :photo5, :id_periode)';
+
         $query3 = $db->prepare($sql3);
         foreach ($form as $key => $value) {
             $query3->bindValue(':' . $key, $value);
+            
         }
         $query3->execute();
+        
         $_SESSION['message'] = "Produit Ajouté";
         header('Location index.php');
+        // element de controle //
+          // element de controle//
         require_once 'close.php';
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";

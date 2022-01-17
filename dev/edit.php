@@ -1,71 +1,10 @@
 <?php
 session_start();
 
-if ($_POST) {
-    var_dump($_POST);
-    if (
-        isset($_POST['categorie']) && !empty($_POST['categorie'])
-        && isset($_POST['nom']) && !empty($_POST['nom'])
-        && isset($_POST['ville']) && !empty($_POST['ville'])
-        && isset($_POST['pays']) && !empty($_POST['pays'])
-        && isset($_POST['description']) && !empty($_POST['description'])
-        && isset($_POST['debut']) && !empty($_POST['debut'])
-        && isset($_POST['fin']) && !empty($_POST['fin'])
-    ) {
-        require_once 'connect.php';
-        foreach ($_POST as $key => $value) {
-            $form[$key] = strip_tags($_POST[$key]);
-            echo $key;
-        }
-        
-        $extensionsAutorisees_image = array(".jpeg", ".jpg");
-        $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
-        for ($i = 1; $i < 6; $i++) {
-            if (empty($_FILES['photo' . $i]['name'])) {
-                unset($form['photo' . $i]);
-            } elseif (is_uploaded_file($_FILES['photo' . $i]['tmp_name'])) {
-                // test si le repertoire de destination exist sinon il le crée
-                IsDir_or_CreateIt("photo");
-                $maphoto = $_FILES['photo' . $i]['name'];
-                $extension = substr($monphoto, strrpos($monphoto, '.'));
-                // Contrôle de l'extension du fichier
-                if (!(in_array($extension, $extensionsAutorisees_image))) {
-                    $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
-                } else {
-                    $form['photo' . $i] = "/" . $form['categorie'] . '_' . $form['ville'] . '_' . $i . $extension;
-                    rename($_FILES['photo' . $i]['tmp_name'], $rep_photo . $form['photo' . $i]);
-                }
-            } else {
-                $form['photo' . $i] = "";
-            }
-        }
-        $id = "id_hebergement";
-        foreach ($form as $key => $value) {
-            if (!($key = $id)) {
-                if (($key == 'debut') || ($key == 'fin')) {
-                    $periode[$key] = $_GET[$key];
-                    $sql = "UPDATE `periode` SET $key=:$key WHERE `id_periode`=:$id";
-                    $query = $db->prepare($sql);
-                    $query->bindValue(':id_periode', $form['id_periode']);
-                    $query->execute();
-                }
-                $sql = "UPDATE `hebergement` SET $key=:$key WHERE `id_hebergement`=:$id";
-                $query = $db->prepare($sql);
-                $query1->bindValue(':' . $key, $value);
-                $query1->execute();
-            }
-        }   
-
-
-        $_SESSION['message'] = "Produit Modifié";
-        header('Location index.php');
-        require_once 'close.php';
-    } else {
-        $_SESSION['erreur'] = "probleme dans la modification methode post";
-    }
-} elseif (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
+if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     require_once('connect.php');
     //traite les element de la table hebergement
+
     $id = strip_tags(($_GET['id_hebergement']));
     $sql = 'SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
     $query = $db->prepare($sql);
@@ -73,7 +12,7 @@ if ($_POST) {
     $query->execute();
     $hebergement = $query->fetch();
     //traite les elements de la table periode
-    $sql1 = 'SELECT * FROM `periode`  WHERE id_periode = :id';
+    $sql1 = 'SELECT * FROM periode  WHERE id_periode = :id';
     $query1 = $db->prepare($sql1);
     $query1->bindValue(':id', $hebergement['id_periode'], PDO::PARAM_INT);
     $query1->execute();
@@ -115,7 +54,7 @@ if ($_POST) {
                 }
                 ?>
                 <h1>Edition d'un Hébergement</h1>
-                <form method="POST" action="edit.php">
+                <form method="POST" action="update.php">
                     <div class="form-group">
                         <label for="categorie">Catégorie</label>
                         <input type="text" id="categorie" name="categorie" class="form-controls"
@@ -173,26 +112,40 @@ if ($_POST) {
                     <div class="form-group">
                         <h2>Option(s) de l'hébergement</h2>
                         L'état du picto prédéfini l'option de l'hébergement <br>
-                        <input type="radio" name="chien" class="chien demoyes" id="chien-a" checked value="false">
+                        <?php $check['animaux'] = (($hebergement['animaux'] == true) || ($hebergement['animaux'] == 1)) ? "checked" : ""; ?>
+
+                        <input type="radio" name="chien" class="chien demoyes" id="chien-a" <?= $check['animaux'] ?>
+                            value="true">
                         <label for="chien-a"><img src='../image/animauxpictorouge.png' width="60" alt=''></label>
-                        <input type="radio" name="chien" class="chien demono" id="chien-b" value="true">
+                        <input type="radio" name="chien" class="chien demono" id="chien-b" <?= $check['animaux'] ?>
+                            value="false">
                         <label for="chien-b"><img src="../image/animauxpicto.png" width="60" alt=""></label>
 
-                        <input type="radio" name="wifi" class="wifi demoyes" id="wifi-a" checked value="false">
+                        <?php $check['wifi'] = (($hebergement['wifi'] == true) || ($hebergement['wifi'] == 1)) ? "checked" : ""; ?>
+                        <input type="radio" name="wifi" class="wifi demoyes" id="wifi-a" <?= $check['wifi'] ?>
+                            value="true">
                         <label for="wifi-a"><img src='../image/wifipictorouge.png' width="60" alt=''></label>
-                        <input type="radio" name="wifi" class="wifi demono" id="wifi-b" value="true">
+                        <input type="radio" name="wifi" class="wifi demono" id="wifi-b" <?= $check['wifi'] ?>
+                            value="false">
                         <label for="wifi-b"><img src="../image/wifipicto.png" width="60" alt=""></label>
 
-                        <input type="radio" name="fumeur" class="fumeur demoyes" id="fumeur-a" checked value="false">
+                        <?php $check['fumeur'] = (($hebergement['fumeur'] == true) || ($hebergement['fumeur'] == 1)) ? "checked" : ""; ?>
+                        <input type="radio" name="fumeur" class="fumeur demoyes" id="fumeur-a" <?= $check['fumeur'] ?>
+                            value="true">
                         <label for="fumeur-a"><img src='../image/fumeurpictorouge.png' width="60" alt=''></label>
-                        <input type="radio" name="fumeur" class="fumeur demono" id="fumeur-b" value="true">
+                        <input type="radio" name="fumeur" class="fumeur demono" id="fumeur-b" <?= $check['fumeur'] ?>
+                            value="false">
                         <label for="fumeur-b"><img src="../image/fumeurpicto.png" width="60" alt=""></label>
 
-                        <input type="radio" name="piscine" class="piscine demoyes" id="piscine-a" checked value="false">
+                        <?php $check['piscine'] = (($hebergement['piscine'] == true) || ($hebergement['piscine'] == 1)) ? "checked" : ""; ?>
+                        <input type="radio" name="piscine" class="piscine demoyes" id="piscine-a"
+                            <?= $check['piscine'] ?> value="true">
                         <label for="piscine-a"><img src='../image/piscinepictorouge.png' width="60" alt=''></label>
-                        <input type="radio" name="piscine" class="piscine demono" id="piscine-b" value="true"
-                            class=form>
+                        <input type="radio" name="piscine" class="piscine demono" id="piscine-b"
+                            <?= $check['piscine'] ?> value="false" class=form>
                         <label for="piscine-b"><img src="../image/piscinepicto.png" width="60" alt=""></label>
+                        <input type="hidden" name="id_hebergement" id="id_hebergement"
+                            value='<?= $hebergement['id_hebergement'] ?>'>
                     </div>
 
                     <button class="btn btn-primary">Modifier</button>
