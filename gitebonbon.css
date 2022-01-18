@@ -21,7 +21,7 @@ body {
 /*ici les boutons*/
 .d-grid .btn-main-bg-text-light{
   background-color: rgb(39, 67, 158);
-  color: rgba(255, 255, 255, 0.719);
+  color: rgba(194, 186, 186, 0.719);
   border-radius: 2%;
   font-family : Helvetica, sans-serif;
   display: flex;
@@ -31,7 +31,7 @@ input {
   border-radius: 5rem;
   font-size: smol;
   margin-top: 15px;
-  background-color: #fefeff98;
+  background-color: #d7d7dfa1;
   line-height: 30px;
   border:#0d6efd;
   color: white;
@@ -44,7 +44,6 @@ input {
   text-align: center;
   font-size: smol;
   border-radius: 5rem;
-
 }
 
 /*ici les titre */
@@ -64,3 +63,4 @@ input {
 .d-grid-text-center{
   margin-top: 50% ;
 }
+
