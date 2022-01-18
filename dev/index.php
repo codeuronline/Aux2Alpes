@@ -57,7 +57,9 @@ require_once('hebergement.class.php');
                             <td><?= $hebergement['nom'] ?></td>
                             <td><?= $hebergement['prix'] ?></td>
                             <td><?= $hebergement['adresse'] ?></td>
-                            <td><a href="details.php?id_hebergement=<?= $hebergement['id_hebergement'] ?>">Voir<a></td>
+                            <td><a href="details.php?id_hebergement=<?= $hebergement['id_hebergement'] ?>">Voir<a>
+                                        <a href="delete.php?id_hebergement=<?= $hebergement['id_hebergement'] ?>">Suppimer<a>
+                            </td>
                         </tr>
                         <?php }
                         ?>

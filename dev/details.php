@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     require_once('connect.php');
     //traite les element de la table hebergement
