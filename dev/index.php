@@ -9,7 +9,7 @@ require_once('close.php');
 require_once('hebergement.class.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">

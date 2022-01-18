@@ -77,7 +77,7 @@ if ($_POST) {
 
 
         $_SESSION['message'] = "Produit Modifié";
-        header('Location index.php');
+        header('Location: index.php');
         exit;
         
         require_once 'close.php';
