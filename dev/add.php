@@ -105,15 +105,14 @@ if ($_POST) {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<link rel="stylesheet" href=".\radio.css">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="..\gitebonbon.css">
     <link rel="stylesheet" href="radio.css">
+    <link rel="stylesheet" href="..\gitebonbon.css">
     <title>Détails du Produit</title>
 </head>
 
@@ -131,36 +130,41 @@ if ($_POST) {
                 <h1>Ajouter un Hébergement</h1>
                 <form method="post" action="add.php">
                     <div class="form-group">
-                        <label for="categorie">Catégorie</label>
-                        <input type="text" id="categorie" name="categorie" class="form-controls">
-                        <label for="nom">Nom</label>
+                        <div class="d1"><div><label for="categorie">Catégorie</label>
+                        <input type="text" id="categorie" name="categorie" class="form-controls"></div>
+
+                        <div class="d2"><label for="nom">Nom</label>
                         <input type="text" id="nom" name="nom" class="form-controls">
                         <label for="adresse">Adresse</label>
-                        <input type="text" id="adresse" name="adresse" class="form-controls">
-                        <label for="pays">Pays</label>
+                        <input type="text" id="adresse" name="adresse" class="form-controls"></div>
+                        
+                        <div class="d3"><label for="pays">Pays</label>
                         <input type="text" id="pays" name="pays" class="form-controls">
                         <label for="ville">Ville</label>
-                        <input type="text" id="Ville" name="ville" class="form-controls">
-                    </div>
+                        <input type="text" id="Ville" name="ville" class="form-controls"></div>
+                    </div><br>
+
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea type="descprition" id="description" name="description"
                             class="form-controls"></textarea>
                     </div>
+
                     <!--element numeraire-->
+
                     <div class="form-group">
-                        <h2>Eléments numéraires(Obligatoire)</h2>
-                        <label for="prix">Prix</label>
-                        <input type="number" id="prix" name="prix" class="form-controls" min=0 value=0>
-                        <label for="couchage">Couchage</label>
+
+                        <div class="d4"><label for="prix">Prix</label>
+                        <input type="number" id="prix" name="prix" class="form-controls" min=0 value=0></div>
+                        
+                        <div class="d5"><label for="couchage">Couchage</label>
                         <input type="number" id="couchage" name="couchage" class="form-controls" min=1 value=1>
                         <label for="sdb">Salle de bains</label>
-                        <input type="number" id="sdb" name="sdb" class="form-controls" min=1 value=1>
+                        <input type="number" id="sdb" name="sdb" class="form-controls" min=1 value=1></div>
                     </div>
                     <!--album photo de l hebergement-->
                     <!--on besoin  id l'herbergement pour creer une entree dans albums -->
                     <div class="form-group">
-                        <h2>Photo de l'hébergement</h2>
                         <label for="Album">Albums</label>
                         <input type="file" id="photo1" name="photo1" class="form-controls" accept=".jpg, .jpeg"
                             required><br>
@@ -178,7 +182,6 @@ if ($_POST) {
 
 
                     <div class="form-group">
-                        <h2>Période disponibilité de l'hébergement(1 période déclarable) Obligatoire</h2>
                         <!--on besoin  id l'herbergement pour creer une entree dans periode -->
                         <label for="fin">Début</label>
                         <input type="date" id="debut" name="debut" class="form-controls"
@@ -186,10 +189,8 @@ if ($_POST) {
                         <label for="fin">Fin</label>
                         <input type="date" id="fin" name="fin" class="form-controls"
                             value="<?php echo date('Y-m-d', strtotime("+5 day")); ?>" required>
-                    </div>
+                    </div><br>
                     <div class="form-group">
-                        <h2>Option(s) de l'hébergement</h2>
-                        L'état du picto prédéfini l'option de l'hébergement <br>
                         <input type="radio" name="chien" class="chien demoyes" id="chien-a" checked value="false">
                         <label for="chien-a"><img src='../image/animauxpictorouge.png' width="60" alt='autorisation animaux' height="60" width="50"></label>
                         <input type="radio" name="chien" class="chien demono" id="chien-b" value="true">
@@ -212,8 +213,8 @@ if ($_POST) {
                         <label for="piscine-b"><img src="../image/piscinepicto.png" width="60" alt="piscine autorisation"height="60" width="50"></label>
                     </div>
 
-                    <button class="btn-btn-primary">Ajouter</button>
-                    <button class="btn-btn-primary" type="reset">Annuler</button>
+                    <button class="primary">Ajouter</button>
+                    <button class="primary" type="reset">Annuler</button>
                     <a href='index.php' class='btn-btn-primary'>Retour<a>
                 </form>
 
