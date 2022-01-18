@@ -20,13 +20,16 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
 
     //trait les elmements de la table jours
     //on verifie si le hebergement existe
+    var_dump($hebergement);
     if (!$hebergement) {
         $_SESSION['erreur'] = "Cet ID n'existe pas";
-        //header('Location: index.php');
+        header('Location: index.php');
+        exit;
     }
 } else {
     $_SESSION['erreur'] = "URL invalide";
     header('Location: index.php');
+    exit;
 } ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -112,7 +115,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                     <div class="form-group">
                         <h2>Option(s) de l'hébergement</h2>
                         L'état du picto prédéfini l'option de l'hébergement <br>
-                        <?php $check['animaux'] = (($hebergement['animaux'] == true) || ($hebergement['animaux'] == 1)) ? "checked" : ""; ?>
+                        <?php $check['animaux'] = (($hebergement['animaux'] == '1') || ($hebergement['animaux'] == '1')) ? "checked" : ""; ?>
 
                         <input type="radio" name="chien" class="chien demoyes" id="chien-a" <?= $check['animaux'] ?>
                             value="true">
@@ -121,7 +124,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                             value="false">
                         <label for="chien-b"><img src="../image/animauxpicto.png" width="60" alt=""></label>
 
-                        <?php $check['wifi'] = (($hebergement['wifi'] == true) || ($hebergement['wifi'] == 1)) ? "checked" : ""; ?>
+                        <?php $check['wifi'] = (($hebergement['wifi'] == '1') || ($hebergement['wifi'] == '1')) ? "checked" : ""; ?>
                         <input type="radio" name="wifi" class="wifi demoyes" id="wifi-a" <?= $check['wifi'] ?>
                             value="true">
                         <label for="wifi-a"><img src='../image/wifipictorouge.png' width="60" alt=''></label>
@@ -129,7 +132,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                             value="false">
                         <label for="wifi-b"><img src="../image/wifipicto.png" width="60" alt=""></label>
 
-                        <?php $check['fumeur'] = (($hebergement['fumeur'] == true) || ($hebergement['fumeur'] == 1)) ? "checked" : ""; ?>
+                        <?php $check['fumeur'] = (($hebergement['fumeur'] == '1') || ($hebergement['fumeur'] == 1)) ? "checked" : ""; ?>
                         <input type="radio" name="fumeur" class="fumeur demoyes" id="fumeur-a" <?= $check['fumeur'] ?>
                             value="true">
                         <label for="fumeur-a"><img src='../image/fumeurpictorouge.png' width="60" alt=''></label>
@@ -137,7 +140,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                             value="false">
                         <label for="fumeur-b"><img src="../image/fumeurpicto.png" width="60" alt=""></label>
 
-                        <?php $check['piscine'] = (($hebergement['piscine'] == true) || ($hebergement['piscine'] == 1)) ? "checked" : ""; ?>
+                        <?php $check['piscine'] = (($hebergement['piscine'] == true) || ($hebergement['piscine'] == '1')) ? "checked" : ""; ?>
                         <input type="radio" name="piscine" class="piscine demoyes" id="piscine-a"
                             <?= $check['piscine'] ?> value="true">
                         <label for="piscine-a"><img src='../image/piscinepictorouge.png' width="60" alt=''></label>
