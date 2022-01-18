@@ -74,12 +74,8 @@ if ($_POST) {
                 $query->execute();
             }
         }
-
-
         $_SESSION['message'] = "Produit Modifié";
         header('Location: index.php');
-        exit;
-        
         require_once 'close.php';
     } else {
         $_SESSION['erreur'] = "probleme dans la modification methode post";
