@@ -1,8 +1,7 @@
 <?php
 session_start();
-// il faut d'abord traité la table periode et albums pour ensuite traiter traiter la table hebergement
+// il faut d'abord traité la table periode pour ensuite  traiter la table hebergement
 if ($_POST) {
-    var_dump($_POST);
     if (
         isset($_POST['categorie']) && !empty($_POST['categorie'])
         && isset($_POST['nom']) && !empty($_POST['nom'])
@@ -14,7 +13,6 @@ if ($_POST) {
     ) {
         require_once 'connect.php';
         //parcours du tableau post et constitution des elements d'entree des tables form et periode
-
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {
@@ -32,9 +30,7 @@ if ($_POST) {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
-       
-    
-        //cas des image
+        //cas des images
         $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
         for ($i = 1; $i < 6; $i++) {
@@ -59,6 +55,7 @@ if ($_POST) {
 
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
+        // 3 etapes pb des nombres convertient en chaine de caracetres par stip_tags
         $form['prix'] = intval($form['prix']);
         $form['couchage'] = intval($form['couchage']);
         $form['sdb'] = intval($form['sdb']);
@@ -68,7 +65,7 @@ if ($_POST) {
         $query1->bindValue(':debut', $periode['debut']);
         $query1->bindValue(':fin', $periode['fin']);
         $query1->execute();
-               //on recupere l'id_periode
+        //on recupere l'id_periode
         $sql2 = 'SELECT LAST_INSERT_ID() from `periode`';
         $query2 = $db->prepare($sql2);
         $query2->execute();
@@ -78,6 +75,7 @@ if ($_POST) {
             $form['photo' . $i] = "";
         }
         $form['gps'] = "";
+        
         $sql3 =
         'INSERT INTO hebergement 
         (nom,description,prix,adresse,gps,wifi,fumeur,piscine,animaux,categorie,couchage,sdb,ville,pays,photo1,photo2,photo3,photo4,photo5,id_periode)
@@ -86,16 +84,20 @@ if ($_POST) {
 
         $query3 = $db->prepare($sql3);
         foreach ($form as $key => $value) {
-            $query3->bindValue(':' . $key, $value);
+            $query3->bindValue(":$key", $value);
             
         }
         $query3->execute();
-        
-        $_SESSION['message'] = "Produit Ajouté";
-        header('Location index.php');
-        // element de controle //
-          // element de controle//
+
+
         require_once 'close.php';
+        $_SESSION['message'] = "Hébergement Ajouté";
+        $val = headers_sent();
+        echo $val;
+        die;
+        header('Location index.php');
+            
+      
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";
     }

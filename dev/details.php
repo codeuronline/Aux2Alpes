@@ -9,24 +9,21 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query->bindValue(':id', $id);
     $query->execute();
     $hebergement = $query->fetch(PDO::FETCH_ASSOC);
-
-    //traite les elements de la table periode
-    $sql1 = 'SELECT * FROM `periode`  WHERE id_periode = :id';
-    $query1 = $db->prepare($sql1);
-    $query1->bindValue(':id', $hebergement['id_periode']);
-    $query1->execute();
-    $periode = $query1->fetch(PDO::FETCH_ASSOC);
-
-    // element de controle //
     var_dump($hebergement);
-    var_dump($periode);
-    // element de controle//
+    var_dump($hebergement['id_periode']);
+    //traite les elements de la table periode
+    $sql1 = 'SELECT * FROM `periode`  WHERE `id_periode` = :id';
+    $query1 = $db->prepare($sql1);
+    $query1->bindValue(':id', intval($hebergement['id_periode']));
+    $query1->execute();
+    $periode = $query1->fetch();
+
 
     //trait les elmements de la table jours
     //on verifie si le hebergement existe
     if (!$hebergement) {
         $_SESSION['erreur'] = "Cet ID n'existe pas";
-        //header('Location: index.php');
+        header('Location: index.php');
     }
 } else {
     $_SESSION['erreur'] = "URL invalide";

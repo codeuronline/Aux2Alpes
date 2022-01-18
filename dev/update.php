@@ -59,8 +59,6 @@ if ($_POST) {
         $query->execute();
         $result = $query->fetch();
         $form['id_periode'] = $result[0];
-        var_dump($form);
-        die;
         foreach ($form as $key => $value) {
             if (!($key == "id_hebergement") || (!($key == "id_periode"))) {
                 if (($key == 'debut') || ($key == 'fin')) {
@@ -79,7 +77,8 @@ if ($_POST) {
 
 
         $_SESSION['message'] = "Produit Modifié";
-        header('Location index.php');
+        header('Location /dev/index.php');
+        
         require_once 'close.php';
     } else {
         $_SESSION['erreur'] = "probleme dans la modification methode post";
