@@ -61,17 +61,17 @@
                                 <div class='mb-4'>
                                     <input type='checkbox' class='form-check-input' id='remember'>
                                     <label for='remember'>Se souvenir de moi</label>
-                                </div>
+                                </div><br>
                                 <div class='d-grid'>
-                                    <button type='submit' class='btn main-bg text-light'>Connexion</button>
+                                    <button type='submit' class='btn-inscription-connexion'>Connexion</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class='d-grid text-center'>
-                                <a href='inscription.php'><button type='submit' class='btn main-bg text-light text-decoration-underline'>S'inscrire ?</button></a>
-                            </div>
+                <div class='d-grid-text-center'><br>
+                                <a href='inscription.php'><button type='submit' class='btn-inscription-connexion'>Inscription</button></a>
+                </div>
             </div>
         </div>";
     }

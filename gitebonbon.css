@@ -8,6 +8,7 @@ body {
     height: 100vh;;
     justify-content: center;
     display: flex;
+    text-align: center;
   }
 
 .row1 {
@@ -36,6 +37,16 @@ input {
   color: white;
 }
 
+.btn-inscription-connexion {
+  background-color: blue;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  font-size: smol;
+  border-radius: 5rem;
+
+}
+
 /*ici les titre */
 .form-label {
   color: rgb(255, 255, 255);
@@ -48,5 +59,18 @@ input {
   text-align: center;
 }
 
-/*-----------------------Le caroussel-------------------------*/
+/*--Div page enregistrement-------------*/
+
+.d-grid-text-center{
+  margin-top: 50% ;
+}
+
+
+
+
+
+
+/*------ Page ajout d'hebergement------- */
+
+
 
