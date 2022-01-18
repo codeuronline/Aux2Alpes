@@ -73,3 +73,6 @@ input[type="radio"].wifi {
 
   /*----------------page ajout d'hebegeent ----------*/
 
+  .btn-btn-primary {
+    margin-top: 50px;
+  }
