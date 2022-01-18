@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_POST) {
     if (
         isset($_POST['categorie']) && !empty($_POST['categorie'])
@@ -73,8 +74,6 @@ if ($_POST) {
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Modifié";
         header('Location: index.php');
-        exit;
-        
     } else {
         $_SESSION['erreur'] = "probleme dans la modification methode post";
     }

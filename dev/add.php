@@ -13,6 +13,7 @@ if ($_POST) {
         && isset($_POST['fin']) && !empty($_POST['fin'])
     ) {
         require_once 'connect.php';
+        require_once 'tools.php';
         //parcours du tableau post et constitution des elements d'entree des tables form et periode
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
@@ -72,9 +73,23 @@ if ($_POST) {
         $query2->execute();
         $last = $query2->fetch();
         $form['id_periode'] = intval($last[0]);
+        //traite le cas creation jour
+        $jour['id_periode'] = $form['id_periode'];
+        $debut = date_create($periode['debut']);
+        $fin = date_create($periode['fin']);
+        $val = date_diff($debut, $fin);
+        $jour['nb_jour'] = $val['d'];
+        var_dump($jour);
+        die;
+        for ($i = 1; $i <= $jour['nb_jour']; $i++) {
+            $sql = "INSERT INTO jour(id_periode,numero_jour,etat) VALUES(" . $jour['id_periode'] . ",$i,0)";
+            $db->exec($sql);
+        }
+        //raccourci pour les photo2a5
         for ($i = 2; $i < 6; $i++) {
             $form['photo' . $i] = "";
         }
+        //traiter le cas du gps
         $form['gps'] = "";
 
         $sql3 =
@@ -179,11 +194,7 @@ if ($_POST) {
                         <!--creation en cascadeentree dans albums et entree dans periode-->
 
                         <div class=" form-group">
-
-
                         </div>
-
-
                         <div class="form-group">
                             <!--on besoin  id l'herbergement pour creer une entree dans periode -->
                             <label for="fin">Début</label>
@@ -225,13 +236,10 @@ if ($_POST) {
                             <label for="piscine-b"><img src="../image/piscinepicto.png" width="60"
                                     alt="piscine autorisation" height="60" width="50"></label>
                         </div>
-
                         <button class="btn-btn-primary">Ajouter</button>
                         <button class="btn-btn-primary" type="reset">Annuler</button>
                         <a href='index.php' class='btn btn-primary'> Retour<a>
-
                 </form>
-
             </section>
         </div>
     </main>
