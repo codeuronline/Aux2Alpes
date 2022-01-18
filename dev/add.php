@@ -92,11 +92,8 @@ if ($_POST) {
 
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
-        $val = headers_sent();
-        echo $val;
-        die;
         header('Location index.php');
-            
+        exit;            
       
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";

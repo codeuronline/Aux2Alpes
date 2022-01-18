@@ -29,19 +29,19 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query2->bindValue(':id', $id_hebergement, PDO::PARAM_INT);
     $query2->execute();
 
-    $val = headers_sent();
-    echo $val;
-    die;
     $_SESSION['message'] = "Hébergement supprimé";
     header('Location index.php');
-    require_once 'close.php';
+    exit;
 
+    require_once 'close.php';
     //on verifie si le hebergement existe
     if (!$hebergement) {
         $_SESSION['erreur'] = "Cet ID n'existe pas";
         header('Location: index.php');
+        exit;
     }
 } else {
     $_SESSION['erreur'] = "URL invalide";
     header('Location: index.php');
+    exit;
 }
