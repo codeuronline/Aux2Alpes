@@ -57,10 +57,10 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 <p>Couchage:<?= $hebergement['couchage'] ?></p>
                 <p>Sdb: <?= $hebergement['sdb'] ?></p>
                 <p>
-                    <?= ($hebergement['animaux'] == 1) ? "<img src='../image/animauxpicto.png' width='50'>" : "<img src='../image/animauxpictorouge.png' width='50'>";  ?>
-                    <?= ($hebergement['wifi'] == 1) ? "<img src='../image/wifipicto.png' width='50'>" : "<img src='../image/wifipictorouge.png' width='50'>";  ?>
-                    <?= ($hebergement['fumeur'] == 1) ? "<img src='../image/fumeurpicto.png' width='50'>" : "<img src='../image/fumeurpictorouge.png' width='50'>";  ?>
-                    <?= ($hebergement['piscine'] == 1) ? "<img src='../image/piscinepicto.png' width='50'>" : "<img src='../image/piscinepictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['animaux'] == "1") ? "<img src='../image/animauxpicto.png' width='50'>" : "<img src='../image/animauxpictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['wifi'] == "1") ? "<img src='../image/wifipicto.png' width='50'>" : "<img src='../image/wifipictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['fumeur'] == "1") ? "<img src='../image/fumeurpicto.png' width='50'>" : "<img src='../image/fumeurpictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['piscine'] == "1") ? "<img src='../image/piscinepicto.png' width='50'>" : "<img src='../image/piscinepictorouge.png' width='50'>";  ?>
                 </p>
 
                 <p>Photo 1:
