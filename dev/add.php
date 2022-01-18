@@ -1,4 +1,6 @@
+
 <?php
+
 session_start();
 // il faut d'abord traité la table periode pour ensuite  traiter la table hebergement
 if ($_POST) {
@@ -113,7 +115,7 @@ if ($_POST) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../gitebonbon.css">
+        <link rel="stylesheet" href="..\gitebonbon.css">
     <link rel="stylesheet" href="radio.css">
     <title>Détails du Produit</title>
 </head>
@@ -192,30 +194,30 @@ if ($_POST) {
                         <h2>Option(s) de l'hébergement</h2>
                         L'état du picto prédéfini l'option de l'hébergement <br>
                         <input type="radio" name="chien" class="chien demoyes" id="chien-a" checked value="false">
-                        <label for="chien-a"><img src='../image/animauxpictorouge.png' width="60" alt=''></label>
+                        <label for="chien-a"><img src='../image/animauxpictorouge.png' width="60" alt='autorisation animaux' height="60" width="50"></label>
                         <input type="radio" name="chien" class="chien demono" id="chien-b" value="true">
-                        <label for="chien-b"><img src="../image/animauxpicto.png" width="60" alt=""></label>
+                        <label for="chien-b"><img src="../image/animauxpicto.png" width="60" alt="interdiction animaux" height="60" width="50"></label>
 
                         <input type="radio" name="wifi" class="wifi demoyes" id="wifi-a" checked value="false">
-                        <label for="wifi-a"><img src='../image/wifipictorouge.png' width="60" alt=''></label>
+                        <label for="wifi-a"><img src='../image/wifipictorouge.png' width="60" alt='wifi autorisation' height="60" width="50"></label>
                         <input type="radio" name="wifi" class="wifi demono" id="wifi-b" value="true">
-                        <label for="wifi-b"><img src="../image/wifipicto.png" width="60" alt=""></label>
+                        <label for="wifi-b"><img src="../image/wifipicto.png" width="60" alt="wifi refuser" height="60" width="50"></label>
 
                         <input type="radio" name="fumeur" class="fumeur demoyes" id="fumeur-a" checked value="false">
-                        <label for="fumeur-a"><img src='../image/fumeurpictorouge.png' width="60" alt=''></label>
+                        <label for="fumeur-a"><img src='../image/fumeurpictorouge.png' width="60" alt='fumer interdiction'height="60" width="50"></label>
                         <input type="radio" name="fumeur" class="fumeur demono" id="fumeur-b" value="true">
-                        <label for="fumeur-b"><img src="../image/fumeurpicto.png" width="60" alt=""></label>
+                        <label for="fumeur-b"><img src="../image/fumeurpicto.png" width="60" alt="fumer autorisation"height="60" width="50"></label>
 
                         <input type="radio" name="piscine" class="piscine demoyes" id="piscine-a" checked value="false">
-                        <label for="piscine-a"><img src='../image/piscinepictorouge.png' width="60" alt=''></label>
+                        <label for="piscine-a"><img src='../image/piscinepictorouge.png' width="60" alt='piscine interdiction'height="60" width="50"></label>
                         <input type="radio" name="piscine" class="piscine demono" id="piscine-b" value="true"
                             class=form>
-                        <label for="piscine-b"><img src="../image/piscinepicto.png" width="60" alt=""></label>
+                        <label for="piscine-b"><img src="../image/piscinepicto.png" width="60" alt="piscine autorisation"height="60" width="50"></label>
                     </div>
 
-                    <button class="btn btn-primary">Ajouter</button>
-                    <button class="btn btn-primary" type="reset">Annuler</button>
-                    <a href='index.php' class='btn btn-primary'>Retour<a>
+                    <button class="btn-btn-primary">Ajouter</button>
+                    <button class="btn-btn-primary" type="reset">Annuler</button>
+                    <a href='index.php' class='btn-btn-primary'>Retour<a>
                 </form>
 
             </section>
