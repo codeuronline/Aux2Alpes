@@ -53,6 +53,7 @@ if ($_POST) {
                 $form['photo' . $i] = "";
             }
         }
+
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
         // 3 etapes pb des nombres convertient en chaine de caracetres par stip_tags
@@ -71,24 +72,30 @@ if ($_POST) {
         $query2->execute();
         $last = $query2->fetch();
         $form['id_periode'] = intval($last[0]);
-        //traite le cas creation jour
 
-        /*$jour['id_periode'] = $form['id_periode'];
-        $debut = date_create($periode['debut']);
-        $fin = date_create($periode['fin']);
-        $val = date_diff($debut, $fin, "%d");
-        $jour['nb_jour'] = $val['days'];
+        //traite le cas creation jour +1 pour compter le dernier jour 
+        // -> ou on commence a incrementer a partir de 0
+        $jour['intervalle'] = dateDiff($periode['debut'], $periode['fin']);
+        $jour['id_periode'] = $form['id_periode'];
 
-
-        for ($i = 1; $i <= $jour['nb_jour']; $i++) {
-            $sql = "INSERT INTO jour(id_periode,numero_jour,etat) VALUES(" . $jour['id_periode'] . ",$i,0)";
-            $db->exec($sql);
-        }*/
+        var_dump($jour);
+        for ($i = 0; $i <= $jour['intervalle']; $i++) {
+            $value = date("Y-m-d", strtotime($periode['debut'] . "+ $i days"));
+            $compteur = $i + 1;
+            // echo dateIncDay($periode['debut'], $i) . "--$i--<br>";
+            $sql5 = 'INSERT INTO jour(id_periode,date_jour,periode_jour,etat) VALUES (:id, :date_jour,:periode_jour, 0)';
+            $query5 = $db->prepare($sql5);
+            $query5->bindValue(":id", $form['id_periode']);
+            $query5->bindValue(":date_jour", $value);
+            $query5->bindValue(":periode_jour", $compteur);
+            $query5->execute();
+        }
 
         //raccourci pour les photo2a5
         for ($i = 2; $i < 6; $i++) {
             $form['photo' . $i] = "";
         }
+
         //traiter le cas du gps
         $form['gps'] = "";
 
@@ -104,11 +111,10 @@ if ($_POST) {
         }
         $query3->execute();
 
-
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
         header('Location: index.php');
-        exit;
+        
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";
     }

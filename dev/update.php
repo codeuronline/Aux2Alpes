@@ -12,8 +12,8 @@ if ($_POST) {
     ) {
         require_once 'connect.php';
         require_once  'tools.php';
-       
-       
+
+        var_dump($_POST);
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {
@@ -26,13 +26,12 @@ if ($_POST) {
             }
             if (($key == 'debut') || ($key = "fin")) {
                 $periode[$key] = strip_tags($_POST[$key]);
-                unset($form[$key]);
             }
             if (($key == 'prix') || ($key == 'couchage') || ($key == 'sdb') || $key = 'id_hebergement') {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
-       
+        
         // cas des photos
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
         for ($i = 1; $i < 6; $i++) {
@@ -67,12 +66,15 @@ if ($_POST) {
             }
         }
 
+        
         $sql = "SELECT `id_periode` FROM `hebergement` WHERE `id_hebergement` = :id_hebergement";
         $query = $db->prepare($sql);
         $query->bindValue(':id_hebergement', $form['id_hebergement'], PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch();
         $form['id_periode'] = intval($result[0]);
+        var_dump($form);
+        var_dump($periode);
         foreach ($form as $key => $value) {
             if (!($key == "id_hebergement") || (!($key == "id_periode"))) {
                 if (($key == 'debut') || ($key == 'fin')) {

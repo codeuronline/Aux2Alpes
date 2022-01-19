@@ -1,5 +1,23 @@
 <?php
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////BOITE A OUTILS///////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//test si un repertoire existe sinon il le crée
+function IsDir_or_CreateIt($path)
+{
+    if (is_dir($path)) {
+        return true;
+    } else {
+        if (mkdir($path)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+//supprime les caracteres specaiux dune chaine de caractere
 function delSpecialChar($text)
 {
     $utf8 = array(
@@ -24,118 +42,108 @@ function delSpecialChar($text)
     );
     return preg_replace(array_keys($utf8), array_values($utf8), $text);
 }
+// incremente une date de i jours au format Y-m-d
+function dateIncDay($date, $i)
+{
+    if ($i = 0)
+        return $date;
+    else
 
+        return date("Y-m-d", strtotime($date . "+ $i days"));
+}
+
+//  renvoie la difference  entre 2 date en jours
 function dateDiff($date1, $date2)
 {
-    $diff = abs($date1 - $date2); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
-    $retour = array();
+    $firstDate = new DateTime($date1);
+    $secondDate = new DateTime($date2);
+    $intvl = $firstDate->diff($secondDate);
 
-    $tmp = $diff;
-    $retour['second'] = $tmp % 60;
+    //$intvl->y " year, " . 
+    //$intvl->m " months and ".
+    //$intvl->d." day";
+    //$intvl->days . " days ";
 
-    $tmp = floor(($tmp - $retour['second']) / 60);
-    $retour['minute'] = $tmp % 60;
-
-    $tmp = floor(($tmp - $retour['minute']) / 60);
-    $retour['hour'] = $tmp % 24;
-
-    $tmp = floor(($tmp - $retour['hour'])  / 24);
-    $retour['day'] = $tmp;
-
-    return $retour;
+    return $intvl->days;
 }
-
-//test si un repertoire existe sinon il le crée
-function IsDir_or_CreateIt($path)
-{
-    if (is_dir($path)) {
-        return true;
-    } else {
-        if (mkdir($path)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-/*//select id Max
+/*
+//select id Max
 function select_Max_id()
 {
-    include 'config.php';
+include 'config.php';
 
-    try {
+try {
 
-        $User = $_SESSION['user'];
-        $codb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $codb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql2 = "SELECT max(id) as Id FROM Musique WHERE User='$User'";
-        $prepare2 = $codb->prepare($sql2);
-        $prepare2->execute();
-        $max = $prepare2->fetch(PDO::FETCH_ASSOC);
-        if ($max['Id'] == NULL) {
-            return 0;
-        } else {
-            return $max['Id'];
-        }
-        $codb = null;
-    } catch (PDOException $e) {
+$User = $_SESSION['user'];
+$codb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$codb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql2 = "SELECT max(id) as Id FROM Musique WHERE User='$User'";
+$prepare2 = $codb->prepare($sql2);
+$prepare2->execute();
+$max = $prepare2->fetch(PDO::FETCH_ASSOC);
+if ($max['Id'] == NULL) {
+return 0;
+} else {
+return $max['Id'];
+}
+$codb = null;
+} catch (PDOException $e) {
 
-        return "Message d'erreur : " . $e->getMessage() . "<br />";
-    }
+return "Message d'erreur : " . $e->getMessage() . "<br />";
+}
 }
 
 function selectElmentby($element, $id)
 {
-    include 'config.php';
-    try {
-        $User = $_SESSION['user'];
-        $codb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $codb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT $element FROM $table Where Id=$id";
-        $prepare = $codb->prepare($sql);
-        $prepare->execute();
-        $resultat = $prepare->fetch(PDO::FETCH_ASSOC);
-        $codb = null;
-    } catch (PDOException $e) {
-        return "Message d'erreur : " . $e->getMessage() . "<br />";
-    }
-    return $resultat[$element];
+include 'config.php';
+try {
+$User = $_SESSION['user'];
+$codb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$codb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT $element FROM $table Where Id=$id";
+$prepare = $codb->prepare($sql);
+$prepare->execute();
+$resultat = $prepare->fetch(PDO::FETCH_ASSOC);
+$codb = null;
+} catch (PDOException $e) {
+return "Message d'erreur : " . $e->getMessage() . "<br />";
+}
+return $resultat[$element];
 }
 
 function select_All()
 {
-    include 'config.php';
-    try {
-        $User = $_SESSION["user"];
-        $codb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $codb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM Musique WHERE User='$User'";
-        $prepare = $codb->prepare($sql);
-        $prepare->execute();
-        $resultat = $prepare->fetchAll(PDO::FETCH_ASSOC);
-        return $resultat;
-        $codb = null;
-    } catch (PDOException $e) {
+include 'config.php';
+try {
+$User = $_SESSION["user"];
+$codb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$codb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT * FROM Musique WHERE User='$User'";
+$prepare = $codb->prepare($sql);
+$prepare->execute();
+$resultat = $prepare->fetchAll(PDO::FETCH_ASSOC);
+return $resultat;
+$codb = null;
+} catch (PDOException $e) {
 
-        return "Message d'erreur : " . $e->getMessage() . "<br />";
-    }
+return "Message d'erreur : " . $e->getMessage() . "<br />";
+}
 }
 function select_by_Id($id)
 {
-    include 'config.php';
+include 'config.php';
 
-
-    try {
-        $user = $_SESSION['user'];
-        $codb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $codb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM $table WHERE id=$id and user='$user'";
-        $prepare = $codb->prepare($sql);
-        $prepare->execute();
-        $resultat = $prepare->fetch(PDO::FETCH_ASSOC);
-        return $resultat;
-        $codb = null;
-    } catch (PDOException $e) {
-        return "Message d'erreur : " . $e->getMessage() . "<br />";
-    }
+try {
+$user = $_SESSION['user'];
+$codb = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+$codb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "SELECT * FROM $table WHERE id=$id and user='$user'";
+$prepare = $codb->prepare($sql);
+$prepare->execute();
+$resultat = $prepare->fetch(PDO::FETCH_ASSOC);
+return $resultat;
+$codb = null;
+} catch (PDOException $e) {
+return "Message d'erreur : " . $e->getMessage() . "<br />";
+}
 }*/

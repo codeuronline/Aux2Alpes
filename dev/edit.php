@@ -18,7 +18,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query1->execute();
     $periode = $query1->fetch(PDO::FETCH_ASSOC);
     //traite le cas image
-
+    var_dump($periode);
+    var_dump($hebergement);
     //trait les elmements de la table jours
     //on verifie si le hebergement existe
     if (!$hebergement) {
@@ -102,7 +103,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                     <div class="form-group">
                         <h2>Période disponibilité de l'hébergement(1 période déclarable) Obligatoire</h2>
                         <!--on besoin  id l'herbergement pour creer une entree dans periode -->
-                        <label for="fin">Début</label>
+                        <label for="debut">Début</label>
                         <input type="date" id="debut" name="debut" class="form-controls" required
                             value="<?= $periode['debut'] ?>">
                         <label for="fin">Fin</label>
