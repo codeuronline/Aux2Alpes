@@ -1,15 +1,29 @@
 
-/* ----------------------------page inscription --------------------------------------------*/
 
+/* ----------------------------page inscription --------------------------------------------*/
+nav{
+  background-color: blue;
+}
+
+li{
+  list-style-type: none;
+  padding: 15px;
+}
+
+a{
+  text-decoration: white;
+  color: white;
+  flex-wrap: nowrap;
+}
 body {
     background-image: linear-gradient(rgb(238, 255, 0), rgb(0, 38, 255));
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;;
+    height: 100vh;
     justify-content: center;
-    display: flex;
     text-align: center;
   }
+
 
 .row1 {
   margin-top: 100px;
@@ -19,6 +33,13 @@ body {
 }
 
 /*ici les boutons*/
+
+.btn-main-bg-text-light{
+  background-color: rgb(39, 67, 158);
+  color: rgba(240, 236, 236, 0.89);
+  border-radius: 2%;
+  font-family : Helvetica, sans-serif;
+}
 .d-grid .btn-main-bg-text-light{
   background-color: rgb(39, 67, 158);
   color: rgba(194, 186, 186, 0.719);
@@ -60,7 +81,6 @@ input {
 
 /*--Div page enregistrement-------------*/
 
-.d-grid-text-center{
-  margin-top: 50% ;
-}
+
+
 

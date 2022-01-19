@@ -101,3 +101,6 @@ input[type="radio"].wifi {
     justify-content: center;
   }
 
+.btn-custom {
+  background-color: red;
+}

@@ -95,8 +95,8 @@ if ($_POST) {
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
         header('Location index.php');
-        exit;            
-      
+        exit;
+                          
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";
     }
@@ -215,7 +215,7 @@ if ($_POST) {
 
                     <button class="primary">Ajouter</button>
                     <button class="primary" type="reset">Annuler</button>
-                    <a href='index.php' class='btn-btn-primary'>Retour<a>
+                    <a href='index.php' class='btn-btn-primary btn-custom'>Retour<a>
                 </form>
 
             </section>

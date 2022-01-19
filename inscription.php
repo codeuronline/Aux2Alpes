@@ -80,9 +80,9 @@
                                 <div class='mb-4'>
                                     <input type='checkbox' class='form-check-input' id='form-cgv' required='required'>
                                     <label for='form-cgv'>J'ai lu les conditions d'utilisation</label><br>
-                                </div>
-                                <div class='d-grid'>
+                                    
                                     <button type='submit' class='btn-main-bg-text-light'>Inscription</button>
+                                </div>
                                 </div>
                             </form>
                         </div>
