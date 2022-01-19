@@ -11,6 +11,7 @@ if ($_POST) {
         && isset($_POST['fin']) && !empty($_POST['fin'])
     ) {
         require_once 'connect.php';
+        require_once  'tools.php';
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {
@@ -29,28 +30,28 @@ if ($_POST) {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
-        $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
+        // cas des photos
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
         for ($i = 1; $i < 6; $i++) {
-            if (empty($_FILES['photo' . $i]['name'])) {
-                //unset($form['photo' . $i]);
-            } elseif (is_uploaded_file($_FILES['photo' . $i]['tmp_name'])) {
+            if ((isset($_FILES['photo' . $i]['name'])) &&  (is_uploaded_file($_FILES['photo' . $i]['tmp_name']))) {
                 // test si le repertoire de destination exist sinon il le crée
                 IsDir_or_CreateIt("photo");
+                
                 $maphoto = $_FILES['photo' . $i]['name'];
-                $extension = substr($monphoto, strrpos($monphoto, '.'));
-                // Contrôle de l'extension du fichier
+                $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
+                $extension = substr($maphoto, strrpos($maphoto, '.'));
+                // Contrôle de l'extension du fichier44444
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
                     $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-                    $form['photo' . $i] = "/" . $form['categorie'] . '_' . $form['ville'] . '_' . $i . $extension;
-                    rename($_FILES['photo' . $i]['tmp_name'], $rep_photo . $form['photo' . $i]);
+                    rename($maphoto_tmp, "photo/" . $form['photo' . $i]);
                 }
             } else {
-                $form['photo' . $i] = "";
+                
+                //$form['photo' . $i] = "";
             }
         }
-    
+
         $sql = "SELECT `id_periode` FROM `hebergement` WHERE `id_hebergement` = :id_hebergement";
         $query = $db->prepare($sql);
         $query->bindValue(':id_hebergement', $form['id_hebergement'], PDO::PARAM_INT);

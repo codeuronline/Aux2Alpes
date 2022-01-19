@@ -46,15 +46,13 @@ if ($_POST) {
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
                     $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-                    $form['photo' . $i] =  addslashes(trim($form['nom'])) . $form['categorie'] . '_' . $form['ville'] . '_' . $i . $extension;
+                    $form['photo' . $i] =  $form['categorie'] . '_' . $form['ville'] . '_' . $i . '_' . $periode['debut'] . $extension;
                     copy($maphoto_tmp, "photo/" . $form['photo' . $i]);
                 }
             } else {
                 $form['photo' . $i] = "";
             }
         }
-    
-
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
         // 3 etapes pb des nombres convertient en chaine de caracetres par stip_tags
@@ -79,13 +77,14 @@ if ($_POST) {
         $debut = date_create($periode['debut']);
         $fin = date_create($periode['fin']);
         $val = date_diff($debut, $fin, "%d");
-        $jour['nb_jour'] = $val['days'];*/
-        
-      
+        $jour['nb_jour'] = $val['days'];
+
+
         for ($i = 1; $i <= $jour['nb_jour']; $i++) {
             $sql = "INSERT INTO jour(id_periode,numero_jour,etat) VALUES(" . $jour['id_periode'] . ",$i,0)";
             $db->exec($sql);
-        }
+        }*/
+
         //raccourci pour les photo2a5
         for ($i = 2; $i < 6; $i++) {
             $form['photo' . $i] = "";
@@ -141,7 +140,7 @@ if ($_POST) {
                 }
                 ?>
                 <h1>Ajouter un Hébergement</h1>
-                <form method="post" action="add.php">
+                <form method="post" action="add.php" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="d1">
                             <div><label for="categorie">Catégorie</label>

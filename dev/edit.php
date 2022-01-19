@@ -17,7 +17,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query1->bindValue(':id', $hebergement['id_periode'], PDO::PARAM_INT);
     $query1->execute();
     $periode = $query1->fetch();
-
+    //traite le cas image
+    var_dump($hebergement);
     //trait les elmements de la table jours
     //on verifie si le hebergement existe
     if (!$hebergement) {
@@ -55,8 +56,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 }
                 ?>
                 <h1>Edition d'un Hébergement</h1>
-                <form method="POST" action="update.php">
-                    <div class="form-group">
+                <form method="POST" action="update.php" enctype="multipart/form-data">
+                    <div class=" form-group">
                         <label for="categorie">Catégorie</label>
                         <input type="text" id="categorie" name="categorie" class="form-controls"
                             value="<?= $hebergement['categorie'] ?>">
@@ -94,12 +95,9 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                     <!--on besoin  id l'herbergement pour creer une entree dans albums -->
                     <div class="form-group">
                         <h2>Photo de l'hébergement</h2>
-                        <label for="Album">Album</label>
-                        <input type="file" id="photo1" name="photo1" class="form-controls" accept=".jpg, .jpeg" ?><br>
-                        <!--<input type="file" id="photo2" name="photo2" class="form-controls" accept=".jpg, .jpeg"><br>
-                        <input type="file" id="photo3" name="photo3" class="form-controls" accept=".jpg, .jpeg"><br>
-                        <input type="file" id="photo4" name="photo4" class="form-controls" accept=".jpg, .jpeg"><br>
-                        <input type="file" id="photo5" name="photo5" class="form-controls" accept=".jpg, .jpeg"><br>-->
+                        <label for="photo1">Photo 1</label>
+                        <input type="file" id="photo1" name="photo1" class="form-controls"><br>
+
                     </div>
                     <div class="form-group">
                         <h2>Période disponibilité de l'hébergement(1 période déclarable) Obligatoire</h2>
