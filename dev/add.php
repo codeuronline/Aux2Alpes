@@ -33,27 +33,27 @@ if ($_POST) {
             }
         }
         //cas des images
-        $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
+        //$rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
         for ($i = 1; $i < 6; $i++) {
-            if (empty($_FILES['photo' . $i]['name'])) {
-                //unset($form['photo' . $i]);
-            } elseif (is_uploaded_file($_FILES['photo' . $i]['tmp_name'])) {
+            if ((isset($_FILES['photo' . $i]['name'])) &&  (is_uploaded_file($_FILES['photo' . $i]['tmp_name']))) {
                 // test si le repertoire de destination exist sinon il le crée
                 IsDir_or_CreateIt("photo");
                 $maphoto = $_FILES['photo' . $i]['name'];
-                $extension = substr($monphoto, strrpos($monphoto, '.'));
+                $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
+                $extension = substr($maphoto, strrpos($maphoto, '.'));
                 // Contrôle de l'extension du fichier
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
                     $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-                    $form['photo' . $i] = "/" . $form['categorie'] . '_' . $form['ville'] . '_' . $i . $extension;
-                    rename($_FILES['photo' . $i]['tmp_name'], $rep_photo . $form['photo' . $i]);
+                    $form['photo' . $i] =  addslashes(trim($form['nom'])) . $form['categorie'] . '_' . $form['ville'] . '_' . $i . $extension;
+                    copy($maphoto_tmp, "photo/" . $form['photo' . $i]);
                 }
             } else {
                 $form['photo' . $i] = "";
             }
         }
+    
 
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
@@ -74,13 +74,14 @@ if ($_POST) {
         $last = $query2->fetch();
         $form['id_periode'] = intval($last[0]);
         //traite le cas creation jour
-        $jour['id_periode'] = $form['id_periode'];
+
+        /*$jour['id_periode'] = $form['id_periode'];
         $debut = date_create($periode['debut']);
         $fin = date_create($periode['fin']);
-        $val = date_diff($debut, $fin);
-        $jour['nb_jour'] = $val['d'];
-        var_dump($jour);
-        die;
+        $val = date_diff($debut, $fin, "%d");
+        $jour['nb_jour'] = $val['days'];*/
+        
+      
         for ($i = 1; $i <= $jour['nb_jour']; $i++) {
             $sql = "INSERT INTO jour(id_periode,numero_jour,etat) VALUES(" . $jour['id_periode'] . ",$i,0)";
             $db->exec($sql);
