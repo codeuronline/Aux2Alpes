@@ -46,7 +46,7 @@ if ($_POST) {
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
                     $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-                    $form['photo' . $i] =  $form['categorie'] . '_' . $form['ville'] . '_' . $i . '_' . $periode['debut'] . $extension;
+                    $form['photo' . $i] =  'photo_' . $i . '_' . date("Y_m_d_H_i") . $extension;
                     copy($maphoto_tmp, "photo/" . $form['photo' . $i]);
                 }
             } else {

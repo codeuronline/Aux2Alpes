@@ -5,6 +5,7 @@ $sql = 'SELECT * FROM `hebergement`';
 $query = $db->prepare($sql);
 $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
 require_once('close.php');
 require_once('hebergement.class.php');
 ?>

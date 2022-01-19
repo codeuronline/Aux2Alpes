@@ -14,8 +14,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query1 = $db->prepare($sql1);
     $query1->bindValue(':id', intval($hebergement['id_periode']));
     $query1->execute();
-    $periode = $query1->fetch();
-    var_dump($hebergement);
+    $periode = $query1->fetch(PDO::FETCH_ASSOC);
+
 
 
     //traite les elmements de la table jours
@@ -66,6 +66,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
 
                 <p>Photo 1:
                     <input type="hidden" id="id_periode" name="id_periode" value=<?= $periode['id_periode'] ?>>
+
                     <?= (isset($hebergement['photo1']) && !(empty($hebergement['photo1']))) ? "<img src='photo/" . $hebergement['photo1'] . "' width='200'>" : "<img src='../image/vide.png' width='50'"; ?>
                 </p>
                 <p>Debut: <?= $periode['debut'] ?></p>

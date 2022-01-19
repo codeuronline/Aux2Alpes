@@ -10,15 +10,15 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id, PDO::PARAM_INT);
     $query->execute();
-    $hebergement = $query->fetch();
+    $hebergement = $query->fetch(PDO::FETCH_ASSOC);
     //traite les elements de la table periode
     $sql1 = 'SELECT * FROM periode  WHERE id_periode = :id';
     $query1 = $db->prepare($sql1);
     $query1->bindValue(':id', $hebergement['id_periode'], PDO::PARAM_INT);
     $query1->execute();
-    $periode = $query1->fetch();
+    $periode = $query1->fetch(PDO::FETCH_ASSOC);
     //traite le cas image
-    var_dump($hebergement);
+
     //trait les elmements de la table jours
     //on verifie si le hebergement existe
     if (!$hebergement) {
@@ -96,8 +96,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                     <div class="form-group">
                         <h2>Photo de l'hébergement</h2>
                         <label for="photo1">Photo 1</label>
+                        <img src="photo/<?= $hebergement['photo1'] ?>" alt="photo1" width=200>
                         <input type="file" id="photo1" name="photo1" class="form-controls"><br>
-
                     </div>
                     <div class="form-group">
                         <h2>Période disponibilité de l'hébergement(1 période déclarable) Obligatoire</h2>

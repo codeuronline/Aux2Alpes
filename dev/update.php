@@ -12,6 +12,8 @@ if ($_POST) {
     ) {
         require_once 'connect.php';
         require_once  'tools.php';
+       
+       
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {
@@ -30,21 +32,34 @@ if ($_POST) {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
+       
         // cas des photos
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
         for ($i = 1; $i < 6; $i++) {
             if ((isset($_FILES['photo' . $i]['name'])) &&  (is_uploaded_file($_FILES['photo' . $i]['tmp_name']))) {
-                // test si le repertoire de destination exist sinon il le crée
-                IsDir_or_CreateIt("photo");
-                
+
+                //on recupere le nom du fichier a partir de celui dans la bd
+                $sql = "SELECT `photo$i` FROM `hebergement` WHERE `id_hebergement` = :id_hebergement";
+                $query = $db->prepare($sql);
+                $query->bindValue(':id_hebergement', $form['id_hebergement'], PDO::PARAM_INT);
+                $query->execute();
+
+                $result = $query->fetch(PDO::FETCH_ASSOC);
+                $file = "photo/" . $result['photo' . $i];
+
+
                 $maphoto = $_FILES['photo' . $i]['name'];
                 $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
+                
                 $extension = substr($maphoto, strrpos($maphoto, '.'));
-                // Contrôle de l'extension du fichier44444
+                // Contrôle de l'extension du fichier
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
                     $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-                    rename($maphoto_tmp, "photo/" . $form['photo' . $i]);
+
+                    unlink($file);
+                    move_uploaded_file($maphoto_tmp, "photo/" . $result['photo' . $i]);
+                
                 }
             } else {
                 
