@@ -37,10 +37,10 @@ if (!isset($_SESSION["user"])) {
     <main>
         <?php
       if (select_Max_id() == 0) {
-         echo MSG_WARNING_LISTE_MUSIQUE_EMPTY;
-         include 'container_dashboard_list_vide.php';
+        echo MSG_WARNING_LISTE_MUSIQUE_EMPTY;
+        include 'container_dashboard_list_vide.php';
       } else {
-         include 'container_dashboard_list.php';
+        include 'container_dashboard_list.php';
       }
       ?>
     </main>

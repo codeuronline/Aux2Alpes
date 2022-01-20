@@ -5,11 +5,12 @@ $sql = 'SELECT * FROM `hebergement`';
 $query = $db->prepare($sql);
 $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
 require_once('close.php');
 require_once('hebergement.class.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -46,6 +47,7 @@ require_once('hebergement.class.php');
                     <th>Nom</th>
                     <th>prix</th>
                     <th>adresse</th>
+                    <th>Taux d'occupation</th>
                     <th>action</th>
                     <tbody>
                         <?php
@@ -57,8 +59,43 @@ require_once('hebergement.class.php');
                             <td><?= $hebergement['nom'] ?></td>
                             <td><?= $hebergement['prix'] ?></td>
                             <td><?= $hebergement['adresse'] ?></td>
-                            <td><a href="details.php?id_hebergement=<?= $hebergement['id_hebergement'] ?>">Voir<a>
-                                        <a href="delete.php?id_hebergement=<?= $hebergement['id_hebergement'] ?>">Suppimer<a>
+                            <td>
+
+
+                                <div class="row no-gutters">
+                                    <div class="col-md-12">
+                                        <div class="progress-1 align-items-center">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: 80%;" aria-valuenow="70" aria-valuemin="0"
+                                                    aria-valuemax="100"> 81% </div>
+                                            </div>
+                                            <!--<div class="progress">
+                                                            <div class="progress-bar bg-custom" role="progressbar"
+                                                                style="width: 55%;" aria-valuenow="25" aria-valuemin="0"
+                                                                aria-valuemax="100">55%</div>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-primary" role="progressbar"
+                                                                style="width: 48%;" aria-valuenow="25" aria-valuemin="0"
+                                                                aria-valuemax="100">48%</div>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-warning" role="progressbar"
+                                                                style="width: 30%;" aria-valuenow="25" aria-valuemin="0"
+                                                                aria-valuemax="100">30%</div>
+                                                        </div>
+                                                        <div class="progress">
+                                                            <div class="progress-bar bg-danger" role="progressbar"
+                                                                style="width: 15%;" aria-valuenow="25" aria-valuemin="0"
+                                                                aria-valuemax="100">15%</div>
+                                                        </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><a href="details.php?id_hebergement=<?= $hebergement['id_hebergement'] ?>">Voir</a>
+                                <a href="delete.php?id_hebergement=<?= $hebergement['id_hebergement'] ?>">Supprimer</a>
                             </td>
                         </tr>
                         <?php }

@@ -2,6 +2,7 @@
 <?php
 
 
+
 /*connexion a la table inscription*/
 $serveur = "localhost";
 $table = "inscription";
@@ -47,4 +48,6 @@ if (!empty($_POST['mail']) && !empty($_POST['password'])) {
 } else {
     header('Location: enregistrement.php?login_err=no_register');
 }
+
+
 ?>

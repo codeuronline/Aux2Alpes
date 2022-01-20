@@ -6,14 +6,14 @@
   <link rel="stylesheet" href="gitebonbon.css">
 </head>
 
-
+<a href="rechercheutilisateur.html"><img class="logo" src="image/logo.png" alt="Logo"></a>
 
 <header>
   <nav>
       <ul class="flex">  
-        <li><a href="">Inscription </a></li>
-        <li><a href=""> Connection</a></li>
-  </ul>
+        <li><a href="http://localhost/P3/lespalaisbonbons/inscription.php">Inscription </a></li>
+        <li><a href="http://localhost/P3/lespalaisbonbons/connexion.php"> Connection</a></li>
+    </ul>
   </nav>
 </header>
 
@@ -31,18 +31,29 @@
                               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">2</button>
                               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">3</button>
                             </div>
-                                <!--<form action='validationformulaire.php' method='post'>-->
+
+
+<!--form action='validationformulaire.php' method='post'-->
+  
                                 <div class='mb-4'>
                                 <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                <img src="photo/chambrefrance.jpg" class="d-block w-100" alt="...">
+                                <img src="photo/bonbonfrance.jpg" class="d-block w-100" alt="...">
 
                                 <div class="carousel-item">
                                 <img src="photo/chambrefrance.jpg" class="d-block w-100" alt="...">
                                 
                                 <div class="carousel-item">
-                                <img src="photo/chambrefrance.jpg" class="d-block w-100" alt="...">
+                                <img src="photo/gite7.jpg" class="d-block w-100" alt="...">
                                 </div>
+
+                                <div class="carousel-item">
+                                  <img src="photo/jardinfrance.jpg" class="d-block w-100" alt="...">
+                                  </div>
+
+                                  <div class="carousel-item">
+                                    <img src="photo/piscinefrance.jpg" class="d-block w-100" alt="...">
+                                    </div>
 
                                 <div class='d-grid'>
                                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -64,9 +75,10 @@
 <!--------------------Description de l'hotel ---------------->
 
 <h2>
-  <button aria-expanded="true" aria-controls="accordion-panel-1">Entete du panneau 1</button>
+<button aria-expanded="true" aria-controls="accordion-panel-1">Gite Paris 15e</button>
 </h2>
 <div id="accordion-panel-1">
+
   Situé dans le 15e arrondissement, cet hôtel contemporain se trouve à 4 minutes à pied de la station de métro Pernety, ainsi qu'à 3 km du Quartier latin et du jardin du Luxembourg.
   Les chambres élégantes et modernes disposent d'un accès Wi-Fi gratuit, de la télévision par câble, d'un minibar et d'une machine Nespresso.
   
@@ -75,26 +87,17 @@
   Les chambres élégantes et modernes disposent d'un accès Wi-Fi gratuit, de la télévision par câble, d'un minibar et d'une machine Nespresso.
   
   Le petit-déjeuner buffet est payant. L'établissement possède un sauna et un centre d'affaires ouvert 24h/24, 7j/7.
+
 </div>
 
 
 <!----------Les dates de calendrier ---------->
+<section class="pictochoix">
+<button type=submit><img src=image/picto-map-blanc.png height="50" width="50"></button><div></div>
+<button type=submit><img src=image/calendrierpicto.png height="50" width="50"></button><div></div>
+<button type=submit><img src=image/groupepicto.png height="50" width="50"></button><div></div>
+</section><br>
 
-
-
-
-
-
-<!--l'espace picto------------------------>
-<section class="sectionpicto">
-<button type=submit><img src=image/animauxpicto.png height="60" width="50"></button><div>
-<button type=submit><img src=image/fumeurpicto.png height="60" width="50"></button><div>
-<button type=submit><img src=image/picinepicto.png height="60" width="50"></button><div>
-<button type=submit><img src=image/taxipicto.png height="60" width="50"></button><div>
-<button type=submit><img src=image/animauxpicto.png height="60" width="50"></button><div>
-<button type=submit><img src=image/animauxpicto.png height="60" width="50"></button><div>
-<button type=submit><img src=image/animauxpicto.png height="60" width="50"></button><div>
-</section>
 
 <!---la géolocalisation---+ bouton reservation---------->
 <div id="infoposition"></div>
@@ -108,44 +111,4 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
 </html>

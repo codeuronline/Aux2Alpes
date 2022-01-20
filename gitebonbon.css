@@ -33,7 +33,10 @@ body {
 }
 
 /*ici les boutons*/
-
+.logo{
+  width: 50px;
+  height: 50px;
+}
 .btn-main-bg-text-light{
   background-color: rgb(39, 67, 158);
   color: rgba(240, 236, 236, 0.89);
@@ -50,7 +53,7 @@ body {
 
 input {
   border-radius: 5rem;
-  font-size: smol;
+  font-size: small;
   margin-top: 15px;
   background-color: #d7d7dfa1;
   line-height: 30px;
@@ -78,9 +81,6 @@ input {
   margin-top: 100px;
   text-align: center;
 }
-
-/*--Div page enregistrement-------------*/
-
 
 
 

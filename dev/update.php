@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_POST) {
     if (
         isset($_POST['categorie']) && !empty($_POST['categorie'])
@@ -10,77 +11,87 @@ if ($_POST) {
         && isset($_POST['fin']) && !empty($_POST['fin'])
     ) {
         require_once 'connect.php';
+        require_once  'tools.php';
+
+        var_dump($_POST);
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {
-                $form['animaux'] = (strip_tags($_POST[$key]) == "false") ? 0 : 1;
+                $form['animaux'] = ((strip_tags($_POST[$key]) == "0") || (strip_tags($_POST[$key]) == 0)) ? 0 : 1;
                 unset($form[$key]);
             }
+            
             if (($key == 'wifi') || ($key == 'fumeur') || ($key == 'piscine')) {
-                $form[$key] = (strip_tags($_POST[$key]) == "false") ? 0 : 1;
+                $form[$key] = ((strip_tags($_POST[$key]) == 0) || (strip_tags($_POST[$key]) == "0")) ? 0 : 1;
             }
             if (($key == 'debut') || ($key = "fin")) {
                 $periode[$key] = strip_tags($_POST[$key]);
-                unset($form[$key]);
             }
-            if (($key == 'prix') || ($key == 'couchage') || ($key == 'sdb')) {
+            if (($key == 'prix') || ($key == 'couchage') || ($key == 'sdb') || $key = 'id_hebergement') {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
-
-
-        $rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
+        
+        // cas des photos
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
         for ($i = 1; $i < 6; $i++) {
-            if (empty($_FILES['photo' . $i]['name'])) {
-                //unset($form['photo' . $i]);
-            } elseif (is_uploaded_file($_FILES['photo' . $i]['tmp_name'])) {
-                // test si le repertoire de destination exist sinon il le crée
-                IsDir_or_CreateIt("photo");
+            if ((isset($_FILES['photo' . $i]['name'])) &&  (is_uploaded_file($_FILES['photo' . $i]['tmp_name']))) {
+
+                //on recupere le nom du fichier a partir de celui dans la bd
+                $sql = "SELECT `photo$i` FROM `hebergement` WHERE `id_hebergement` = :id_hebergement";
+                $query = $db->prepare($sql);
+                $query->bindValue(':id_hebergement', $form['id_hebergement'], PDO::PARAM_INT);
+                $query->execute();
+
+                $result = $query->fetch(PDO::FETCH_ASSOC);
+                $file = "photo/" . $result['photo' . $i];
+
+
                 $maphoto = $_FILES['photo' . $i]['name'];
-                $extension = substr($monphoto, strrpos($monphoto, '.'));
+                $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
+                
+                $extension = substr($maphoto, strrpos($maphoto, '.'));
                 // Contrôle de l'extension du fichier
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
                     $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-                    $form['photo' . $i] = "/" . $form['categorie'] . '_' . $form['ville'] . '_' . $i . $extension;
-                    rename($_FILES['photo' . $i]['tmp_name'], $rep_photo . $form['photo' . $i]);
+
+                    unlink($file);
+                    move_uploaded_file($maphoto_tmp, "photo/" . $result['photo' . $i]);
+                
                 }
             } else {
-                $form['photo' . $i] = "";
+                
+                //$form['photo' . $i] = "";
             }
         }
 
-        $id = $_POST['id_hebergement'];
-        $form['id_hebergement'] = intval(strip_tags($id));
+        
         $sql = "SELECT `id_periode` FROM `hebergement` WHERE `id_hebergement` = :id_hebergement";
         $query = $db->prepare($sql);
-        $query->bindValue(':id_hebergement', $form['id_hebergement']);
+        $query->bindValue(':id_hebergement', $form['id_hebergement'], PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch();
-        $form['id_periode'] = $result[0];
+        $form['id_periode'] = intval($result[0]);
+        var_dump($form);
+        var_dump($periode);
         foreach ($form as $key => $value) {
             if (!($key == "id_hebergement") || (!($key == "id_periode"))) {
                 if (($key == 'debut') || ($key == 'fin')) {
-                    $periode[$key] = $_GET[$key];
-                    $sql = "UPDATE `periode` SET $key=:$key WHERE `id_periode`=:id_periode";
+                    $sql = "UPDATE `periode` SET $key=:$key WHERE `id_periode`=" . $form['id_periode'];
                     $query = $db->prepare($sql);
-                    $query->bindValue(':id_periode', $form['id_periode']);
-                    $query->execute();
+                    $query->bindValue(":$key", $value);
+                } else {
+                    $sql = "UPDATE `hebergement` SET $key=:$key WHERE `id_hebergement`=" . $form['id_hebergement'];
+                    $query = $db->prepare($sql);
+                    $query->bindValue(":$key", $value);
                 }
-                $sql = "UPDATE `hebergement` SET $key=:$key WHERE `id_hebergement`=:$id";
-                $query = $db->prepare($sql);
-                $query->bindValue(':' . $key, $value);
                 $query->execute();
             }
         }
-
-
-        $_SESSION['message'] = "Produit Modifié";
-        header('Location index.php');
-        exit;
-        
         require_once 'close.php';
+        $_SESSION['message'] = "Hébergement Modifié";
+        header('Location: index.php');
     } else {
         $_SESSION['erreur'] = "probleme dans la modification methode post";
     }

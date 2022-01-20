@@ -14,11 +14,11 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query1 = $db->prepare($sql1);
     $query1->bindValue(':id', intval($hebergement['id_periode']));
     $query1->execute();
-    $periode = $query1->fetch();
+    $periode = $query1->fetch(PDO::FETCH_ASSOC);
+
 
 
     //traite les elmements de la table jours
-    var_dump($hebergement);
     //on verifie si le hebergement existe
     if (!$hebergement) {
         $_SESSION['erreur'] = "Cet ID n'existe pas";
@@ -58,15 +58,16 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 <p>Couchage:<?= $hebergement['couchage'] ?></p>
                 <p>Sdb: <?= $hebergement['sdb'] ?></p>
                 <p>
-                    <?= ($hebergement['animaux'] == 1) ? "<img src='../image/animauxpicto.png' width='50'>" : "<img src='../image/animauxpictorouge.png' width='50'>";  ?>
-                    <?= ($hebergement['wifi'] == 1) ? "<img src='../image/wifipicto.png' width='50'>" : "<img src='../image/wifipictorouge.png' width='50'>";  ?>
-                    <?= ($hebergement['fumeur'] == 1) ? "<img src='../image/fumeurpicto.png' width='50'>" : "<img src='../image/fumeurpictorouge.png' width='50'>";  ?>
-                    <?= ($hebergement['piscine'] == 1) ? "<img src='../image/piscinepicto.png' width='50'>" : "<img src='../image/piscinepictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['animaux'] == "1") ? "<img src='../image/animauxpicto.png' width='50'>" : "<img src='../image/animauxpictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['wifi'] == "1") ? "<img src='../image/wifipicto.png' width='50'>" : "<img src='../image/wifipictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['fumeur'] == "1") ? "<img src='../image/fumeurpicto.png' width='50'>" : "<img src='../image/fumeurpictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['piscine'] == "1") ? "<img src='../image/piscinepicto.png' width='50'>" : "<img src='../image/piscinepictorouge.png' width='50'>";  ?>
                 </p>
 
                 <p>Photo 1:
                     <input type="hidden" id="id_periode" name="id_periode" value=<?= $periode['id_periode'] ?>>
-                    <?= (isset($hebergement['photo1']) && !(empty($hebergement['photo1']))) ? "<img src='" . $hebergement['photo1'] . "' width='200'>" : "<img src='../image/photovide.png' width='50'"; ?>
+
+                    <?= (isset($hebergement['photo1']) && !(empty($hebergement['photo1']))) ? "<img src='photo/" . $hebergement['photo1'] . "' width='200'>" : "<img src='../image/vide.png' width='50'"; ?>
                 </p>
                 <p>Debut: <?= $periode['debut'] ?></p>
                 <p>Fin: <?= $periode['fin'] ?></p>
