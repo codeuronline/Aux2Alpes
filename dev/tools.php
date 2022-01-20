@@ -56,11 +56,8 @@ function delSpecialChar($text)
 // incremente une date de i jours au format Y-m-d
 function dateIncDay($date, $i)
 {
-    if ($i = 0)
-        return $date;
-    else
-
-        return date("Y-m-d", strtotime($date . "+ $i days"));
+    return date("Y-m-d", strtotime($date . "+ $i days"));
+  
 }
 
 //  renvoie la difference  entre 2 date en jours
