@@ -33,9 +33,10 @@ require_once('hebergement.class.php');
             <section class="col-12">
                 <?php
 if (!empty($_SESSION['warning'])) {
-    echo '<DIV class="alert alert-warning" role="alert">' . $_SESSION['erreur'] . '
+                    echo '<DIV class="alert alert-warning" role="alert">' . $_SESSION['warning'] . '
                     </DIV>';
-}
+                    $_SESSION['warning'] = "";
+                }
                 if (!empty($_SESSION['erreur'])) {
                     echo '<DIV class="alert alert-danger" role="alert">' . $_SESSION['erreur'] . '
                     </DIV>';

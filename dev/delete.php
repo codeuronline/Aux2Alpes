@@ -22,14 +22,14 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
 
     //3-> on efface les elements contenant id_periode dans la table jour
     // cas suppression de la periode meme si un des jours est reservé
-    // on s'assure qu'il n'y a pas que tous les jours sont vacant
+    // on cherche les jours de la periode qui ont un état réservé
     $sql21 = 'SELECT count(id_periode) from `periode` WHERE `id_periode`= :id AND etat=1';
     $query21 = $db->prepare($sql21);
     $query21->bindValue(':id', intval($hebergement['id_periode']), PDO::PARAM_INT);
     $query21->execute();
-    $row = $check->rowCount();
+    $row = $query21->rowCount();
     if ($row > 0) {
-        $_SESSION['warning'] = "$row correpondance(s) trouvée(s)<br>Procédure d'avertissement des utilisateur(s) concerné(s) lancées";
+        $_SESSION['warning'] = "$row correpondance(s) trouvée(s); Procédure d'avertissement des utilisateur(s) concerné(s) lancées";
     }
     
     $sql2 = 'DELETE FROM `jour` WHERE `id_periode`= :id';

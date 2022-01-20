@@ -15,7 +15,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query1->bindValue(':id', intval($hebergement['id_periode']));
     $query1->execute();
     $periode = $query1->fetch(PDO::FETCH_ASSOC);
-
+    var_dump($periode);
 
 
     //traite les elmements de la table jours
@@ -54,8 +54,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 <p>Nom: <?= $hebergement['nom'] ?></p>
                 <p>Adresse: <?= $hebergement['adresse'] ?></p>
                 <p>Description: <?= $hebergement['description'] ?></p>
-                <p>Prix:<?= $hebergement['prix'] ?></p>
-                <p>Couchage:<?= $hebergement['couchage'] ?></p>
+                <p>Prix: <?= $hebergement['prix'] ?></p>
+                <p>Couchage: <?= $hebergement['couchage'] ?></p>
                 <p>Sdb: <?= $hebergement['sdb'] ?></p>
                 <p>
                     <?= ($hebergement['animaux'] == "1") ? "<img src='../image/animauxpicto.png' width='50'>" : "<img src='../image/animauxpictorouge.png' width='50'>";  ?>
@@ -65,12 +65,12 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 </p>
 
                 <p>Photo 1:
-                    <input type="hidden" id="id_periode" name="id_periode" value=<?= $periode['id_periode'] ?>>
+                    <input type="hidden" id="id_periode" name="id_periode" value=<?= $hebergement['id_periode'] ?>>
 
                     <?= (isset($hebergement['photo1']) && !(empty($hebergement['photo1']))) ? "<img src='photo/" . $hebergement['photo1'] . "' width='200'>" : "<img src='../image/vide.png' width='50'"; ?>
                 </p>
-                <p>Debut: <?= $periode['debut'] ?></p>
-                <p>Fin: <?= $periode['fin'] ?></p>
+                <p>Debut: <?= $periode['debut']; ?></p>
+                <p>Fin: <?= $periode['fin']; ?></p>
                 <p>
                     <a href='index.php' class='btn btn-primary'>Retour<a>
                             <a href="edit.php?id_hebergement=<?= $hebergement['id_hebergement']; ?>"
