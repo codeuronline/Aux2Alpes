@@ -1,11 +1,12 @@
 <?php
 session_start();
 require_once('connect.php');
+require_once('tools.php');
 $sql = 'SELECT * FROM `hebergement`';
 $query = $db->prepare($sql);
 $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
-var_dump($result);
+
 
 // on recupere les elements pour chaque pour chaque id_periode
 
@@ -50,18 +51,29 @@ require_once('hebergement.class.php');
                     <th>Nom</th>
                     <th>prix</th>
                     <th>adresse</th>
-                    <th>Taux d'occupation</th>
+                    <th>Taux de disponibilité</th>
                     <th>action</th>
                     <tbody>
                         <?php
                         foreach ($result as $hebergement) {
 
-                            $sql = 'SELECT count(id_periode) FROM `jour` id_periode=';
-                            $query = $db->prepare($sql);
-                            $query->execute();
+                            $sql1 = 'SELECT count(id_jour) AS max_jour FROM `jour` WHERE id_periode=:id'; // max de jour
+                            $query1 = $db->prepare($sql1);
+                            $query1->bindValue(':id', $hebergement['id_periode']);
+                            $query1->execute();
+                            $result1 = $query1->fetch(PDO::FETCH_ASSOC);
+                            $hebergement['max_jour'] = intval($result1['max_jour']);
 
-                            $hebergement['max_jour'] = $max_jour;
-                            $hebergement['max_jour_free'] = $max_jour_free;
+                            $sql2 = 'SELECT count(id_jour) AS max_jour_libre FROM `jour` WHERE id_periode=:id AND etat=0'; // nb jour libre
+                            $query2 = $db->prepare($sql2);
+                            $query2->bindValue(':id', $hebergement['id_periode']);
+                            $query2->execute();
+                            $result2 = $query2->fetch(PDO::FETCH_ASSOC);
+                            $hebergement['max_jour_libre'] = intval($result2['max_jour_libre']);
+
+
+                            //$hebergement['max_jour'] = $max_jour;
+                            //$hebergement['max_jour_free'] = $max_jour_free;
                         ?>
                         <tr>
                             <td><?= $hebergement['id_hebergement'] ?></td>
@@ -76,9 +88,7 @@ require_once('hebergement.class.php');
                                     <div class="col-md-12">
                                         <div class="progress-1 align-items-center">
                                             <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                    style="width: 80%;" aria-valuenow="70" aria-valuemin="0"
-                                                    aria-valuemax="100"> 81% </div>
+                                                <?= barProgress($hebergement['max_jour'], $hebergement['max_jour_libre']) ?>
                                             </div>
                                             <!--<div class="progress">
                                                             <div class="progress-bar bg-custom" role="progressbar"

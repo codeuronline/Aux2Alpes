@@ -13,7 +13,6 @@ if ($_POST) {
         require_once 'connect.php';
         require_once  'tools.php';
 
-        var_dump($_POST);
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {

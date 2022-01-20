@@ -4,8 +4,8 @@ session_start();
 if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     require_once('connect.php');
 
-    //on traite leffacement en 3 etapes
-   
+    //on traite leffacement en 5 etapes
+
    //1-> recupere les elements id_periode, et le lien des photo1a5 dans la table hebergement
     $id_hebergement = intval(strip_tags(($_GET['id_hebergement'])));
     $sql = 'SELECT id_periode,photo1,photo2,photo3,photo4,photo5 FROM `hebergement` WHERE `id_hebergement` = :id';
@@ -21,6 +21,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query1->execute();
 
     //3-> on efface les elements contenant id_periode dans la table jour
+    // cas suppression de la periode meme si un des jours est reservé
+    // que faire -> si un utilsateur a reservé certain jour de la periode
     $sql2 = 'DELETE FROM `jour` WHERE `id_periode`= :id';
     $query2 = $db->prepare($sql2);
     $query2->bindValue(':id', intval($hebergement['id_periode']), PDO::PARAM_INT);
