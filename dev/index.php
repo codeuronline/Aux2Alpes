@@ -5,8 +5,11 @@ $sql = 'SELECT * FROM `hebergement`';
 $query = $db->prepare($sql);
 $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
+var_dump($result);
 
-require_once('close.php');
+// on recupere les elements pour chaque pour chaque id_periode
+
+
 require_once('hebergement.class.php');
 ?>
 <!DOCTYPE html>
@@ -52,6 +55,13 @@ require_once('hebergement.class.php');
                     <tbody>
                         <?php
                         foreach ($result as $hebergement) {
+
+                            $sql = 'SELECT count(id_periode) FROM `jour` id_periode=';
+                            $query = $db->prepare($sql);
+                            $query->execute();
+
+                            $hebergement['max_jour'] = $max_jour;
+                            $hebergement['max_jour_free'] = $max_jour_free;
                         ?>
                         <tr>
                             <td><?= $hebergement['id_hebergement'] ?></td>
@@ -107,5 +117,6 @@ require_once('hebergement.class.php');
         </div>
     </main>
 </body>
+<?php require_once('close.php'); ?>
 
 </html>
