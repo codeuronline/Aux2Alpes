@@ -114,7 +114,6 @@ if ($_POST) {
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
         header('Location: index.php');
-        
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";
     }
@@ -242,8 +241,9 @@ if ($_POST) {
                             <label for="piscine-b"><img src="../image/piscinepicto.png" width="60"
                                     alt="piscine autorisation" height="60" width="50"></label>
                         </div>
-                        <button class="btn-btn-primary">Ajouter</button>
-                        <button class="btn-btn-primary" type="reset">Annuler</button>
+
+                        <button class="btn btn-primary" type="submit">Ajouter</button>
+                        <button class="btn btn-primary" type="reset">Annuler</button>
                         <a href='index.php' class='btn btn-primary'> Retour<a>
                 </form>
             </section>
