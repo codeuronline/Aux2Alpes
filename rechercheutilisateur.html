@@ -10,8 +10,8 @@
 </head>
 
 <header>
-  <button class="btn-inscription-connexion" a href="inscription.php" type=submit>Inscription</button>
-  <button class="btn-inscription-connexion" a href="connexion.php" type=submit>Connexion</button>
+  <a href="inscription.php"><button class="btn-inscription-connexion" type=submit>Inscription</button></a>
+  <a href="connexion.php"><button class="btn-inscription-connexion" type=submit>Connexion</button></a>
   <a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
 </header>
 
@@ -23,26 +23,40 @@
                   <div class='card shadow'>
                       <div class='card-title text-center border-bottom'>
                       </div>
-                      <div class='card-body'>
-                        <button type=submit><img src=image/picto-map-blanc.png height="50" width="50">  <div class="corpsformulaire">
-                          <div class="gauche" id="gauche">
-                          <div class="groupe">
-                          <input type="image/picto-map-blanc.png" name="mailto" id="mailto" required></div></button><div></div>
-                              <!--<form action='validationformulaire.php' method='post'>-->
-                          
-                              <div class='mb-9'>
-                                <button type=submit><img src=image/calendrierpicto.png height="50" width="50">  <div class="corpsformulaire">
-                                  <div class="gauche" id="gauche">
-                                  <div class="groupe">
-                                  <input type="image/picto-map-blanc.png" name="mailto" id="mailto" required></div></button><div></div>
-                              </div>
-
+                      
+                      <div class='mb-9'>
+                        <button type=submit><img src=image/picto-map-blanc.png height="50" width="50">  
+                          <label for="Nombre_de_couchages"></label>
+                                <select name="Nombre_de_couchages" id="Nombre_de_couchages" required>
+                                <option value="1">Paris</option>
+                                <option value="2">Marrakech</option>
+                                <option value="3">Japon</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                </select></div>
+                            
+                              <div class='mb-9'><!----iciok-->
+                                <button type=submit><img src=image/calendrierpicto.png height="50" width="50">
+                                  <div class="groupe"><input type="date" name="Arriver" id="Arriver" required><input type="date" name="Retour" id="Retour" required></div></button>
+                                
+                                
+  
+                                <!-------fin-->
                               <div class='mb-9'>
                                   <button type=submit><img src=image/groupepicto.png height="50" width="50">  <div class="corpsformulaire">
-                                  <div class="gauche" id="gauche">
-                                  <div class="groupe">
-                                  <input type="image/picto-map-blanc.png" name="mailto" id="mailto" required></div></button><div></div>
-                              </div>
+                                    <label for="Nombre_de_couchages"></label>
+                                    <select name="Nombre_de_couchages" id="Nombre_de_couchages" required>
+                                    <option value="1">1 Personne</option>
+                                    <option value="2">2 Personnes</option>
+                                    <option value="3">3 Personnes</option>
+                                    <option value="4">4 Personnes</option>
+                                    </select></div></div>
+                              
 
                               <div class="e">
                                 <button type=submit><img src=image/animauxpicto.png height="50" width="50"></button>

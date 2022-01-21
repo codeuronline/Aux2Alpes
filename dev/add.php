@@ -113,9 +113,13 @@ if ($_POST) {
 
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
+<<<<<<< HEAD
 
         header('Location: index.php');
         
+=======
+        header('Location: index.php');
+>>>>>>> d7f9f19f9e7b02b243bd24a7dc9308ce2933ecab
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";
     }
@@ -234,44 +238,6 @@ if ($_POST) {
                             <label for="fumeur-b"><img src="../image/fumeurpicto.png" width="60"
                                     alt="fumer autorisation" height="60" width="50"></label>
 
-<<<<<<< HEAD
-
-                    <div class="form-group">
-                        <!--on besoin  id l'herbergement pour creer une entree dans periode -->
-                        <label for="fin">Début</label>
-                        <input type="date" id="debut" name="debut" class="form-controls"
-                            value="<?= date('Y-m-d', time()); ?>" required>
-                        <label for="fin">Fin</label>
-                        <input type="date" id="fin" name="fin" class="form-controls"
-                            value="<?php echo date('Y-m-d', strtotime("+5 day")); ?>" required>
-                    </div><br>
-                    <div class="form-group">
-                        <input type="radio" name="chien" class="chien demoyes" id="chien-a" checked value="false">
-                        <label for="chien-a"><img src='../image/animauxpictorouge.png' width="60" alt='autorisation animaux' height="60" width="50"></label>
-                        <input type="radio" name="chien" class="chien demono" id="chien-b" value="true">
-                        <label for="chien-b"><img src="../image/animauxpicto.png" width="60" alt="interdiction animaux" height="60" width="50"></label>
-
-                        <input type="radio" name="wifi" class="wifi demoyes" id="wifi-a" checked value="false">
-                        <label for="wifi-a"><img src='../image/wifipictorouge.png' width="60" alt='wifi autorisation' height="60" width="50"></label>
-                        <input type="radio" name="wifi" class="wifi demono" id="wifi-b" value="true">
-                        <label for="wifi-b"><img src="../image/wifipicto.png" width="60" alt="wifi refuser" height="60" width="50"></label>
-
-                        <input type="radio" name="fumeur" class="fumeur demoyes" id="fumeur-a" checked value="false">
-                        <label for="fumeur-a"><img src='../image/fumeurpictorouge.png' width="60" alt='fumer interdiction'height="60" width="50"></label>
-                        <input type="radio" name="fumeur" class="fumeur demono" id="fumeur-b" value="true">
-                        <label for="fumeur-b"><img src="../image/fumeurpicto.png" width="60" alt="fumer autorisation"height="60" width="50"></label>
-
-                        <input type="radio" name="piscine" class="piscine demoyes" id="piscine-a" checked value="false">
-                        <label for="piscine-a"><img src='../image/piscinepictorouge.png' width="60" alt='piscine interdiction'height="60" width="50"></label>
-                        <input type="radio" name="piscine" class="piscine demono" id="piscine-b" value="true"
-                            class=form>
-                        <label for="piscine-b"><img src="../image/piscinepicto.png" width="60" alt="piscine autorisation"height="60" width="50"></label>
-                    </div>
-
-                    <button class="primary">Ajouter</button>
-                    <button class="primary" type="reset">Annuler</button>
-                    <a href='index.php' class='btn-btn-primary btn-custom'>Retour<a>
-=======
                             <input type="radio" name="piscine" class="piscine demoyes" id="piscine-a" checked
                                 value="false">
                             <label for="piscine-a"><img src='../image/piscinepictorouge.png' width="60"
@@ -281,10 +247,10 @@ if ($_POST) {
                             <label for="piscine-b"><img src="../image/piscinepicto.png" width="60"
                                     alt="piscine autorisation" height="60" width="50"></label>
                         </div>
-                        <button class="btn-btn-primary">Ajouter</button>
-                        <button class="btn-btn-primary" type="reset">Annuler</button>
+
+                        <button class="btn btn-primary" type="submit">Ajouter</button>
+                        <button class="btn btn-primary" type="reset">Annuler</button>
                         <a href='index.php' class='btn btn-primary'> Retour<a>
->>>>>>> 3c0a6692d3c814a809769985396d79af18f3e919
                 </form>
             </section>
         </div>

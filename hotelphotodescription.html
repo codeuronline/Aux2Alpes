@@ -3,112 +3,100 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="gitebonbon.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
-<a href="rechercheutilisateur.html"><img class="logo" src="image/logo.png" alt="Logo"></a>
-
-<header>
-  <nav>
-      <ul class="flex">  
-        <li><a href="http://localhost/P3/lespalaisbonbons/inscription.php">Inscription </a></li>
-        <li><a href="http://localhost/P3/lespalaisbonbons/connexion.php"> Connection</a></li>
-    </ul>
-  </nav>
+<header> 
+  <a href="inscription.php"><button class="btn-inscription-connexion" type=submit>Inscription</button></a>
+  <a href="connexion.php"><button class="btn-inscription-connexion" type=submit>Connexion</button></a>
+  <a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
 </header>
 
+
 <body class='bg'>
-        <div class='container'>
-            <div class='row1'>
-                <div class='col-lg-4 col-md-8 col-sm-8'>
-                    <div class='card shadow'>
-                        <div class='card-title text-center border-bottom'>
-                        </div>
-                        <div class='card-body'>
-                          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">1</button>
-                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">2</button>
-                              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">3</button>
-                            </div>
-
-
-<!--form action='validationformulaire.php' method='post'-->
-  
-                                <div class='mb-4'>
-                                <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                <img src="photo/bonbonfrance.jpg" class="d-block w-100" alt="...">
-
-                                <div class="carousel-item">
-                                <img src="photo/chambrefrance.jpg" class="d-block w-100" alt="...">
-                                
-                                <div class="carousel-item">
-                                <img src="photo/gite7.jpg" class="d-block w-100" alt="...">
-                                </div>
-
-                                <div class="carousel-item">
-                                  <img src="photo/jardinfrance.jpg" class="d-block w-100" alt="...">
-                                  </div>
-
-                                  <div class="carousel-item">
-                                    <img src="photo/piscinefrance.jpg" class="d-block w-100" alt="...">
-                                    </div>
-
+      <div class='container'>
+          <div class='row1'>
+              <div class='col-lg-4 col-md-8 col-sm-8'>
+                  <div class='card shadow'>
+                      <div class='card-title text-center border-bottom'>
+                      </div>
+                      <div class='card-body'>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                          <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">1</button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">2</button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">3</button>
+                            </div>  
+                              <div class='mb-9'>
                                 <div class='d-grid'>
-                                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                    <img src="photo/bonbonfrance.jpg" class="d-block w-100" alt="...">
+    
+                                    <div class="carousel-item">
+                                    <img src="photo/chambrefrance.jpg" class="d-block w-100" alt="...">
+                                    
+                                    <div class="carousel-item">
+                                    <img src="photo/gite7.jpg" class="d-block w-100" alt="...">
+                                    </div>
+    
+                                    <div class="carousel-item">
+                                      <img src="photo/jardinfrance.jpg" class="d-block w-100" alt="...">
+                                      </div>
+    
+                                      <div class="carousel-item">
+                                        <img src="photo/piscinefrance.jpg" class="d-block w-100" alt="...">
+                                        </div>
+                              </div>
+
+                              <div class='mb-9'>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                   </button>
-                                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                  </button>
+                                </button>
+                              </div>
+
+                              <div class="e">
+                                <!--------------------Description de l'hotel ---------------->
+
+                                <h2>
+                                <button aria-expanded="true" aria-controls="accordion-panel-1">Gite Paris 15e</button>
+                                </h2>
+                                <div id="accordion-panel-1">
+  
+                                Situé dans le 15e arrondissement, cet hôtel contemporain se trouve à 4 minutes à pied de la station de métro Pernety, ainsi qu'à 3 km du Quartier latin et du jardin du Luxembourg.
+                                Les chambres élégantes et modernes disposent d'un accès Wi-Fi gratuit, de la télévision par câble, d'un minibar et d'une machine Nespresso.
+                                
+                                Le petit-déjeuner buffet est payant. L'établissement possède un sauna et un centre d'affaires ouvert 24h/24, 7j/7.
+                                Situé dans le 15e arrondissement, cet hôtel contemporain se trouve à 4 minutes à pied de la station de métro Pernety, ainsi qu'à 3 km du Quartier latin et du jardin du Luxembourg.
+                                Les chambres élégantes et modernes disposent d'un accès Wi-Fi gratuit, de la télévision par câble, d'un minibar et d'une machine Nespresso.
+                                
+                                Le petit-déjeuner buffet est payant. L'établissement possède un sauna et un centre d'affaires ouvert 24h/24, 7j/7.
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-<!--------------------Description de l'hotel ---------------->
-
-<h2>
-<button aria-expanded="true" aria-controls="accordion-panel-1">Gite Paris 15e</button>
-</h2>
-<div id="accordion-panel-1">
-
-  Situé dans le 15e arrondissement, cet hôtel contemporain se trouve à 4 minutes à pied de la station de métro Pernety, ainsi qu'à 3 km du Quartier latin et du jardin du Luxembourg.
-  Les chambres élégantes et modernes disposent d'un accès Wi-Fi gratuit, de la télévision par câble, d'un minibar et d'une machine Nespresso.
   
-  Le petit-déjeuner buffet est payant. L'établissement possède un sauna et un centre d'affaires ouvert 24h/24, 7j/7.
-  Situé dans le 15e arrondissement, cet hôtel contemporain se trouve à 4 minutes à pied de la station de métro Pernety, ainsi qu'à 3 km du Quartier latin et du jardin du Luxembourg.
-  Les chambres élégantes et modernes disposent d'un accès Wi-Fi gratuit, de la télévision par câble, d'un minibar et d'une machine Nespresso.
-  
-  Le petit-déjeuner buffet est payant. L'établissement possède un sauna et un centre d'affaires ouvert 24h/24, 7j/7.
+                                
+                                
+                                <!---la géolocalisation---+ bouton reservation---------->
+                                <div class="m-8" id="infoposition">icigeolocalisation</div>
 
-</div>
-
-
-<!----------Les dates de calendrier ---------->
-<section class="pictochoix">
-<button type=submit><img src=image/picto-map-blanc.png height="50" width="50"></button><div></div>
-<button type=submit><img src=image/calendrierpicto.png height="50" width="50"></button><div></div>
-<button type=submit><img src=image/groupepicto.png height="50" width="50"></button><div></div>
-</section><br>
-
-
-<!---la géolocalisation---+ bouton reservation---------->
-<div id="infoposition"></div>
-
-
-<button type=submit>Reservation</button><div>
-  
-
-
+                                <button class=btn-recherche type='submit' class='bg-text-light'>Reservation</button>
+                              </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </html>

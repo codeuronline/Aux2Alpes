@@ -145,7 +145,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                         <input type="radio" name="piscine" class="piscine demono" id="piscine-b"
                             <?= $check['piscine'] ?> value=0 class=form>
                         <label for="piscine-b"><img src="../image/piscinepicto.png" width="60" alt=""></label>
-
+                        <input type="hidden" name="id_periode" id="id_periode"
+                            value='<?= $hebergement['id_periode']; ?>'>
                         <input type="hidden" name="id_hebergement" id="id_hebergement"
                             value='<?= $hebergement['id_hebergement'] ?>'>
                     </div>

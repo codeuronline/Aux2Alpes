@@ -2,7 +2,18 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////BOITE A OUTILS///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+function barProgress($intervalle, $element)
+{
+    $cent = $intervalle;
+    $taux = floor($element / $intervalle * 100);
+    if ($taux > 66) {
+        return  '<div class="progress-bar bg-success" role="progressbar" style="width: ' . $taux . '%;" aria-valuenow="' . $taux . '" aria-valuemin="0" aria-valuemax="100">' . $taux . '% </div>';
+    } elseif ($taux > 33) {
+        return '<div class="progress-bar bg-warning" role="progressbar" style="width: ' . $taux . '%;" aria-valuenow="' . $taux . '" aria-valuemin="0" aria-valuemax="100">' . $taux . '%</div>';
+    } else {
+        return '<div class="progress-bar bg-danger" role="progressbar" style="width: ' . $taux . '%;" aria-valuenow="' . $taux . '" aria-valuemin="0" aria-valuemax="100">' . $taux . '%</div>';
+    }
+}
 //test si un repertoire existe sinon il le crée
 function IsDir_or_CreateIt($path)
 {
@@ -45,11 +56,8 @@ function delSpecialChar($text)
 // incremente une date de i jours au format Y-m-d
 function dateIncDay($date, $i)
 {
-    if ($i = 0)
-        return $date;
-    else
-
-        return date("Y-m-d", strtotime($date . "+ $i days"));
+    return date("Y-m-d", strtotime($date . "+ $i days"));
+  
 }
 
 //  renvoie la difference  entre 2 date en jours

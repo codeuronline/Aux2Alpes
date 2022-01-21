@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    
     <link rel="stylesheet" href=".\gitebonbon.css">
 </head>
+
+
+<a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+
 
 <body class='main-bg'>
 <?php
@@ -81,7 +85,7 @@
                                     <input type='checkbox' class='form-check-input' id='form-cgv' required='required'>
                                     <label for='form-cgv'>J'ai lu les conditions d'utilisation</label><br>
                                     
-                                    <button type='submit' class='btn-main-bg-text-light'>Inscription</button>
+                                    <button type='submit' class='btn-inscription-connexion'>Inscription</button>
                                 </div>
                                 </div>
                             </form>
