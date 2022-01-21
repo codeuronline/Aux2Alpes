@@ -3,49 +3,68 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="stylerechercheutilisateur.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="gitebonbon.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
 <header>
-  <nav>
-      <ul class="flex">  
-        <li><a href="http://localhost/P3/lespalaisbonbons/inscription.php">Inscription </a></li>
-        <li><a href="http://localhost/P3/lespalaisbonbons/connexion.php"> Connection</a></li>
-    </ul>
-  </nav>
+  <button class="btn-inscription-connexion" a href="inscription.php" type=submit>Inscription</button>
+  <button class="btn-inscription-connexion" a href="connexion.php" type=submit>Connexion</button>
+  <a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
 </header>
 
-<a href="rechercheutilisateur.html"><img class="logo" src="image/logo.png" alt="Logo"></a>
 
-<div class="container">
-<!----------Les dates de calendrier ---------->
-<div class="b">
-<button type=submit><img src=image/picto-map-blanc.png height="50" width="50"></button><div></div>
-<button type=submit><img src=image/calendrierpicto.png height="50" width="50"></button><div></div>
-<button type=submit><img src=image/groupepicto.png height="50" width="50"></button><div></div>
-</div>
+<body class='bg'>
+      <div class='container'>
+          <div class='row1'>
+              <div class='col-lg-4 col-md-8 col-sm-8'>
+                  <div class='card shadow'>
+                      <div class='card-title text-center border-bottom'>
+                      </div>
+                      <div class='card-body'>
+                        <button type=submit><img src=image/picto-map-blanc.png height="50" width="50">  <div class="corpsformulaire">
+                          <div class="gauche" id="gauche">
+                          <div class="groupe">
+                          <input type="image/picto-map-blanc.png" name="mailto" id="mailto" required></div></button><div></div>
+                              <!--<form action='validationformulaire.php' method='post'>-->
+                          
+                              <div class='mb-9'>
+                                <button type=submit><img src=image/calendrierpicto.png height="50" width="50">  <div class="corpsformulaire">
+                                  <div class="gauche" id="gauche">
+                                  <div class="groupe">
+                                  <input type="image/picto-map-blanc.png" name="mailto" id="mailto" required></div></button><div></div>
+                              </div>
 
-<!--l'espace picto------------------------>
-<div class="e">
-<button type=submit><img src=image/animauxpicto.png height="50" width="50"></button><div>
-<button type=submit><img src=image/fumeurpicto.png height="50" width="50"></button><div>
-<button type=submit><img src=image/picinepicto.png height="50" width="50"></button><div>
-<button type=submit><img src=image/taxipicto.png height="50" width="50"></button><div>
-<button type=submit><img src=image/douchepicto.png height="50" width="50"></button><div>
-<button type=submit><img src=image/picto-connexion.png height="50" width="50"></button><div>
-</div>
+                              <div class='mb-9'>
+                                  <button type=submit><img src=image/groupepicto.png height="50" width="50">  <div class="corpsformulaire">
+                                  <div class="gauche" id="gauche">
+                                  <div class="groupe">
+                                  <input type="image/picto-map-blanc.png" name="mailto" id="mailto" required></div></button><div></div>
+                              </div>
 
-<!--- bouton reservation---------->
+                              <div class="e">
+                                <button type=submit><img src=image/animauxpicto.png height="50" width="50"></button>
+                                <button type=submit><img src=image/fumeurpicto.png height="50" width="50"></button>
+                                <button type=submit><img src=image/picinepicto.png height="50" width="50"></button>
+                                <button type=submit><img src=image/taxipicto.png height="50" width="50"></button>
+                                <button type=submit><img src=image/douchepicto.png height="50" width="50"></button>
+                                <button type=submit><img src=image/picto-connexion.png height="50" width="50"></button>
+                                </div>
 
-
-
-<button type=submit>Recherche</button>
-
-</div>
-
-
+                                <button class=btn-recherche type='submit' class='bg-text-light'>Recherche</button>
+                              </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </html>

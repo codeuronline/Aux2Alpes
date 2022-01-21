@@ -58,10 +58,10 @@ require_once('hebergement.class.php');
 
                             $sql = 'SELECT count(id_periode) FROM `jour` id_periode=';
                             $query = $db->prepare($sql);
-                            $query->execute();
+                            ///$query->execute();
 
-                            $hebergement['max_jour'] = $max_jour;
-                            $hebergement['max_jour_free'] = $max_jour_free;
+                            ///$hebergement['max_jour'] = $max_jour;
+                            ///$hebergement['max_jour_free'] = $max_jour_free;
                         ?>
                         <tr>
                             <td><?= $hebergement['id_hebergement'] ?></td>

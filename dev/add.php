@@ -113,14 +113,9 @@ if ($_POST) {
 
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
-<<<<<<< HEAD
-        header('Location index.php');
-        exit;
-                          
-=======
+
         header('Location: index.php');
         
->>>>>>> 3c0a6692d3c814a809769985396d79af18f3e919
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";
     }
