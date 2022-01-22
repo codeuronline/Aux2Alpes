@@ -27,9 +27,10 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query21 = $db->prepare($sql21);
     $query21->bindValue(':id', intval($hebergement['id_periode']), PDO::PARAM_INT);
     $query21->execute();
-    $row = $query21->rowCount();
-    if ($row > 0) {
-        $_SESSION['warning'] = "$row correpondance(s) trouvée(s); Procédure d'avertissement des utilisateur(s) concerné(s) lancées";
+    $row = $query21->fetch(PDO::FETCH_NUM);
+
+    if ($row[0] > 0) {
+        $_SESSION['warning'] = "$row[0] correpondance(s) trouvée(s); Procédure d'avertissement des utilisateur(s) concerné(s) lancées";
     }
     
     $sql2 = 'DELETE FROM `jour` WHERE `id_periode`= :id';
