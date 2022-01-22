@@ -1,17 +1,22 @@
-.container {  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "a b c"
-    "d e f"
-    "d g h";
+.container {  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    
+    "a a a"
+    "b c d"
+    "e f d"
+    "g g g";
 }
 
 .a { 
     background-color: aquamarine;
-    grid-area: a; }
+    grid-area: a; 
+    border-radius: 10px;
+    text-align: center;}
 
 .b { 
     background-color:blueviolet;
@@ -30,20 +35,17 @@
     grid-area: e; }
 
 .f {
-    background-color:aliceblue; 
-    grid-area: f; }
+    background-color:dimgray
+    ;
+    grid-area: f; 
+}
 
 .g {
-    background-color:dimgray; 
-    grid-area: g; }
+        background-color:blue;
+        grid-area: g; 
+}
 
-.h {background-color :lightcyan;
-    grid-area: h; }
-    html, body , .container {
-        height: 100%;
-        margin: 0;
-      }
-      
+
       /* For presentation only, no need to copy the code below */
       
       .container * {
@@ -62,5 +64,18 @@
         align-items: center;
         justify-content: center;
       }
-      
-      
+ @media screen and (max-width: 400px) {
+    
+
+    .container {  
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+        
+        "a a a"
+        "b d c"
+        "e d f"
+        "g g g";}
