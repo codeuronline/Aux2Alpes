@@ -14,56 +14,82 @@
 
 .a { 
     background-color: aquamarine;
-    grid-area: a; 
+    grid-area: a;
+    border-color: bisque; 
     border-radius: 10px;
-    text-align: center;}
+    text-align: center;
+    margin :30px;
+    padding:30px;
+}
 
 .b { 
     background-color:blueviolet;
-    grid-area: b; }
+    grid-area: b;
+    border-color: bisque; 
+    border-radius: 10px;
+    text-align: center;
+    margin :30px;
+    padding:30px;
+    text-align: center; }
 
 .c { 
     background-color:brown;
-    grid-area: c; }
+    grid-area: c;  
+    border-radius: 10px;
+    text-align: center;
+    margin :30px;
+    padding:30px;
+    text-align: center; }
 
 .d {
+    
     background-color:chocolate; 
-    grid-area: d; }
-
+    grid-area: d; 
+    border-radius: 10px;
+    text-align: center;
+    margin:30px;
+    padding: 30px;
+}
 .e { 
     background-color:darkkhaki;
-    grid-area: e; }
+    grid-area: e; 
+    border-radius: 10px;
+    text-align: center;
+    margin :30px;
+    padding:30px;
+    text-align: center; }
+
+
 
 .f {
-    background-color:dimgray
-    ;
+    background-color:dimgray;
     grid-area: f; 
-}
+    border-radius: 10px;
+    text-align: center;
+    margin :30px;
+    padding:30px;
+    text-align: center; }
+
+
 
 .g {
-        background-color:blue;
+        background-color:cadetblue;
         grid-area: g; 
-}
+        border-radius: 10px;
+        text-align: center;
+        margin :30px;
+        padding:30px;
+        text-align: center; 
+    
+    }
 
 
       /* For presentation only, no need to copy the code below */
-      
-      .container * {
-        border: 1px solid red;
+.container * {
+        border: 2px solid bisque;
         position: relative;
-      }
-      
-      .container *:after {
-        content:attr(class);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: grid;
-        align-items: center;
-        justify-content: center;
-      }
+}
+
  @media screen and (max-width: 400px) {
     
 
@@ -79,3 +105,6 @@
         "b d c"
         "e d f"
         "g g g";}
+
+        
+    }
