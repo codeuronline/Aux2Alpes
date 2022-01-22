@@ -1,7 +1,7 @@
 .container {  
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
@@ -95,16 +95,28 @@
 
     .container {  
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
         gap: 0px 0px;
         grid-auto-flow: row;
         grid-template-areas:
         
-        "a a a"
-        "b d c"
-        "e d f"
-        "g g g";}
-
+        "a a "
+        "b b "
+        "c c "
+        "d d "
+        "e e "
+        "f f "
+        "g g";}
         
+
+
+        .d {
+    
+            background-color:antiquewhite; 
+            grid-area: d; 
+            border-radius: 10px;
+            text-align: center;
+            margin:30px 30px 30px 5px;
+            padding: 30px;
     }
