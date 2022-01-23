@@ -85,7 +85,7 @@ if ($_POST) {
         }
 
         if ($row['compteur'] > 0) {
-            $_SESSION['warning'] = "$row correpondance(s) trouvée(s)<br>Procédure d'avertissement des utilisateur(s) concerné(s) lancées";
+            $_SESSION['warning'] = $row['compteur'] . " correpondance(s) trouvée(s)<br>Procédure d'avertissement des utilisateur(s) concerné(s) lancées";
         }
 
         //1.6 a faire on enregistre les correspondance de reservation et regarde si elles sont disponibles dans la nouvelle periode
