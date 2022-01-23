@@ -15,7 +15,6 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query1->bindValue(':id', intval($hebergement['id_periode']));
     $query1->execute();
     $periode = $query1->fetch(PDO::FETCH_ASSOC);
-    var_dump($periode);
 
 
     //traite les elmements de la table jours
