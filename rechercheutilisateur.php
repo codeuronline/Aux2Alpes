@@ -1,3 +1,19 @@
+<?php
+session_start();
+require_once('dev/connect.php');
+require_once('dev/tools.php');
+$sql = 'SELECT * FROM `dev/hebergement`';
+$query = $db->prepare($sql);
+$query->execute();
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+// on recupere les elements pour chaque pour chaque id_periode
+
+
+//require_once('dev/hebergement.class.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -15,7 +31,7 @@
   <a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
 </header>
 
-
+ 
 <body class='bg'>
       <div class='container'>
           <div class='row1'>
@@ -28,11 +44,13 @@
                         <button class="b1" type=submit><img class="img1" src=image/picto-map-blanc.png height="50" width="50">  
                                 <select name="hebergement" id="hebergement" required>
                                 <?php
-                                foreach $result as hebergement:>
-                                ?><option 
-                                </select></div>
+                                foreach ($result as $hebergement){?>
+                                <option value=<?=$hebergement['nom']?><?= $hebergement['nom']?>
+                                <?php }?>
+                                </select>
+                            </div>
                             
-                              
+
   
                                 <!-------fin-->
                               <div class='mb-4'>

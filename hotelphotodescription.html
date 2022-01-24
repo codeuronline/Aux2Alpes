@@ -5,7 +5,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="gitebonbon.css">
+  <link rel="stylesheet" href="hotelphotodescription.css">
+  <link rel="stylesheet" href="hotelphoto.scss">
+  <link rel="stylesheet" href="carousel.js">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
@@ -16,55 +18,25 @@
 </header>
 
 
-<body class='bg'>
-      <div class='container'>
-          <div class='row1'>
-              <div class='col-lg-4 col-md-8 col-sm-8'>
-                  <div class='card shadow'>
-                      <div class='card-title text-center border-bottom'>
-                      </div>
-                      <div class='card-body'>
-                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                          <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">1</button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">2</button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">3</button>
-                            </div>  
-                              <div class='mb-9'>
-                                <div class='d-grid'>
-                                  <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                    <img src="photo/bonbonfrance.jpg" class="d-block w-100" alt="...">
-    
-                                    <div class="carousel-item">
-                                    <img src="photo/chambrefrance.jpg" class="d-block w-100" alt="...">
-                                    
-                                    <div class="carousel-item">
-                                    <img src="photo/gite7.jpg" class="d-block w-100" alt="...">
-                                    </div>
-    
-                                    <div class="carousel-item">
-                                      <img src="photo/jardinfrance.jpg" class="d-block w-100" alt="...">
-                                      </div>
-    
-                                      <div class="carousel-item">
-                                        <img src="photo/piscinefrance.jpg" class="d-block w-100" alt="...">
-                                        </div>
-                              </div>
+<body>
+  <article>
+    <div id="slides">
+      <div class="slide" data-content="1"><img src="photo/bonbonfrance.jpg" alt=""></div>
+      <div class="slide" data-content="2"><img src="photo/gite7.jpg" alt=""></div>
+      <div class="slide" data-content="3"><img src="photo/jardinfrance.jpg" alt=""></div>
+      <div class="slide" data-content="4"><img src="photo/piscinefrance.jpg" alt=""></div>
+      <div class="slide" data-content="5"><img src="photo/repasfrance.jpg" alt=""></div>
+    </div>
+  </article>
 
-                              <div class='mb-9'>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                  <span class="visually-hidden">Next</span><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                  </button>
-                                </button>
-                              </div>
+
 
                               <div class="e">
                                 <!--------------------Description de l'hotel ---------------->
-
+                                
+                                <button class="b1" type=submit><img src=image/calendrierpicto.png height="50" width="50">
+                                  <div class="groupe">  <input type="date" name="Arriver" id="Arriver" required>       <input type="date" name="Retour" id="Retour" required></div></button>
+                                  
                                 <h2>
                                 <button aria-expanded="true" aria-controls="accordion-panel-1">Gite Paris 15e</button>
                                 </h2>
@@ -95,8 +67,6 @@
           </div>
       </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
 </html>

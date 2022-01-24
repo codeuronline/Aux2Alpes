@@ -221,3 +221,16 @@ input[type="radio"].douche + label {
 input[type="radio"].douche:checked + label {
   display: none;
 }
+
+
+/*-----hoteldescription--------*/
+
+
+.carousel-container{
+  width: 100%;
+  height: 400px;
+  background: violet;
+  display: flex;
+  flex-direction: row;
+}
+
