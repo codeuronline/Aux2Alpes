@@ -18,8 +18,6 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $query1->execute();
     $periode = $query1->fetch(PDO::FETCH_ASSOC);
     //traite le cas image
-    var_dump($periode);
-    var_dump($hebergement);
     //trait les elmements de la table jours
     //on verifie si le hebergement existe
     if (!$hebergement) {
@@ -112,22 +110,23 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                     <div class="form-group">
                         <h2>Option(s) de l'hébergement</h2>
                         L'état du picto prédéfini l'option de l'hébergement <br>
+                        <!--animaux-->
                         <?php $check['animaux'] = (($hebergement['animaux'] == '1') || ($hebergement['animaux'] == 1)) ? " checked " : ""; ?>
-                        <input type="radio" name="chien" class="chien demoyes" id="chien-a"
-                            <?= $check['animaux'] ?>value=1>
+                        <input type="radio" name="chien" class="chien demoyes" id="chien-a" <?= $check['animaux'] ?>
+                            value=1>
                         <label for="chien-a"><img src='../image/animauxpictorouge.png' width="60"></label>
                         <?php $check['animaux'] = (($hebergement['animaux'] == '0') || ($hebergement['animaux'] == 0)) ? " checked " : ""; ?>
-                        <input type="radio" name="chien" class="chien demono" id="chien-b"
-                            <?= $check['animaux'] ?>value="0">
+                        <input type="radio" name="chien" class="chien demono" id="chien-b" <?= $check['animaux'] ?>
+                            value="0">
                         <label for="chien-b"><img src="../image/animauxpicto.png" width="60" alt=""></label>
-
+                        <!--wifi-->
                         <?php $check['wifi'] = (($hebergement['wifi'] == '1') || ($hebergement['wifi'] == 1)) ? " checked " : ""; ?>
                         <input type="radio" name="wifi" class="wifi demoyes" id="wifi-a" <?= $check['wifi'] ?> value=1>
                         <label for="wifi-a"><img src='../image/wifipictorouge.png' width="60" alt=''></label>
                         <?php $check['wifi'] = (($hebergement['wifi'] == '0') || ($hebergement['wifi'] == 0)) ? " checked" : ""; ?>
                         <input type="radio" name="wifi" class="wifi demono" id="wifi-b" <?= $check['wifi'] ?> value=0>
                         <label for="wifi-b"><img src="../image/wifipicto.png" width="60" alt=""></label>
-
+                        <!--fumeur-->
                         <?php $check['fumeur'] = (($hebergement['fumeur'] == '1') || ($hebergement['fumeur'] == 1)) ? " checked" : ""; ?>
                         <input type="radio" name="fumeur" class="fumeur demoyes" id="fumeur-a" <?= $check['fumeur'] ?>
                             value=1>
@@ -136,7 +135,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                         <input type="radio" name="fumeur" class="fumeur demono" id="fumeur-b" <?= $check['fumeur'] ?>
                             value=0>
                         <label for="fumeur-b"><img src="../image/fumeurpicto.png" width="60" alt=""></label>
-
+                        <!--piscine-->
                         <?php $check['piscine'] = (($hebergement['piscine'] == '1') || ($hebergement['piscine'] == 1)) ? "checked" : ""; ?>
                         <input type="radio" name="piscine" class="piscine demoyes" id="piscine-a"
                             <?= $check['piscine'] ?> value=1>
@@ -145,10 +144,33 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                         <input type="radio" name="piscine" class="piscine demono" id="piscine-b"
                             <?= $check['piscine'] ?> value=0 class=form>
                         <label for="piscine-b"><img src="../image/piscinepicto.png" width="60" alt=""></label>
+                        <!--taxi-->
+                        <?php $check['taxi'] = (($hebergement['taxi'] == '1') || ($hebergement['taxi'] == 1)) ? "checked" : ""; ?>
+                        <input type="radio" name="taxi" class="taxi demoyes" id="taxi-a" <?= $check['taxi'] ?> value=1>
+                        <label for="taxi-a"><img src='../image/taxipictorouge.png' width="60" alt=''></label>
+                        <?php $check['taxi'] = (($hebergement['taxi'] == '0') || ($hebergement['taxi'] == 0)) ? " checked" : ""; ?>
+                        <input type="radio" name="taxi" class="taxi demono" id="taxi-b" <?= $check['taxi'] ?> value=0>
+                        <label for="taxi-b"><img src="../image/taxipicto.png" width="60" alt=""></label>
                         <input type="hidden" name="id_periode" id="id_periode"
                             value='<?= $hebergement['id_periode']; ?>'>
                         <input type="hidden" name="id_hebergement" id="id_hebergement"
                             value='<?= $hebergement['id_hebergement'] ?>'>
+                        <!--douche-->
+                        <?php $check['douche'] = (($hebergement['douche'] == '1') || ($hebergement['douche'] == 1)) ? "checked" : ""; ?>
+                        <input type="radio" name="douche" class="douche demoyes" id="douche-a" <?= $check['douche'] ?>
+                            value=1>
+                        <label for="douche-a"><img src='../image/douchepictorouge.png' width="60" alt=''></label>
+                        <?php $check['douche'] = (($hebergement['douche'] == '0') || ($hebergement['douche'] == 0)) ? " checked" : ""; ?>
+                        <input type="radio" name="douche" class="douche demono" id="douche-b" <?= $check['douche'] ?>
+                            value=0>
+                        <label for="douche-b"><img src="../image/douchepicto.png" width="60" alt=""></label>
+
+
+                        <input type="hidden" name="id_periode" id="id_periode"
+                            value='<?= $hebergement['id_periode']; ?>'>
+                        <input type="hidden" name="id_hebergement" id="id_hebergement"
+                            value='<?= $hebergement['id_hebergement'] ?>'>
+
                     </div>
 
                     <button class="btn btn-primary" type="submit">Modifier</button>
