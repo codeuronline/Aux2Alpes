@@ -122,3 +122,102 @@ header .logo1 {
 .img1{
   padding: 10%;
 }
+
+
+
+/*-----les picto page recherche.utilisateurs --------*/
+
+input[type="radio"].wifi {
+  display: none;
+}
+input[type="radio"].wifi + label {
+  display:inline-block;
+  background: rgba(238, 232, 232, 0.445); 
+  border-color: rgba(241, 235, 235, 0.623);
+  padding: 0.5rem 1rem;
+  min-width:50px;
+  text-align:center;
+}
+input[type="radio"].wifi:checked + label {
+  display: none;
+}
+
+
+input[type="radio"].fumeur {
+  display: none;
+}
+input[type="radio"].fumeur + label {
+  display:inline-block;
+  background: rgba(238, 232, 232, 0.445); 
+  border-color: rgba(241, 235, 235, 0.623);
+  padding: 0.5rem 1rem;
+  min-width:50px;
+  text-align:center;
+}
+input[type="radio"].fumeur:checked + label {
+  display: none;
+}
+
+
+input[type="radio"].animaux {
+  display: none;
+}
+input[type="radio"].animaux + label {
+  display:inline-block;
+  background: rgba(238, 232, 232, 0.445); 
+  border-color: rgba(241, 235, 235, 0.623);
+  padding: 0.5rem 1rem;
+  min-width:50px;
+  text-align:center;
+}
+input[type="radio"].animaux:checked + label {
+  display: none;
+}
+
+
+input[type="radio"].piscine {
+  display: none;
+}
+input[type="radio"].piscine + label {
+  display:inline-block;
+  background: rgba(238, 232, 232, 0.445); 
+  border-color: rgba(241, 235, 235, 0.623);
+  padding: 0.5rem 1rem;
+  min-width:50px;
+  text-align:center;
+}
+input[type="radio"].piscine:checked + label {
+  display: none;
+}
+
+
+input[type="radio"].taxi {
+  display: none;
+}
+input[type="radio"].taxi + label {
+  display:inline-block;
+  background: rgba(238, 232, 232, 0.445); 
+  border-color: rgba(241, 235, 235, 0.623);
+  padding: 0.5rem 1rem;
+  min-width:50px;
+  text-align:center;
+}
+input[type="radio"].taxi:checked + label {
+  display: none;
+}
+
+
+input[type="radio"].douche {
+  display: none;
+}
+input[type="radio"].douche + label {
+  display:inline-block;
+  background: rgba(238, 232, 232, 0.445); 
+  border-color: rgba(241, 235, 235, 0.623);
+  padding: 0.5rem 1rem;
+  min-width:50px;
+  text-align:center;
+}
+input[type="radio"].douche:checked + label {
+  display: none;
+}
