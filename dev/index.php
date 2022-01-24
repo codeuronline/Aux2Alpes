@@ -62,14 +62,13 @@ if (!empty($_SESSION['warning'])) {
                         <?php
                         foreach ($result as $hebergement) {
 
-<<<<<<< HEAD
+
                             $sql = 'SELECT count(id_periode) FROM `jour` id_periode=';
                             $query = $db->prepare($sql);
-                            ///$query->execute();
+                            $query->execute();
 
-                            ///$hebergement['max_jour'] = $max_jour;
-                            ///$hebergement['max_jour_free'] = $max_jour_free;
-=======
+                            //$hebergement['max_jour'] = $max_jour;
+                            //$hebergement['max_jour_free'] = $max_jour_free;
                             $sql1 = 'SELECT count(id_jour) AS max_jour FROM `jour` WHERE id_periode=:id'; // max de jour
                             $query1 = $db->prepare($sql1);
                             $query1->bindValue(':id', $hebergement['id_periode']);
@@ -83,11 +82,8 @@ if (!empty($_SESSION['warning'])) {
                             $query2->execute();
                             $result2 = $query2->fetch(PDO::FETCH_ASSOC);
                             $hebergement['max_jour_libre'] = intval($result2['max_jour_libre']);
-
-
-                            //$hebergement['max_jour'] = $max_jour;
-                            //$hebergement['max_jour_free'] = $max_jour_free;
->>>>>>> d7f9f19f9e7b02b243bd24a7dc9308ce2933ecab
+                           // $hebergement['max_jour'] = $max_jour;
+                           // $hebergement['max_jour_libre'] = $max_jour_libre;
                         ?>
                         <tr>
                             <td><?= $hebergement['id_hebergement'] ?></td>
