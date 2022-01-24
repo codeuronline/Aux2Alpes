@@ -101,4 +101,30 @@ input[type="radio"].wifi {
     display: none;
   }
 
+  input[type="radio"].douche {
+    display: none;
+  }
+  input[type="radio"].douche + label {
+    display:inline-block;
+    border: 2px solid rgb(0, 252, 126);
+    padding: 0.5rem 1rem;
+    min-width:50px;
+    text-align:center;
+  }
+  input[type="radio"].douche:checked + label {
+    display: none;
+  } 
   
+  input[type="radio"].taxi {
+    display: none;
+  }
+  input[type="radio"].taxi + label {
+    display:inline-block;
+    border: 2px solid rgb(0, 252, 126);
+    padding: 0.5rem 1rem;
+    min-width:50px;
+    text-align:center;
+  }
+  input[type="radio"].taxi:checked + label {
+    display: none;
+  }

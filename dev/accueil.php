@@ -2,7 +2,7 @@
 session_start();
 //définir la capicité maxi des gites pour instruire le select
 require_once 'connect.php';
-$sql = 'SELECT max(couchage) as max FROM `hebergement` ';
+$sql = 'SELECT nom,max(couchage) as max FROM `hebergement` ';
 $query = $db->prepare($sql);
 $query->execute();
 $hebergement = $query->fetch(PDO::FETCH_ASSOC);
