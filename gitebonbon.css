@@ -113,3 +113,12 @@ header .logo1 {
   font-size: smol;
   border-radius: 5rem;
 }
+
+.b1{
+  background: rgba(238, 232, 232, 0.445); 
+  border-color: rgba(241, 235, 235, 0.623);
+}
+
+.img1{
+  padding: 10%;
+}
