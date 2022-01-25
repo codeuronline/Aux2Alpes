@@ -18,6 +18,7 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 
 
+
 //require_once('dev/hebergement.class.php');
 ?>
 
@@ -33,48 +34,51 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <header>
-    <a href="inscription.php"><button class="btn-inscription-connexion" type=submit>Inscription</button></a>
-    <a href="connexion.php"><button class="btn-inscription-connexion" type=submit>Connexion</button></a>
-    <a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px"
-            alt="Logo"></a>
+    <a href="inscription.php"><button class="btn-recherche" type=submit>Inscription</button></a>
+    <a href="connexion.php"><button class="btn-recherche" type=submit>Connexion</button></a>
+    <a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px"alt="Logo"></a>
 </header>
 
 
 <body class='bg'>
     <div class='container'>
         <div class='row1'>
-            <form method="POST" action="">
+            <form method="POST" action="hotelphotodescription.php">
                 <div class='col-lg-4 col-md-8 col-sm-8'>
                     <div class='card shadow'>
                         <div class='card-title text-center border-bottom'>
                         </div>
 
                         <div class='mb-9'>
-                            <button class="b1"><img class="img1" src=image/picto-map-blanc.png height="50" width="50">
-                                <select name="id_hebergement" id="id_hebergement" required>
+                            <img class="groupepicto" src=image/picto-map-blanc.png height="70" width="70">
+                                <div class="corpsformulaire">
+                                    <select name="nom" id="nom" required>
                                     <?php
-                                    var_dump($hebergement);
+                                    
                                     foreach ($result as $hebergement) {
-                                        echo "<option value='" . $hebergement['nom'] . "'>" . $hebergement['nom'] . "</option>";
+                                        echo "<option value='" . $hebergement['id_hebergement'] . "'>" . $hebergement['id_hebergement'] . "</option>";
                                     } ?>
                                 </select>
+                            </div>
                         </div>
 
 
 
-                        <!-------fin-->
                         <div class='mb-4'>
-                            <button class="b1" type=submit><img src=image/groupepicto.png height="50" width="50">
+                                <img class="groupepicto" src=image/groupepicto.png height="70" width="70">
                                 <div class="corpsformulaire">
-                                    <label for="Nombre_de_couchages"></label>
-                                    <select name="Nombre_de_couchages" id="Nombre_de_couchages" required>
-                                        <option value="1">1 Personne</option>
-                                        <option value="2">2 Personnes</option>
-                                        <option value="3">3 Personnes</option>
-                                        <option value="4">4 Personnes</option>
+                                    <label for="couchage"></label>
+                                    <select name="couchage" id="couchage" required>
+                                    <option value="1">1 Personne</option>
+                                    <option value="2">2 Personnes</option>
+                                    <option value="3">3 Personnes</option>
+                                    <option value="4">4 Personnes</option>
                                     </select>
                                 </div>
                         </div>
+                                    
+                        
+                        
 
 
                         <div class="e">
@@ -142,8 +146,6 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
     </div>
     </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
 </html>
