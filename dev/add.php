@@ -14,6 +14,7 @@ if ($_POST) {
     ) {
         require_once 'connect.php';
         require_once 'tools.php';
+        var_dump($_POST);
         //parcours du tableau post et constitution des elements d'entree des tables form et periode
         var_dump($_FILES);
         die;
@@ -34,6 +35,7 @@ if ($_POST) {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
+        echo"<br>";var_dump($form);
         //cas des images
         //$rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
@@ -81,6 +83,11 @@ if ($_POST) {
         $jour['intervalle'] = dateDiff($periode['debut'], $periode['fin']);
         $jour['id_periode'] = $form['id_periode'];
 
+<<<<<<< HEAD
+=======
+        var_dump($jour);
+        die;
+>>>>>>> 95c9cfba4f8a22de9cb99703c604b51dfc15680b
         for ($i = 0; $i <= $jour['intervalle']; $i++) {
             $value = date("Y-m-d", strtotime($periode['debut'] . "+ $i days"));
             $compteur = $i + 1;
@@ -115,6 +122,7 @@ if ($_POST) {
         $query3->execute();
 
         require_once 'close.php';
+        die;
         $_SESSION['message'] = "Hébergement Ajouté";
 
 
