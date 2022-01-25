@@ -34,9 +34,13 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <header>
-    <a href="inscription.php"><button class="btn-recherche" type=submit>Inscription</button></a>
-    <a href="connexion.php"><button class="btn-recherche" type=submit>Connexion</button></a>
-    <a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px"alt="Logo"></a>
+    <?php
+    if (isset($_SESSION ['user'])){}
+    else{
+    echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
+    echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";}
+    ?>
+    <a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px"alt="Logo"></a>
 </header>
 
 

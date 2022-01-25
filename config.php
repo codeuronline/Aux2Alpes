@@ -18,5 +18,5 @@ $username = "root";
 $password = "";
 $table = "musique";
 //define('DBname','mamusique');
-$dbname = "mamusique";
-$namedb = "mamusique";
+$dbname = "hebergementdb";
+$namedb = "hebergementdb";

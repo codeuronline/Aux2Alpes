@@ -26,7 +26,7 @@ $sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
 <header> 
   <a href="inscription.php"><button class="btn-inscription-connexion" type=submit>Inscription</button></a>
   <a href="connexion.php"><button class="btn-inscription-connexion" type=submit>Connexion</button></a>
-  <a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+  <a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
 </header>
 
 

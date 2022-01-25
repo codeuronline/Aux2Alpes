@@ -10,7 +10,7 @@
 </head>
 
 
-<a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+<a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
 
 
 <body class='main-bg'>

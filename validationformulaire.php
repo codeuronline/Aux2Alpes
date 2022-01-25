@@ -1,8 +1,8 @@
 <?php
 
 $serveur = "localhost";
-$table = "inscription";
-$namedb = "mamusique";
+$table = "utilisateur";
+$namedb = "hebergementdb";
 $user = "root";
 $pass = "";
 

@@ -1,5 +1,5 @@
 
-<a href="rechercheutilisateur.html"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+<a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
 
 
 <?php
@@ -7,8 +7,8 @@
 
 /*connexion a la table inscription*/
 $serveur = "localhost";
-$table = "inscription";
-$namedb = "mamusique";
+$table = "utilisateur";
+$namedb = "hebergementdb";
 $user = "root";
 $pass = "";
 
@@ -34,9 +34,10 @@ if (!empty($_POST['mail']) && !empty($_POST['password'])) {
     if ($row == 1) {
         if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             if (hash_equals(hash('sha256', $password), $data['password'])) {
-                    $_SESSION['user'] = $data['mail'];
+                    $_SESSION['user'] = $data['id_utilisateur'];
                 $_SESSION['name'] = $data['name'];
-                    header('Location: index.php');
+                $_SESSION['mail'] = $data['mail'];
+                   header('Location: rechercheutilisateur.php');
                     
             } else {
                 header('Location: enregistrement.php?login_err=password');
