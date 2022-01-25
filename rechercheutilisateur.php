@@ -2,13 +2,14 @@
 session_start();
 require_once('dev/connect.php');
 require_once('dev/tools.php');
+
 $sql = 'SELECT * FROM `hebergement`';
 $query = $db->prepare($sql);
 $query->execute();
 $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-var_dump($result);
-// on recupere les elements pour chaque pour chaque id_periode
+
+
 
 
 //require_once('dev/hebergement.class.php');
