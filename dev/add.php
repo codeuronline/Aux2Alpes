@@ -136,8 +136,8 @@ if ($_POST) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="radio.css">
-    <link rel="stylesheet" href="../gitebonbon.css">
+    <!--<link rel="stylesheet" href="radio.css">-->
+    <link rel="stylesheet" href="gitebonbon.css">
     <title>Détails du Produit</title>
 </head>
 
@@ -193,11 +193,26 @@ if ($_POST) {
                                 <input type="number" id="sdb" name="sdb" class="form-controls" min=1 value=1>
                             </div>
                         </div>
+
+
+
                         <!--album photo de l hebergement-->
                         <!--on besoin  id l'herbergement pour creer une entree dans albums -->
                         <div class="form-group">
-                            <label for="Album">Albums</label>
-                            <?php
+                            <<<<<<< HEAD <label for="Album"></label>
+                                <input type="file" id="photo1" name="photo1" class="form-controls" accept=".jpg, .jpeg"
+                                    required><br>
+                                <input type="file" id="photo2" name="photo2" class="form-controls"
+                                    accept=".jpg, .jpeg"><br>
+                                <input type="file" id="photo3" name="photo3" class="form-controls"
+                                    accept=".jpg, .jpeg"><br>
+                                <input type="file" id="photo4" name="photo4" class="form-controls"
+                                    accept=".jpg, .jpeg"><br>
+                                <input type="file" id="photo5" name="photo5" class="form-controls"
+                                    accept=".jpg, .jpeg"><br>
+                                =======
+                                <label for="Album">Albums</label>
+                                <?php
                             for ($i = 1; $i < 6; $i++) {
                                 if ($i == 1) {
                                     $required = 'required';
@@ -207,8 +222,12 @@ if ($_POST) {
                                 echo "<input type='file' id='photo$i' name='photo$i' class='form-controls' accept='.jpg, .jpeg' $required enctype='multipart/form-data'><br>";
                             }
                             ?>
+                                >>>>>>> 99d9b6cb9dce17d2c429c818e45945cd06c224d1
                         </div>
                         <div class="form-group">
+
+
+
                             <!--on besoin  id l'herbergement pour creer une entree dans periode -->
                             <label for="fin">Début</label>
                             <input type="date" id="debut" name="debut" class="form-controls"
@@ -267,7 +286,7 @@ if ($_POST) {
 
 
 
-                        </div>
+                        </div><br>
 
                         <button class="btn btn-primary" type="submit">Ajouter</button>
                         <button class="btn btn-primary" type="reset">Annuler</button>

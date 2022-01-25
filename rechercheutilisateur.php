@@ -56,7 +56,7 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                                     <?php
                                     
                                     foreach ($result as $hebergement) {
-                                        echo "<option value='" . $hebergement['id_hebergement'] . "'>" . $hebergement['id_hebergement'] . "</option>";
+                                        echo "<option value='" . $hebergement['id_hebergement'] . "'>" . $hebergement['nom'] . "</option>";
                                     } ?>
                                 </select>
                             </div>
@@ -71,8 +71,7 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                                     <select name="couchage" id="couchage" required>
                                     <option value="1">1 Personne</option>
                                     <option value="2">2 Personnes</option>
-                                    <option value="3">3 Personnes</option>
-                                    <option value="4">4 Personnes</option>
+
                                     </select>
                                 </div>
                         </div>
