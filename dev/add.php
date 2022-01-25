@@ -16,6 +16,8 @@ if ($_POST) {
         require_once 'tools.php';
         var_dump($_POST);
         //parcours du tableau post et constitution des elements d'entree des tables form et periode
+        var_dump($_FILES);
+        die;
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {
@@ -43,6 +45,7 @@ if ($_POST) {
                 IsDir_or_CreateIt("photo");
                 $maphoto = $_FILES['photo' . $i]['name'];
                 $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
+
                 $extension = substr($maphoto, strrpos($maphoto, '.'));
                 // Contrôle de l'extension du fichier
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
@@ -80,8 +83,7 @@ if ($_POST) {
         $jour['intervalle'] = dateDiff($periode['debut'], $periode['fin']);
         $jour['id_periode'] = $form['id_periode'];
 
-        var_dump($jour);
-        die;
+
         for ($i = 0; $i <= $jour['intervalle']; $i++) {
             $value = date("Y-m-d", strtotime($periode['debut'] . "+ $i days"));
             $compteur = $i + 1;
@@ -93,6 +95,7 @@ if ($_POST) {
             $query5->bindValue(":periode_jour", $compteur);
             $query5->execute();
         }
+
 
         //raccourci pour les photo2a5
         for ($i = 2; $i < 6; $i++) {
@@ -197,6 +200,7 @@ if ($_POST) {
                         <!--album photo de l hebergement-->
                         <!--on besoin  id l'herbergement pour creer une entree dans albums -->
                         <div class="form-group">
+<<<<<<< HEAD
                             <label for="Album"></label>
                             <input type="file" id="photo1" name="photo1" class="form-controls" accept=".jpg, .jpeg"
                                 required><br>
@@ -204,6 +208,19 @@ if ($_POST) {
                         <input type="file" id="photo3" name="photo3" class="form-controls" accept=".jpg, .jpeg"><br>
                         <input type="file" id="photo4" name="photo4" class="form-controls" accept=".jpg, .jpeg"><br>
                         <input type="file" id="photo5" name="photo5" class="form-controls" accept=".jpg, .jpeg"><br>
+=======
+                            <label for="Album">Albums</label>
+                            <?php
+                            for ($i = 1; $i < 6; $i++) {
+                                if ($i == 1) {
+                                    $required = 'required';
+                                } else {
+                                    $required = '';
+                                }
+                                echo "<input type='file' id='photo$i' name='photo$i' class='form-controls' accept='.jpg, .jpeg' $required enctype='multipart/form-data'><br>";
+                            }
+                            ?>
+>>>>>>> 99d9b6cb9dce17d2c429c818e45945cd06c224d1
                         </div>
                         <div class="form-group">
 
