@@ -9,13 +9,15 @@ var_dump($_POST);
     $query->bindValue(':id', $id, PDO::PARAM_INT);
     $query->execute();
     $hebergement = $query->fetch(PDO::FETCH_ASSOC);
-    //traite les elements de la table periode
-    $sql1 = 'SELECT date_jour,etat FROM jour  WHERE id_periode = :id AND etat=0';
-    $sql1 = 'SELECT date_jour,etat FROM jour  WHERE id_periode = :id AND etat=0'
+//traite les elements de la table periode
+$sql1 = 'SELECT date_jour,etat FROM jour  WHERE id_periode = :id AND etat=0';
     $query1 = $db->prepare($sql1);
     $query1->bindValue(':id', $hebergement['id_periode'], PDO::PARAM_INT);
     $query1->execute();
     $periodeRef = $query1->fetchALL(PDO::FETCH_ASSOC);
+foreach ($periodeRef as $anPeriodeRef) {
+    if (in_array($periode, $anPeriodeRef)) {
+    }   
     var_dump($hebergement);
 
 if (isset($_SESSION['id_user'])) {

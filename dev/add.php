@@ -83,11 +83,6 @@ if ($_POST) {
         $jour['intervalle'] = dateDiff($periode['debut'], $periode['fin']);
         $jour['id_periode'] = $form['id_periode'];
 
-<<<<<<< HEAD
-=======
-        var_dump($jour);
-        die;
->>>>>>> 95c9cfba4f8a22de9cb99703c604b51dfc15680b
         for ($i = 0; $i <= $jour['intervalle']; $i++) {
             $value = date("Y-m-d", strtotime($periode['debut'] . "+ $i days"));
             $compteur = $i + 1;
