@@ -21,7 +21,7 @@ if ($_POST) {
                 $form['animaux'] = (strip_tags($_POST[$key]) == "false") ? 0 : 1;
                 unset($form[$key]);
             }
-            if (($key == 'wifi') || ($key == 'fumeur') || ($key == 'piscine') || ($key == 'douche') || ($key == 'taxi')) {
+            if (($key == 'wifi') || ($key == 'fumeur') || ($key == 'piscine')) {
                 $form[$key] = (strip_tags($_POST[$key]) == "false") ? 0 : 1;
             }
             if (($key == 'debut') || ($key = "fin")) {
@@ -101,9 +101,9 @@ if ($_POST) {
 
         $sql3 =
             'INSERT INTO hebergement 
-        (nom,description,prix,adresse,gps,wifi,fumeur,piscine,animaux,douche,taxi,categorie,couchage,sdb,ville,pays,photo1,photo2,photo3,photo4,photo5,id_periode)
+        (nom,description,prix,adresse,gps,wifi,fumeur,piscine,animaux,categorie,couchage,sdb,ville,pays,photo1,photo2,photo3,photo4,photo5,id_periode)
         VALUES 
-        (:nom, :description, :prix, :adresse, :gps, :wifi, :fumeur,:piscine, :animaux, :douche, :taxi, :categorie, :couchage, :sdb, :ville, :pays, :photo1, :photo2, :photo3, :photo4, :photo5, :id_periode)';
+        (:nom, :description, :prix, :adresse, :gps, :wifi, :fumeur,:piscine, :animaux, :categorie, :couchage, :sdb, :ville, :pays, :photo1, :photo2, :photo3, :photo4, :photo5, :id_periode)';
 
         $query3 = $db->prepare($sql3);
         foreach ($form as $key => $value) {
@@ -113,8 +113,6 @@ if ($_POST) {
 
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
-
-
         header('Location: index.php');
     } else {
         $_SESSION['erreur'] = "le formulaire est incomplet";
@@ -129,7 +127,7 @@ if ($_POST) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOpullmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="radio.css">
     <link rel="stylesheet" href="../gitebonbon.css">
     <title>Détails du Produit</title>
@@ -198,6 +196,10 @@ if ($_POST) {
                         <input type="file" id="photo4" name="photo4" class="form-controls" accept=".jpg, .jpeg"><br>
                         <input type="file" id="photo5" name="photo5" class="form-controls" accept=".jpg, .jpeg"><br>-->
                         </div>
+                        <!--creation en cascadeentree dans albums et entree dans periode-->
+
+                        <div class=" form-group">
+                        </div>
                         <div class="form-group">
                             <!--on besoin  id l'herbergement pour creer une entree dans periode -->
                             <label for="fin">Début</label>
@@ -238,25 +240,6 @@ if ($_POST) {
                                 class=form>
                             <label for="piscine-b"><img src="../image/piscinepicto.png" width="60"
                                     alt="piscine autorisation" height="60" width="50"></label>
-
-                            <input type="radio" name="douche" class="douche demoyes" id="douche-a" checked
-                                value="false">
-                            <label for="douche-a"><img src='../image/douchepictorouge.png' width="60"
-                                    alt='douche interdiction' height="60" width="50"></label>
-                            <input type="radio" name="douche" class="douche demono" id="douche-b" value="true"
-                                class=form>
-                            <label for="douche-b"><img src="../image/douchepicto.png" width="60"
-                                    alt="douche autorisation" height="60" width="50"></label>
-
-                            <input type="radio" name="taxi" class="taxi demoyes" id="taxi-a" checked value="false">
-                            <label for="taxi-a"><img src='../image/taxipictorouge.png' width="60"
-                                    alt='taxi interdiction' height="60" width="50"></label>
-                            <input type="radio" name="taxi" class="taxi demono" id="taxi-b" value="true" class=form>
-                            <label for="taxi-b"><img src="../image/taxipicto.png" width="60" alt="taxi autorisation"
-                                    height="60" width="50"></label>
-
-
-
                         </div>
 
                         <button class="btn btn-primary" type="submit">Ajouter</button>
