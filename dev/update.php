@@ -30,35 +30,32 @@ if ($_POST) {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
-        
+
         // cas des photos
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
-        var_dump($_FILES);
         echo "<hr>";
         for ($i = 1; $i < 6; $i++) {
             if (is_uploaded_file(@$_FILES['photo' . $i]['tmp_name'])) {
 
                 //on recupere le nom du fichier a partir de celui dans la bd
                 $sql = "SELECT photo$i FROM `hebergement` WHERE `id_hebergement` = :id_hebergement";
-                echo $sql;
-                
+                          
                 $query = $db->prepare($sql);
                 $query->bindValue(':id_hebergement', $form['id_hebergement'], PDO::PARAM_INT);
                 $query->execute();
                 $result = $query->fetch(PDO::FETCH_ASSOC);
-                var_dump($result);
-                echo "<hr>";
                 //on recupere l'emplacement du fichier
                 if (empty($result['photo' . $i])) {
-                    $extension = substr($file, strrpos($file, '.'));
+                    $extension = substr($_FILES['photo' . $i]['name'], strrpos($_FILES['photo' . $i]['name'], '.'));
                     $form['photo' . $i] =  'p' . $i . '_' . date("Y_m_d_H_i") . $extension;
-                } 
-                $maphoto = $_FILES['photo' . $i]['name'];
-                $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
-                $extension = substr($maphoto, strrpos($maphoto, '.'));
-                $file = "photo/" . $result['photo' . $i];
-                unlink($file);
-                move_uploaded_file($maphoto_tmp, $file);
+                } else {
+                    $maphoto = $_FILES['photo' . $i]['name'];
+                    $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
+                    $extension = substr($maphoto, strrpos($maphoto, '.'));
+                    $file = "photo/" . $result['photo' . $i];
+                    unlink($file);
+                    move_uploaded_file($maphoto_tmp, $file);
+                }
                 
                 
             } else {
@@ -66,7 +63,7 @@ if ($_POST) {
                 //$form['photo' . $i] = "";
             }
         }
-        die;
+       
 
         //1 on traite la table jour
         //1.5 on verifie qu'il n'y a pas de correspondance avec une periode de reservation
