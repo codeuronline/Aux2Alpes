@@ -206,7 +206,7 @@ if ($_POST) {
                                 } else {
                                     $required = '';
                                 }
-                                echo "<input type='file' id='photo$i' name='photo$i' class='form-controls' accept='.jpg, .jpeg' $required enctype='multipart/form-data'><br>";
+                                echo "<input type='file' id='photo$i' name='photo$i' class='form-controls' accept='.jpg, .jpeg' $required multiple'><br>";
                             }
                             ?>
                         </div>
