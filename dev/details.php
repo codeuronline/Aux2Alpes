@@ -27,7 +27,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $_SESSION['erreur'] = "URL invalide";
     header('Location: index.php');
 }
-var_dump($hebergement);
+
 ?>
 <!--code html-->
 <!DOCTYPE html>
