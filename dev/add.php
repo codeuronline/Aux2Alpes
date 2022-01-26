@@ -115,7 +115,6 @@ if ($_POST) {
         }
         $query3->execute();
         var_dump($form);
-        die;
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
 
