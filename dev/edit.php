@@ -29,7 +29,9 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     $_SESSION['erreur'] = "URL invalide";
     header('Location: index.php');
     exit;
-} ?>
+}
+var_dump($hebergement);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -94,9 +96,16 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                     <!--on besoin  id l'herbergement pour creer une entree dans albums -->
                     <div class="form-group">
                         <h2>Photo de l'hébergement</h2>
-                        <label for="photo1">Photo 1</label>
-                        <img src="photo/<?= $hebergement['photo1'] ?>" alt="photo1" width=200>
-                        <input type="file" id="photo1" name="photo1" class="form-controls"><br>
+                        <label for="photo">Photo </label>
+
+                        <?php
+
+                        for ($i = 1; $i < 6; $i++) {
+                            if (isset($hebergement['photo' . $i])) {
+                                echo "<img src='photo/" . $hebergement['photo' . $i] . "' alt='photo$i' width=200>";
+                                echo "<input type='file' id='photo$i' name='photo.$i' class='form-controls'>";
+                            }
+                        }                     ?>
                     </div>
                     <div class="form-group">
                         <h2>Période disponibilité de l'hébergement(1 période déclarable) Obligatoire</h2>

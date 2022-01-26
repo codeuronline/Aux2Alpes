@@ -14,10 +14,10 @@ if ($_POST) {
     ) {
         require_once 'connect.php';
         require_once 'tools.php';
-        var_dump($_POST);
+
         //parcours du tableau post et constitution des elements d'entree des tables form et periode
-        var_dump($_FILES);
-        die;
+
+
         foreach ($_POST as $key => $value) {
             $form[$key] = strip_tags($_POST[$key]);
             if ($key == 'chien') {
@@ -35,7 +35,7 @@ if ($_POST) {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
-        echo"<br>";var_dump($form);
+        echo "<br>";
         //cas des images
         //$rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
@@ -58,7 +58,6 @@ if ($_POST) {
                 $form['photo' . $i] = "";
             }
         }
-
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
         // 3 etapes pb des nombres convertient en chaine de caracetres par stip_tags
@@ -86,7 +85,6 @@ if ($_POST) {
         for ($i = 0; $i <= $jour['intervalle']; $i++) {
             $value = date("Y-m-d", strtotime($periode['debut'] . "+ $i days"));
             $compteur = $i + 1;
-            // echo dateIncDay($periode['debut'], $i) . "--$i--<br>";
             $sql5 = 'INSERT INTO jour(id_periode,date_jour,periode_jour,etat) VALUES (:id, :date_jour,:periode_jour, 0)';
             $query5 = $db->prepare($sql5);
             $query5->bindValue(":id", $form['id_periode']);
@@ -97,12 +95,13 @@ if ($_POST) {
 
 
         //raccourci pour les photo2a5
-        for ($i = 2; $i < 6; $i++) {
-            $form['photo' . $i] = "";
-        }
+        //        for ($i = 2; $i < 6; $i++) {
+        // $form['photo' . $i] = "";
+        //      }
 
         //traiter le cas du gps
         $form['gps'] = "";
+
 
         $sql3 =
             'INSERT INTO hebergement 
@@ -115,9 +114,9 @@ if ($_POST) {
             $query3->bindValue(":$key", $value);
         }
         $query3->execute();
-
-        require_once 'close.php';
+        var_dump($form);
         die;
+        require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
 
 
@@ -199,20 +198,8 @@ if ($_POST) {
                         <!--album photo de l hebergement-->
                         <!--on besoin  id l'herbergement pour creer une entree dans albums -->
                         <div class="form-group">
-                            <<<<<<< HEAD <label for="Album"></label>
-                                <input type="file" id="photo1" name="photo1" class="form-controls" accept=".jpg, .jpeg"
-                                    required><br>
-                                <input type="file" id="photo2" name="photo2" class="form-controls"
-                                    accept=".jpg, .jpeg"><br>
-                                <input type="file" id="photo3" name="photo3" class="form-controls"
-                                    accept=".jpg, .jpeg"><br>
-                                <input type="file" id="photo4" name="photo4" class="form-controls"
-                                    accept=".jpg, .jpeg"><br>
-                                <input type="file" id="photo5" name="photo5" class="form-controls"
-                                    accept=".jpg, .jpeg"><br>
-                                =======
-                                <label for="Album">Albums</label>
-                                <?php
+                            <label for="Album">Photos:</label>
+                            <?php
                             for ($i = 1; $i < 6; $i++) {
                                 if ($i == 1) {
                                     $required = 'required';
@@ -222,12 +209,8 @@ if ($_POST) {
                                 echo "<input type='file' id='photo$i' name='photo$i' class='form-controls' accept='.jpg, .jpeg' $required enctype='multipart/form-data'><br>";
                             }
                             ?>
-                                >>>>>>> 99d9b6cb9dce17d2c429c818e45945cd06c224d1
                         </div>
                         <div class="form-group">
-
-
-
                             <!--on besoin  id l'herbergement pour creer une entree dans periode -->
                             <label for="fin">Début</label>
                             <input type="date" id="debut" name="debut" class="form-controls"

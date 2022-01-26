@@ -45,6 +45,10 @@ if ($_POST) {
                 $result = $query->fetch(PDO::FETCH_ASSOC);
                 $file = "photo/" . $result['photo' . $i];
 
+                if (!(empty($form['photo' . $i]))) {
+                    $form['photo' . $i] =  'photo_' . $i . '_' . date("Y_m_d_H_i") . $extension;
+                }
+
 
                 $maphoto = $_FILES['photo' . $i]['name'];
                 $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
@@ -54,7 +58,6 @@ if ($_POST) {
                 if (!(in_array($extension, $extensionsAutorisees_image))) {
                     $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-
                     unlink($file);
                     move_uploaded_file($maphoto_tmp, "photo/" . $result['photo' . $i]);
                 
@@ -64,6 +67,7 @@ if ($_POST) {
                 //$form['photo' . $i] = "";
             }
         }
+
 
         //1 on traite la table jour
         //1.5 on verifie qu'il n'y a pas de correspondance avec une periode de reservation

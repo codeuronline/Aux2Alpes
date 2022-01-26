@@ -26,7 +26,9 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
 } else {
     $_SESSION['erreur'] = "URL invalide";
     header('Location: index.php');
-} ?>
+}
+var_dump($hebergement);
+?>
 <!--code html-->
 <!DOCTYPE html>
 <html lang="fr">
@@ -68,8 +70,13 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 <p>Photo 1:
                     <input type="hidden" id="id_periode" name="id_periode" value=<?= $hebergement['id_periode'] ?>>
 
-                    <?php for ($i = 0; $i < 6; $i++) {
-                        (isset($hebergement['photo' . $i]) && !(empty($hebergement['photo' . $i]))) ? "<img src='photo/" . $hebergement['photo' . $i] . "' width='200'>" : "<img src='../image/vide.png' width='50'";
+                    <?php for ($i = 1; $i < 6; $i++) {
+                        echo $i;
+                        if (isset($hebergement['photo' . $i])) {
+                            echo "<img src='photo/" . $hebergement['photo' . $i] . "' width='200'>";
+                        } else {
+                            echo "<img src='../image/vide.png' width='50'";
+                        }
                     } ?>
                 </p>
                 <p>Debut: <?= $periode['debut']; ?></p>
