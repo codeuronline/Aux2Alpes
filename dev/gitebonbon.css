@@ -41,6 +41,7 @@ body {
 
 /*ici les boutons*/
 .logo{
+  margin-top: 50px;
   width: 50px;
   height: 50px;
 }
@@ -131,13 +132,7 @@ header .logo1 {
 
 /*-----les picto page recherche.utilisateurs --------*/
 
-.groupepicto {
-  background-color: rgba(246, 245, 248, 0.534);
-  border-color: rgba(241, 235, 235, 0.623);
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-}
+
 
 
 

@@ -9,6 +9,7 @@ $query = $db->prepare($sql);
 $query->bindValue(':id', $id);
 $query->execute();
 $hebergement = $query->fetch(PDO::FETCH_ASSOC);
+var_dump($_SESSION);
 
 ?>
 <!DOCTYPE html>
