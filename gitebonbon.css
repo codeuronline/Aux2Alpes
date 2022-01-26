@@ -23,10 +23,10 @@ a{
 }
 body {
     background: rgb(238,174,202);
-background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    height: 1000vh;
     justify-content: center;
     text-align: center;
   }
@@ -41,6 +41,7 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
 
 /*ici les boutons*/
 .logo{
+  margin-top: 50px;
   width: 50px;
   height: 50px;
 }
@@ -131,13 +132,7 @@ header .logo1 {
 
 /*-----les picto page recherche.utilisateurs --------*/
 
-.groupepicto {
-  background-color: rgba(246, 245, 248, 0.534);
-  border-color: rgba(241, 235, 235, 0.623);
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-}
+
 
 
 
@@ -185,6 +180,21 @@ input[type="radio"].animaux + label {
   text-align:center;
 }
 input[type="radio"].animaux:checked + label {
+  display: none;
+}
+
+input[type="radio"].chien {
+  display: none;
+}
+input[type="radio"].chien + label {
+  display:inline-block;
+  background: rgba(238, 232, 232, 0.445); 
+  border-color: rgba(241, 235, 235, 0.623);
+  padding: 0.5rem 1rem;
+  min-width:50px;
+  text-align:center;
+}
+input[type="radio"].chien:checked + label {
   display: none;
 }
 

@@ -104,7 +104,7 @@ if ($_POST) {
 
 
         $sql3 =
-            'INSERT INTO hebergement 
+            'INSERT INTO `hebergement` 
         (nom,description,prix,adresse,gps,wifi,fumeur,piscine,animaux,douche,taxi,categorie,couchage,sdb,ville,pays,photo1,photo2,photo3,photo4,photo5,id_periode)
         VALUES 
         (:nom, :description, :prix, :adresse, :gps, :wifi, :fumeur,:piscine, :animaux, :douche, :taxi, :categorie, :couchage, :sdb, :ville, :pays, :photo1, :photo2, :photo3, :photo4, :photo5, :id_periode)';
@@ -115,7 +115,6 @@ if ($_POST) {
         }
         $query3->execute();
         var_dump($form);
-        die;
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
 
