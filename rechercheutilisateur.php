@@ -40,21 +40,22 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
     echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
     echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";}
     ?>
-    <a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px"alt="Logo"></a>
+    
 </header>
 
 
 <body class='bg'>
-    <div class='container'>
-        <div class='row1'>
-            <form method="POST" action="hotelphotodescription.php">
-                <div class='col-lg-4 col-md-8 col-sm-8'>
-                    <div class='card shadow'>
-                        <div class='card-title text-center border-bottom'>
+    <a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px"alt="Logo"></a>
+        <div class='container'>
+            <div class='row1'>
+                <form method="POST" action="hotelphotodescription.php">
+                    <div class='col-lg-4 col-md-8 col-sm-8'>
+                        <div class='card shadow'>
+                            <div class='card-title text-center border-bottom'>
                         </div>
 
                         <div class='mb-9'>
-                            <img class="groupepicto" src=image/picto-map-blanc.png height="70" width="70">
+                            <img  src=image/picto-map-blanc.png height="70" width="70">
                                 <div class="corpsformulaire">
                                     <select name="nom" id="nom" required>
                                     <?php
@@ -69,7 +70,7 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 
                         <div class='mb-4'>
-                                <img class="groupepicto" src=image/groupepicto.png height="70" width="70">
+                                <img  src=image/groupepicto.png height="70" width="70">
                                 <div class="corpsformulaire">
                                     <label for="couchage"></label>
                                     <select name="couchage" id="couchage" required>
