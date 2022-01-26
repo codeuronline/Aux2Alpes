@@ -3,6 +3,7 @@ session_start();
 require_once('connect.php');
 require_once('tools.php');
 $_SESSION['mail'] = "jkasperski@free.Fr";
+$_SESSION["id_user"] = 1;
 echo '<hr>';
 var_dump($_SESSION);
 echo '<hr>';
@@ -53,7 +54,7 @@ if (isset($indice)) {
             $query5->bindValue(":date_jour", $value);
             $query5->execute();
         }
-        $sql6 = "INSERT INTO 'reservation' (id_user,id_hebergement,debut,fin) VALUES=(:id_user,:id_hebergement,:debut,:fin)";
+        $sql6 = "INSERT INTO `reservation` (id_user,id_hebergement,debut,fin) VALUES (:id_user,:id_hebergement,:debut,:fin)";
         $query6 = $db->prepare($sql6);
         $query6->bindValue(":id_user", $_SESSION['id_user']);
         $query6->bindValue(":id_hebergement", $_POST['id_hebergement']);
@@ -61,6 +62,26 @@ if (isset($indice)) {
         $query6->bindValue(":fin", $_POST['finReserv']);
         $query6->execute();
         //envoyer un mail a l'utilisateur
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // on recupere les donnée
+            $mailto     = $_SESSION['mail'];
+            $mailfrom   = "contact-client@gite.com";
+            $sujet      = "Confirmation de Réservation d'un hébergement";
+            $message    = "Nous vous confirmons la réservation de l'hébergement(hebergement['nom']pour personne[nb]
+             personne(s) pour une durée de hebergement['intervalle'] jours  pour un montant de  hebergement['prix'] x personne['nb_pers'] x personne['nb_jour']";
+            $headers = array(
+                'From' => $mailfrom,
+                'Reply-To' => $mailfrom
+            );
+
+            $entetemessage = "Bonjour,\r\n";
+            $entetemessage .= "Cher(s) clients,\r\n";
+            //construction du message final avant envoi
+            $message = wordwrap($message, 70, "\r\n");
+            $message = $entetemessage . $message . "\r\n";
+            mail($mailto, $sujet, $message, $headers);
+            echo "mail envoyé";
+        }
 
     } else {
         echo "problème de date pour la reservation";
