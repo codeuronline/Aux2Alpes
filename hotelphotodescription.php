@@ -26,11 +26,11 @@ $sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
 <header> 
   <a href="inscription.php"><button class="btn-inscription-connexion" type=submit>Inscription</button></a>
   <a href="connexion.php"><button class="btn-inscription-connexion" type=submit>Connexion</button></a>
-  <a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
 </header>
 
 
 <body>
+<a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
   <article>
     <div id="slides">
 
@@ -46,28 +46,20 @@ $sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
 
 
 
-                                <div class="e">
+                              <div class="e">
                                 <!--------------------Description de l'hotel ---------------->
                                 
-                                <button class="b1" type=submit><img src=image/calendrierpicto.png height="50" width="50">
-                                <div class="groupe"><input type="date" name="Arriver" id="Arriver" required><input type="date" name="Retour" id="Retour" required></div></button>
+                              <div class=block><img src=image/calendrierpicto.png height="70" width="70"></div>
+                              <div class="groupe"><input type="date" name="Arriver" id="Arriver" required><input type="date" name="Retour" id="Retour" required></div></button>
                                 
-                                <h2>
+                              <h2>
                                 <?php echo $hebergement['nom'];?><br>
-                                </h2>
+                              </h2>
 
-                                <div>Description: <?php echo $hebergement['description'];?><br>
+                              <div>Description: 
+                                <?php echo $hebergement['description'];?><br>
                                 couchage: <?php echo $hebergement['couchage'];?><br>
-                                
-                                </div>
-
-                                
-                                
-                              
-
-                                
-                            </div>
-                            </div>
+                              </div></div></div>
 
                             
 
