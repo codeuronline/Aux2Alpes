@@ -2,8 +2,11 @@
 session_start();
 require_once('connect.php');
 require_once('tools.php');
+//doit etre obtenu pour l'identification
 $_SESSION['mail'] = "jkasperski@free.Fr";
 $_SESSION["id_user"] = 1;
+//doit etre obtenu par la recherche
+$_SESSION["nb_personne"] = 2;
 echo '<hr>';
 var_dump($_SESSION);
 echo '<hr>';
@@ -62,13 +65,18 @@ if (isset($indice)) {
         $query6->bindValue(":fin", $_POST['finReserv']);
         $query6->execute();
         //envoyer un mail a l'utilisateur
+
+        //calcul des element du mail
+        $prix = $hebergement['prix'];
+        $nb_jour = $indice['intervalle'] + 1;
+        $nb_personne = $_session['nb_personne'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // on recupere les donnée
             $mailto     = $_SESSION['mail'];
             $mailfrom   = "contact-client@gite.com";
             $sujet      = "Confirmation de Réservation d'un hébergement";
-            $message    = "Nous vous confirmons la réservation de l'hébergement(hebergement['nom']pour personne[nb]
-             personne(s) pour une durée de hebergement['intervalle'] jours  pour un montant de  hebergement['prix'] x personne['nb_pers'] x personne['nb_jour']";
+            $message    = "Nous vous confirmons la réservation de l'hébergement(" . $hebergement['nom'] . "pour $nb_personne
+             personne(s) pour une durée de $nb_jour jours  et pour un montant de :" . $hebergement['prix'] . "€ x " . $nb_personne . "personne(s) x " . $nb_jour . "jour(s)";
             $headers = array(
                 'From' => $mailfrom,
                 'Reply-To' => $mailfrom
@@ -80,16 +88,15 @@ if (isset($indice)) {
             $message = wordwrap($message, 70, "\r\n");
             $message = $entetemessage . $message . "\r\n";
             mail($mailto, $sujet, $message, $headers);
-            echo "mail envoyé";
-        }
 
+            $SESSION['message'] = "mail envoyé";
+            header("Location: formbooking.php");
+        }
     } else {
-        echo "problème de date pour la reservation";
+        $SESSION['warning'] = "problème de date pour la reservation";
+        header("Location: formbooking.php");
     }
 } else {
-    echo "problème de date pour la reservation";
+    $SESSION['warning'] = "problème d'identification";
+    header("Location: formbooking.php");
 }
-var_dump($_POST);
-var_dump('')
-
-?>
