@@ -1,12 +1,12 @@
 <?php
 require_once 'dev/connect.php';
 session_start();
-var_dump($_POST);
+
 
 echo "<hr>";
 
 
-var_dump($_SESSION);
+
 
 
 unset($_SESSION['id_user']);
@@ -25,7 +25,7 @@ $query->execute();
 $result=$query->fetchAll(PDO::FETCH_ASSOC);
 
 echo "<hr>";
-var_dump($result);
+
 echo "<hr>";?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -45,13 +45,13 @@ echo "<hr>";?>
 foreach ($result as $hebergement) { ?>
     <div class="a"><span class=h1><?=$hebergement['nom'];?><hr></span><hr></div>
 
-    <div class="b"></span>Description:<?=$hebergement['description']; ?><hr>Prix:<?=$hebergement['prix']; ?>€ /pers.  Capacité:<?=$hebergement['couchage']; ?><hr>
-                    <?= ($hebergement['animaux'] == "1") ? "<img src='image/animauxpictorouge.png' width='50'>" : "<img src='image/animauxpicto.png' width='50'>";  ?>
-                    <?= ($hebergement['wifi'] == "1") ? "<img src='image/wifipictorouge.png' width='50'>" : "<img src='image/wifipicto.png' width='50'>";  ?>
-                    <?= ($hebergement['fumeur'] == "1") ? "<img src='image/fumeurpictorouge.png' width='50'>" : "<img src='image/fumeurpicto.png' width='50'>";  ?>
-                    <?= ($hebergement['piscine'] == "1") ? "<img src='image/piscinepictorouge.png' width='50'>" : "<img src='image/piscinepicto.png' width='50'>";  ?>
-                    <?= ($hebergement['taxi'] == "1") ? "<img src='image/taxipictorouge.png' width='50'>" : "<img src='image/taxipicto.png' width='50'>";  ?>
-                    <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>";  ?>
+    <div class="b"></span>Description:<?=$hebergement['description']; ?><hr>Prix:<?=$hebergement['prix']; ?>€ /pers.  Capacité:<?=$hebergement['couchage'];?>
+                    <?= ($hebergement['animaux'] == "1") ? "<img src='image/animauxpictorouge.png' width='50'>" : "<img src='image/animauxpicto.png' width='50'>";?>
+                    <?= ($hebergement['wifi'] == "1") ? "<img src='image/wifipictorouge.png' width='50'>" : "<img src='image/wifipicto.png' width='50'>";?>
+                    <?= ($hebergement['fumeur'] == "1") ? "<img src='image/fumeurpictorouge.png' width='50'>" : "<img src='image/fumeurpicto.png' width='50'>";?>
+                    <?= ($hebergement['piscine'] == "1") ? "<img src='image/piscinepictorouge.png' width='50'>" : "<img src='image/piscinepicto.png' width='50'>";?>
+                    <?= ($hebergement['taxi'] == "1") ? "<img src='image/taxipictorouge.png' width='50'>" : "<img src='image/taxipicto.png' width='50'>";?>
+                    <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>";?>
                     </div>
 
     <div class="c"></span><img src='<?php echo "dev/photo/".$hebergement['photo1'] ?>'><hr></div>

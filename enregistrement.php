@@ -10,7 +10,7 @@
 
 
 <body>
-<a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+<a href="index.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
     <!--Login formulaire-->
     <?php
     

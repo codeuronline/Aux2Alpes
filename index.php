@@ -45,7 +45,7 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 
 <body class='bg'>
-    <a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+    <a href="index.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
     <div class='container'>
         <div class='row1'>
             <form method="POST" action="listsearch.php">
