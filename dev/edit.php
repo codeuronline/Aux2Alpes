@@ -30,7 +30,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     header('Location: index.php');
     exit;
 }
-var_dump($hebergement);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -102,8 +102,8 @@ var_dump($hebergement);
 
                         for ($i = 1; $i < 6; $i++) {
                             if (isset($hebergement['photo' . $i])) {
-                                echo "<img src='photo/" . $hebergement['photo' . $i] . "' alt='photo$i' width=200>";
-                                echo "<input type='file' id='photo$i' name='photo.$i' class='form-controls'>";
+                                echo "<img src='photo/" . $hebergement['photo' . $i] . "' alt='photo" . $i . "' width=200>";
+                                echo "<input type='file' id='photo" . $i . "' name='photo" . $i . "' class='form-controls'>";
                             }
                         }                     ?>
                     </div>

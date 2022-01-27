@@ -35,11 +35,31 @@ if ($_POST) {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
-        echo "<br>";
+        var_dump($_POST);
+
+        echo "<hr>";
+        var_dump($_FILES);
+        echo "<hr>";
         //cas des images
-        //$rep_photo = $_SERVER['DOCUMENT_ROOT'] . strstr($_SERVER['SCRIPT_NAME'], basename($_SERVER['SCRIPT_FILENAME']), true);
-        $extensionsAutorisees_image = array(".jpeg", ".jpg");
-        for ($i = 1; $i < 6; $i++) {
+        if (isset($_FILES['photo']['tmp_name'][0]) && is_uploaded_file($_FILES['photo']['tmp_name'][0])) {
+            $countfiles = count($_FILES['photo']['name']);
+            if ($countfiles >= 6) {
+                $countfiles = 5;
+            }
+            IsDir_or_CreateIt("photo");
+            for ($i = 0; $i < $countfiles; $i++) {
+                $maphoto = $_FILES['photo']['name'][$i];
+                $maphoto_tmp = $_FILES['photo']['tmp_name'][$i];
+                $extension = substr($maphoto, strrpos($maphoto, '.'));
+                $compteur = $i + 1;
+                //$form['photo' . $compteur] = $_FILES['photo']['name'][$i];
+                $form['photo' . $compteur] =  'p' . $compteur . '_' . date("Y_m_d_H_i") . $extension;
+                move_uploaded_file($maphoto_tmp, 'photo/' . $form['photo' . $compteur]);
+            }
+        }
+
+
+        /*for ($i = 1; $i < 6; $i++) {
             if ((isset($_FILES['photo' . $i]['name'])) &&  (is_uploaded_file($_FILES['photo' . $i]['tmp_name']))) {
                 // test si le repertoire de destination exist sinon il le crée
                 IsDir_or_CreateIt("photo");
@@ -57,7 +77,7 @@ if ($_POST) {
             } else {
                 $form['photo' . $i] = "";
             }
-        }
+        }*/
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
         // 3 etapes pb des nombres convertient en chaine de caracetres par stip_tags
@@ -94,17 +114,20 @@ if ($_POST) {
         }
 
 
-        //raccourci pour les photo2a5
-        //        for ($i = 2; $i < 6; $i++) {
-        // $form['photo' . $i] = "";
-        //      }
+        // on s'assure que le formulaire est bien rempli
+        for ($i = 1; $i < 6; $i++) {
+            if (empty(@$form['photo' . $i])) {
+                $form['photo' . $i] = "";
+            }
+        }
+
 
         //traiter le cas du gps
         $form['gps'] = "";
 
 
         $sql3 =
-            'INSERT INTO hebergement 
+            'INSERT INTO `hebergement` 
         (nom,description,prix,adresse,gps,wifi,fumeur,piscine,animaux,douche,taxi,categorie,couchage,sdb,ville,pays,photo1,photo2,photo3,photo4,photo5,id_periode)
         VALUES 
         (:nom, :description, :prix, :adresse, :gps, :wifi, :fumeur,:piscine, :animaux, :douche, :taxi, :categorie, :couchage, :sdb, :ville, :pays, :photo1, :photo2, :photo3, :photo4, :photo5, :id_periode)';
@@ -198,16 +221,11 @@ if ($_POST) {
                         <!--album photo de l hebergement-->
                         <!--on besoin  id l'herbergement pour creer une entree dans albums -->
                         <div class="form-group">
-                            <label for="Album">Photos:</label>
+                            <label for="Album">Photos(5 max):</label>
                             <?php
-                            for ($i = 1; $i < 6; $i++) {
-                                if ($i == 1) {
-                                    $required = 'required';
-                                } else {
-                                    $required = '';
-                                }
-                                echo "<input type='file' id='photo$i' name='photo$i' class='form-controls' accept='.jpg, .jpeg' $required enctype='multipart/form-data'><br>";
-                            }
+
+                            echo "<input type='file' name='photo[]' id='photo' class='form-controls' accept='.jpg, .jpeg' multiple><br>";
+
                             ?>
                         </div>
                         <div class="form-group">
