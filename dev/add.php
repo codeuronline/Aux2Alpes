@@ -210,6 +210,7 @@ if ($_POST) {
 
                             <div class="d5"><label for="couchage">Couchage</label>
                                 <input type="number" id="couchage" name="couchage" class="form-controls" min=1 value=1>
+                                
                                 <label for="sdb">Salle de bains</label>
                                 <input type="number" id="sdb" name="sdb" class="form-controls" min=1 value=1>
                             </div>

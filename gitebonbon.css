@@ -26,14 +26,13 @@ body {
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 1000vh;
+    height: 100vh;
     justify-content: center;
     text-align: center;
   }
 
 
 .row1 {
-  margin-top: 100px;
   align-items: center;
   justify-content: space-between;
 
@@ -83,7 +82,7 @@ input {
 }
 
 .mb-4 {
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -133,12 +132,10 @@ header .logo1 {
 /*-----les picto page recherche.utilisateurs --------*/
 
 
-
-
-
 input[type="radio"].wifi {
   display: none;
 }
+
 input[type="radio"].wifi + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -147,6 +144,7 @@ input[type="radio"].wifi + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].wifi:checked + label {
   display: none;
 }
@@ -155,6 +153,7 @@ input[type="radio"].wifi:checked + label {
 input[type="radio"].fumeur {
   display: none;
 }
+
 input[type="radio"].fumeur + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -163,10 +162,10 @@ input[type="radio"].fumeur + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].fumeur:checked + label {
   display: none;
 }
-
 
 input[type="radio"].animaux {
   display: none;
@@ -179,9 +178,11 @@ input[type="radio"].animaux + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].animaux:checked + label {
   display: none;
 }
+
 
 input[type="radio"].chien {
   display: none;
@@ -202,6 +203,7 @@ input[type="radio"].chien:checked + label {
 input[type="radio"].piscine {
   display: none;
 }
+
 input[type="radio"].piscine + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -210,14 +212,15 @@ input[type="radio"].piscine + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].piscine:checked + label {
   display: none;
 }
 
-
 input[type="radio"].taxi {
   display: none;
 }
+
 input[type="radio"].taxi + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -226,14 +229,15 @@ input[type="radio"].taxi + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].taxi:checked + label {
   display: none;
 }
 
-
 input[type="radio"].douche {
   display: none;
 }
+
 input[type="radio"].douche + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -242,19 +246,64 @@ input[type="radio"].douche + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].douche:checked + label {
   display: none;
 }
 
 
-/*-----hoteldescription--------*/
 
 
-.carousel-container{
-  width: 100%;
-  height: 400px;
-  background: violet;
-  display: flex;
-  flex-direction: row;
+/*---------------grid-----------------------*/
+
+.container4 {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "a b c"
+    "d e f"
 }
 
+.a { grid-area: a;}
+
+.b { grid-area: b; }
+
+.c { grid-area: c; }
+
+.d { grid-area: d; }
+
+.e { grid-area: e; }
+
+.f { grid-area: f; }
+
+
+
+/*---------------listsearch----------*/
+
+
+.list {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "c a a"
+    "c b b"
+}
+
+.a { grid-area: a;
+  background-color: blue;
+
+}
+.a > img{ 
+  width: 180px;
+  height:150px;
+}
+
+.a > .h1{
+  font-size: xx-large;
+}
+  .b { grid-area: b;
+    background-color: rgb(51, 255, 0);
+  }
+  
+  
+  .c { grid-area: c; 
+    background-color: rgb(255, 0, 157);}
+  

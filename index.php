@@ -30,32 +30,32 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="gitebonbon.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
 <header>
     <?php
-    if (isset($_SESSION ['user'])){}
+    if (isset($_SESSION ['user'])){
+
+    }
     else{
     echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
     echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";}
     ?>
-    
 </header>
 
 
 <body class='bg'>
-    <a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px"alt="Logo"></a>
-        <div class='container'>
-            <div class='row1'>
-                <form method="POST" action="hotelphotodescription.php">
-                    <div class='col-lg-4 col-md-8 col-sm-8'>
-                        <div class='card shadow'>
-                            <div class='card-title text-center border-bottom'>
+    <a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+    <div class='container'>
+        <div class='row1'>
+            <form method="POST" action="listsearch.php">
+                <div class='col-lg-4 col-md-8 col-sm-8'>
+                    <div class='card shadow'>
+                        <div class='card-title text-center border-bottom'>
                         </div>
 
                         <div class='mb-9'>
-                            <img  src=image/picto-map-blanc.png height="70" width="70">
+                            <img class="groupepicto" src=image/picto-map-blanc.png height="70" width="70">
                                 <div class="corpsformulaire">
                                     <select name="nom" id="nom" required>
                                     <?php
@@ -67,10 +67,8 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                         </div>
 
-
-
                         <div class='mb-4'>
-                                <img  src=image/groupepicto.png height="70" width="70">
+                                <img class="groupepicto" src=image/groupepicto.png height="70" width="70">
                                 <div class="corpsformulaire">
                                     <label for="couchage"></label>
                                     <select name="couchage" id="couchage" required>
@@ -84,7 +82,7 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                         
                         
 
-
+<!---
                         <div class="e">
 
 
@@ -136,11 +134,11 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                             <input type="radio" name="taxi" class="taxi demono" id="taxi-b" value="true" class=form>
                             <label for="taxi-b"><img src="./image/taxipicto.png" width="60" alt="taxi autorisation"
                                     height="60" width="50"></label>
-
+---->
 
                         </div>
 
-                        <button class=btn-recherche type='submit' class='bg-text-light'>Recherche</button>
+                        <button class=btn-recherche type='submit'>Recherche</button>
                     </div>
                 </div>
             </form>

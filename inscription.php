@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href=".\gitebonbon.css">
+    <link rel="stylesheet" href="gitebonbon.css">
 </head>
 
 
@@ -54,11 +53,7 @@
     ?>
         <div class='container'>
             <div class='row1'>
-                <div class='col-lg-4 col-md-8 col-sm-8'>
-                    <div class='card shadow'>
-                        <div class='card-title text-center border-bottom'>
-                        </div>
-                        <div class='card-body'>
+                <div class=col-mb-4>
                             <form action='validationformulaire.php' method='post'>
                                 <!--<form action='validationformulaire.php' method='post'>-->
                                 <div class='mb-4'>
@@ -84,19 +79,10 @@
                                 <div class='mb-4'>
                                     <input type='checkbox' class='form-check-input' id='form-cgv' required='required'>
                                     <label for='form-cgv'>J'ai lu les conditions d'utilisation</label><br>
-                                    
                                     <button type='submit' class='btn-inscription-connexion'>Inscription</button>
-                                </div>
-                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
 </html>
