@@ -3,10 +3,19 @@ session_start();
 require_once('connect.php');
 require_once('tools.php');
 //doit etre obtenu pour l'identification
-$_SESSION['mail'] = "jkasperski@free.Fr";
+$_SESSION['email'] = "jkasperski@free.fr";
 $_SESSION["id_user"] = 1;
 //doit etre obtenu par la recherche
+
+$sql1 = 'SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
+$query1 = $db->prepare($sql1);
+$query1->bindValue(':id', $_POST['id_hebergement'], PDO::PARAM_INT);
+$query1->execute();
+$hebergement = $query1->fetch(PDO::FETCH_ASSOC);
+
+
 $_SESSION["nb_personne"] = 2;
+$sql = 'SELECT * FROM `jour` WHERE `id_periode` = :id AND etat=0';
 echo '<hr>';
 var_dump($_SESSION);
 echo '<hr>';
@@ -69,10 +78,10 @@ if (isset($indice)) {
         //calcul des element du mail
         $prix = $hebergement['prix'];
         $nb_jour = $indice['intervalle'] + 1;
-        $nb_personne = $_session['nb_personne'];
+        $nb_personne = $_SESSION['nb_personne'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // on recupere les donnée
-            $mailto     = $_SESSION['mail'];
+            $mailto     = $_SESSION['email'];
             $mailfrom   = "contact-client@gite.com";
             $sujet      = "Confirmation de Réservation d'un hébergement";
             $message    = "Nous vous confirmons la réservation de l'hébergement(" . $hebergement['nom'] . "pour $nb_personne
@@ -90,13 +99,13 @@ if (isset($indice)) {
             mail($mailto, $sujet, $message, $headers);
 
             $SESSION['message'] = "mail envoyé";
-            header("Location: formbooking.php");
+            header('Location: formbooking.php');
         }
     } else {
         $SESSION['warning'] = "problème de date pour la reservation";
-        header("Location: formbooking.php");
+        header('Location: formbooking.php');
     }
 } else {
     $SESSION['warning'] = "problème d'identification";
-    header("Location: formbooking.php");
+    header('Location: formbooking.php');
 }

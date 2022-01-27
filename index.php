@@ -10,7 +10,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $recherche = "chambery";
 
-$sql2 = "SELECT * FROM `hebergement` like ville = %$recherche%";
+$sql2 = "SELECT * FROM `hebergement` ";
 $query2 = $db->prepare($sql2);
 $query2->execute();
 $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
@@ -34,12 +34,11 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 <header>
     <?php
-    if (isset($_SESSION ['user'])){
-
+    if (isset($_SESSION['user'])) {
+    } else {
+        echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
+        echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
     }
-    else{
-    echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
-    echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";}
     ?>
 </header>
 
@@ -56,33 +55,28 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class='mb-9'>
                             <img class="groupepicto" src=image/picto-map-blanc.png height="70" width="70">
-                                <div class="corpsformulaire">
-                                    <select name="nom" id="nom" required>
-                                    <?php
-                                    
-                                    foreach ($result as $hebergement) {
-                                        echo "<option value='" . $hebergement['id_hebergement'] . "'>" . $hebergement['nom'] . "</option>";
-                                    } ?>
-                                </select>
+                            <div class="corpsformulaire">
+                                <input type="search" name="recherche" id="recherche"><br>
+                                <input type="number" min=1 name="personne" id="personne">
                             </div>
                         </div>
 
                         <div class='mb-4'>
-                                <img class="groupepicto" src=image/groupepicto.png height="70" width="70">
-                                <div class="corpsformulaire">
-                                    <label for="couchage"></label>
-                                    <select name="couchage" id="couchage" required>
+                            <img class="groupepicto" src=image/groupepicto.png height="70" width="70">
+                            <div class="corpsformulaire">
+                                <label for="couchage"></label>
+                                <select name="couchage" id="couchage" required>
                                     <option value="1">1 Personne</option>
                                     <option value="2">2 Personnes</option>
 
-                                    </select>
-                                </div>
+                                </select>
+                            </div>
                         </div>
-                                    
-                        
-                        
 
-<!---
+
+
+
+                        <!---
                         <div class="e">
 
 
@@ -136,13 +130,13 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                                     height="60" width="50"></label>
 ---->
 
-                        </div>
-
-                        <button class=btn-recherche type='submit'>Recherche</button>
                     </div>
+
+                    <button class=btn-recherche type='submit'>Recherche</button>
                 </div>
-            </form>
         </div>
+        </form>
+    </div>
     </div>
     </div>
     </div>

@@ -33,37 +33,43 @@ if ($_POST) {
 
         // cas des photos
         $extensionsAutorisees_image = array(".jpeg", ".jpg");
-        echo "<hr>";
         for ($i = 1; $i < 6; $i++) {
-            if (is_uploaded_file(@$_FILES['photo' . $i]['tmp_name'])) {
+            if ((isset($_FILES['photo' . $i]['name'])) &&  (is_uploaded_file($_FILES['photo' . $i]['tmp_name']))) {
 
                 //on recupere le nom du fichier a partir de celui dans la bd
-                $sql = "SELECT photo$i FROM `hebergement` WHERE `id_hebergement` = :id_hebergement";
-                          
+                $sql = "SELECT `photo$i` FROM `hebergement` WHERE `id_hebergement` = :id_hebergement";
                 $query = $db->prepare($sql);
                 $query->bindValue(':id_hebergement', $form['id_hebergement'], PDO::PARAM_INT);
                 $query->execute();
+
                 $result = $query->fetch(PDO::FETCH_ASSOC);
-                //on recupere l'emplacement du fichier
-                if (empty($result['photo' . $i])) {
-                    $extension = substr($_FILES['photo' . $i]['name'], strrpos($_FILES['photo' . $i]['name'], '.'));
-                    $form['photo' . $i] =  'p' . $i . '_' . date("Y_m_d_H_i") . $extension;
-                } else {
-                    $maphoto = $_FILES['photo' . $i]['name'];
-                    $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
-                    $extension = substr($maphoto, strrpos($maphoto, '.'));
-                    $file = "photo/" . $result['photo' . $i];
-                    unlink($file);
-                    move_uploaded_file($maphoto_tmp, $file);
+                $file = "photo/" . $result['photo' . $i];
+
+                if (!(empty($form['photo' . $i]))) {
+                    $form['photo' . $i] =  'photo_' . $i . '_' . date("Y_m_d_H_i") . $extension;
                 }
-                
-                
+
+
+                $maphoto = $_FILES['photo' . $i]['name'];
+                $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
+
+                $extension = substr($maphoto, strrpos($maphoto, '.'));
+                // Contrôle de l'extension du fichier
+                if (!(in_array(
+                    $extension,
+                    $extensionsAutorisees_image
+                ))) {
+                    $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
+                } else {
+                    unlink($file);
+                    move_uploaded_file($maphoto_tmp, "photo/" . $result['photo' . $i]);
+                }
             } else {
                 
                 //$form['photo' . $i] = "";
             }
         }
-       
+
 
         //1 on traite la table jour
         //1.5 on verifie qu'il n'y a pas de correspondance avec une periode de reservation
