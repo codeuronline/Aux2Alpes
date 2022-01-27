@@ -12,10 +12,10 @@ echo "";
 unset($_SESSION['id_user']);
 if (isset($_SESSION['id_user'])) {
 } else {
-  echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
-  echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
+echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
+echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
 }
-$recherche = $_POST['ville'];
+$recherche = $_POST['recherche'];
 $personne = $_POST['personne'];
 $sql = "SELECT * FROM `hebergement` WHERE ville like '%$recherche%' AND couchage>=$personne";
 $query = $db->prepare($sql);
@@ -36,9 +36,11 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-    <div class="list">
+    
         <?php
+        
     foreach ($result as $hebergement) { ?>
+        <div class="list">
         <div class="a"><span class=h1><?= $hebergement['nom']; ?></span></div>
         <hr>
 
@@ -51,14 +53,14 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
             <?= ($hebergement['taxi'] == "1") ? "<img src='image/taxipictorouge.png' width='50'>" : "<img src='image/taxipicto.png' width='50'>"; ?>
             <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>"; ?><br><a
                 href='detail.php'><button class='btn-recherche' type=submit>Details</button></a></div>
-
+                
         <div class="c"></span><img src='<?php echo "dev/photo/" . $hebergement['photo1'] ?>'></div>
-        <?php }
+        </div><?php }
 
 
     require_once 'dev/close.php';
     ?>
-    </div>
+    
 </body>
 
 </html>

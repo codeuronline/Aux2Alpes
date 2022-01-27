@@ -57,7 +57,7 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                             <img class="groupepicto" src=image/picto-map-blanc.png height="70" width="70">
                             <div class="corpsformulaire">
                                 <input type="search" name="recherche" id="recherche"><br>
-                                <input type="number" min=1 name="personne" id="personne">
+                                
                             </div>
                         </div>
 
@@ -65,11 +65,7 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                             <img class="groupepicto" src=image/groupepicto.png height="70" width="70">
                             <div class="corpsformulaire">
                                 <label for="couchage"></label>
-                                <select name="couchage" id="couchage" required>
-                                    <option value="1">1 Personne</option>
-                                    <option value="2">2 Personnes</option>
-
-                                </select>
+                                <input type="number" min=1 name="personne" id="personne">
                             </div>
                         </div>
 
