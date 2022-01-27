@@ -20,7 +20,6 @@ $sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="gitebonbon.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
 <header> 
@@ -28,9 +27,20 @@ $sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
   <a href="connexion.php"><button class="btn-inscription-connexion" type=submit>Connexion</button></a>
 </header>
 
+<a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+
+
+
+<div class="container4">
+  <div class="a">
+    <img src='<?php echo "dev/photo/".$hebergement['photo1']; ?>'></div>
+  <div class="b"><img src='<?php echo "dev/photo/".$hebergement['photo2']; ?>'></div>
+  <div class="c"><img src='<?php echo "dev/photo/".$hebergement['photo3']; ?>'></div>
+  <div class="d"><img src='<?php echo "dev/photo/".$hebergement['photo4']; ?>'></div>
+  <div class="e"><img src='<?php echo "dev/photo/".$hebergement['photo5']; ?>'></div>
+</div>
 
 <body>
-<a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
   <article>
     <div id="slides">
 
@@ -44,22 +54,28 @@ $sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
     </div>
   </article>
 
-
-
-                              <div class="e">
+                                <div class="g">
                                 <!--------------------Description de l'hotel ---------------->
                                 
-                              <div class=block><img src=image/calendrierpicto.png height="70" width="70"></div>
-                              <div class="groupe"><input type="date" name="Arriver" id="Arriver" required><input type="date" name="Retour" id="Retour" required></div></button>
+                                <img src=image/calendrierpicto.png height="50" width="50">
+                                <div class="groupe"><input type="date" name="Arriver" id="Arriver" required><input type="date" name="Retour" id="Retour" required></div></button>
                                 
-                              <h2>
+                                <h2>
                                 <?php echo $hebergement['nom'];?><br>
-                              </h2>
+                                </h2>
 
-                              <div>Description: 
-                                <?php echo $hebergement['description'];?><br>
+                                <div>Description: <?php echo $hebergement['description'];?><br>
                                 couchage: <?php echo $hebergement['couchage'];?><br>
-                              </div></div></div>
+                                
+                                </div>
+
+                                
+                                
+                              
+
+                                
+                            </div>
+                            </div>
 
                             
 

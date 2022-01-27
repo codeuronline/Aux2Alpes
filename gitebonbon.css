@@ -23,17 +23,15 @@ a{
 }
 body {
     background: rgb(238,174,202);
-background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
     justify-content: center;
     text-align: center;
   }
 
 
 .row1 {
-  margin-top: 100px;
   align-items: center;
   justify-content: space-between;
 
@@ -82,7 +80,7 @@ input {
 }
 
 .mb-4 {
-  margin-top: 100px;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -132,18 +130,15 @@ header .logo1 {
 /*-----les picto page recherche.utilisateurs --------*/
 
 .groupepicto {
-  background-color: rgba(246, 245, 248, 0.534);
-  border-color: rgba(241, 235, 235, 0.623);
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 5px;
 }
 
-
-
 input[type="radio"].wifi {
   display: none;
 }
+
 input[type="radio"].wifi + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -152,6 +147,7 @@ input[type="radio"].wifi + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].wifi:checked + label {
   display: none;
 }
@@ -160,6 +156,7 @@ input[type="radio"].wifi:checked + label {
 input[type="radio"].fumeur {
   display: none;
 }
+
 input[type="radio"].fumeur + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -168,10 +165,10 @@ input[type="radio"].fumeur + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].fumeur:checked + label {
   display: none;
 }
-
 
 input[type="radio"].animaux {
   display: none;
@@ -184,14 +181,15 @@ input[type="radio"].animaux + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].animaux:checked + label {
   display: none;
 }
 
-
 input[type="radio"].piscine {
   display: none;
 }
+
 input[type="radio"].piscine + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -200,14 +198,15 @@ input[type="radio"].piscine + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].piscine:checked + label {
   display: none;
 }
 
-
 input[type="radio"].taxi {
   display: none;
 }
+
 input[type="radio"].taxi + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -216,14 +215,15 @@ input[type="radio"].taxi + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].taxi:checked + label {
   display: none;
 }
 
-
 input[type="radio"].douche {
   display: none;
 }
+
 input[type="radio"].douche + label {
   display:inline-block;
   background: rgba(238, 232, 232, 0.445); 
@@ -232,19 +232,33 @@ input[type="radio"].douche + label {
   min-width:50px;
   text-align:center;
 }
+
 input[type="radio"].douche:checked + label {
   display: none;
 }
 
 
-/*-----hoteldescription--------*/
 
 
-.carousel-container{
-  width: 100%;
-  height: 400px;
-  background: violet;
-  display: flex;
-  flex-direction: row;
+/*---------------grid-----------------------*/
+
+.container4 {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "a b c"
+    "d e f"
 }
+
+.a { grid-area: a;
+background-color: blue; }
+
+.b { grid-area: b; }
+
+.c { grid-area: c; }
+
+.d { grid-area: d; }
+
+.e { grid-area: e; }
+
+.f { grid-area: f; }
 

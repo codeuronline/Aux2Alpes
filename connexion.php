@@ -3,7 +3,7 @@
 
 
 <?php
-
+var_dump($_SESSION);
 
 /*connexion a la table inscription*/
 $serveur = "localhost";
@@ -36,7 +36,9 @@ if (!empty($_POST['mail']) && !empty($_POST['password'])) {
             if (hash_equals(hash('sha256', $password), $data['password'])) {
                     $_SESSION['user'] = $data['id_utilisateur'];
                 $_SESSION['name'] = $data['name'];
+
                 $_SESSION['mail'] = $data['mail'];
+                var_dump($_SESSION);
                    header('Location: rechercheutilisateur.php');
                     
             } else {

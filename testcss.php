@@ -1,17 +1,58 @@
+<?php
+session_start();
+require_once('dev/connect.php');
+require_once('dev/tools.php');
+
+$sql = 'SELECT * FROM `hebergement`';
+$query = $db->prepare($sql);
+$query->execute();
+$result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$recherche = "chambery";
+
+$sql2 = "SELECT * FROM `hebergement` like ville = %$recherche%";
+$query2 = $db->prepare($sql2);
+$query2->execute();
+$result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
+//require_once('dev/hebergement.class.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href=".\gitebonbon.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="gitebonbon.css">
 </head>
 
-<a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
-<body>
+<header> 
+  <a href="inscription.php"><button class="btn-inscription-connexion" type=submit>Inscription</button></a>
+  <a href="connexion.php"><button class="btn-inscription-connexion" type=submit>Connexion</button></a>
+</header>
+
+
+
+
     <!--Login formulaire-->
-    <div class='container'>
+<body>
+<a href="rechercheutilisateur.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+    <div class='container4'>
+    <div class="a">
+    <img src='<?php echo "dev/photo/".$hebergement['photo1']; ?>'></div>
+    <div class="b"><img src='<?php echo "dev/photo/".$hebergement['photo2']; ?>'></div>
+    <div class="c"><img src='<?php echo "dev/photo/".$hebergement['photo3']; ?>'></div>
+    <div class="d"><img src='<?php echo "dev/photo/".$hebergement['photo4']; ?>'></div>
+    <div class="e"><img src='<?php echo "dev/photo/".$hebergement['photo5']; ?>'></div>
+    </div>
+
             <div class='row justify-content-center mt-5'><div class='col-lg-4 col-md-8 col-sm-8'> 
                     <div class='card shadow'>
                         <div class='card-title text-center border-bottom'>
