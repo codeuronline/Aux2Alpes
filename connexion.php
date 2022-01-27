@@ -39,7 +39,7 @@ if (!empty($_POST['mail']) && !empty($_POST['password'])) {
 
                 $_SESSION['mail'] = $data['mail'];
                 var_dump($_SESSION);
-                   header('Location: rechercheutilisateur.php');
+                   header('Location: index.php');
                     
             } else {
                 header('Location: enregistrement.php?login_err=password');

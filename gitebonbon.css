@@ -263,8 +263,7 @@ input[type="radio"].douche:checked + label {
     "d e f"
 }
 
-.a { grid-area: a;
-background-color: blue; }
+.a { grid-area: a;}
 
 .b { grid-area: b; }
 
@@ -276,3 +275,35 @@ background-color: blue; }
 
 .f { grid-area: f; }
 
+
+
+/*---------------listsearch----------*/
+
+
+.list {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "c a a"
+    "c b b"
+}
+
+.a { grid-area: a;
+  background-color: blue;
+
+}
+.a > img{ 
+  width: 180px;
+  height:150px;
+}
+
+.a > .h1{
+  font-size: xx-large;
+}
+  .b { grid-area: b;
+    background-color: rgb(51, 255, 0);
+  }
+  
+  
+  .c { grid-area: c; 
+    background-color: rgb(255, 0, 157);}
+  
