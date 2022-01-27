@@ -3,7 +3,7 @@ require_once 'dev/connect.php';
 session_start();
 
 
-echo "<hr>";
+echo "";
 
 
 
@@ -24,9 +24,9 @@ $query=$db->prepare($sql);
 $query->execute();
 $result=$query->fetchAll(PDO::FETCH_ASSOC);
 
-echo "<hr>";
+echo "";
 
-echo "<hr>";?>
+echo "";?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -43,18 +43,17 @@ echo "<hr>";?>
 <div class="list">
 <?php
 foreach ($result as $hebergement) { ?>
-    <div class="a"><span class=h1><?=$hebergement['nom'];?><hr></span><hr></div>
+    <div class="a"><span class=h1><?=$hebergement['nom'];?></span></div><hr>
 
-    <div class="b"></span>Description:<?=$hebergement['description']; ?><hr>Prix:<?=$hebergement['prix']; ?>€ /pers.  Capacité:<?=$hebergement['couchage'];?>
+    <div class="b">Description:<?=$hebergement['description']; ?>Prix:<?=$hebergement['prix']; ?>€ /pers.  Capacité:<?=$hebergement['couchage'];?>
                     <?= ($hebergement['animaux'] == "1") ? "<img src='image/animauxpictorouge.png' width='50'>" : "<img src='image/animauxpicto.png' width='50'>";?>
                     <?= ($hebergement['wifi'] == "1") ? "<img src='image/wifipictorouge.png' width='50'>" : "<img src='image/wifipicto.png' width='50'>";?>
                     <?= ($hebergement['fumeur'] == "1") ? "<img src='image/fumeurpictorouge.png' width='50'>" : "<img src='image/fumeurpicto.png' width='50'>";?>
                     <?= ($hebergement['piscine'] == "1") ? "<img src='image/piscinepictorouge.png' width='50'>" : "<img src='image/piscinepicto.png' width='50'>";?>
                     <?= ($hebergement['taxi'] == "1") ? "<img src='image/taxipictorouge.png' width='50'>" : "<img src='image/taxipicto.png' width='50'>";?>
-                    <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>";?>
-                    </div>
+                    <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>";?><br><a href='detail.php'><button class='btn-recherche' type=submit>Details</button></a></div>
 
-    <div class="c"></span><img src='<?php echo "dev/photo/".$hebergement['photo1'] ?>'><hr></div>
+    <div class="c"></span><img src='<?php echo "dev/photo/".$hebergement['photo1'] ?>'></div>
 <?php }
 
 

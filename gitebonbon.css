@@ -280,7 +280,9 @@ input[type="radio"].douche:checked + label {
 /*---------------listsearch----------*/
 
 
-.list {  display: grid;
+.list {
+  margin-top: 5%;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
     "c a a"
@@ -288,7 +290,7 @@ input[type="radio"].douche:checked + label {
 }
 
 .a { grid-area: a;
-  background-color: blue;
+  
 
 }
 .a > img{ 
@@ -300,10 +302,13 @@ input[type="radio"].douche:checked + label {
   font-size: xx-large;
 }
   .b { grid-area: b;
-    background-color: rgb(51, 255, 0);
+    
   }
   
   
   .c { grid-area: c; 
-    background-color: rgb(255, 0, 157);}
+    
+  }
   
+
+  @media 
