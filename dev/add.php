@@ -35,14 +35,11 @@ if ($_POST) {
                 $form[$key] = intval(strip_tags($_POST[$key]));
             }
         }
-        var_dump($_POST);
 
-        echo "<hr>";
-        var_dump($_FILES);
-        echo "<hr>";
         //cas des images
         if (isset($_FILES['photo']['tmp_name'][0]) && is_uploaded_file($_FILES['photo']['tmp_name'][0])) {
             $countfiles = count($_FILES['photo']['name']);
+            //on limite a 5 le compteur
             if ($countfiles >= 6) {
                 $countfiles = 5;
             }
@@ -115,11 +112,11 @@ if ($_POST) {
 
 
         // on s'assure que le formulaire est bien rempli
-        for ($i = 1; $i < 6; $i++) {
-            if (empty(@$form['photo' . $i])) {
-                $form['photo' . $i] = "";
-            }
-        }
+        //for ($i = 1; $i < 6; $i++) {
+        //       if (empty(@$form['photo' . $i])) {
+        //           $form['photo' . $i] = "";
+        //       }
+        //}
 
 
         //traiter le cas du gps
@@ -137,7 +134,6 @@ if ($_POST) {
             $query3->bindValue(":$key", $value);
         }
         $query3->execute();
-        var_dump($form);
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
 
@@ -210,7 +206,6 @@ if ($_POST) {
 
                             <div class="d5"><label for="couchage">Couchage</label>
                                 <input type="number" id="couchage" name="couchage" class="form-controls" min=1 value=1>
-                                
                                 <label for="sdb">Salle de bains</label>
                                 <input type="number" id="sdb" name="sdb" class="form-controls" min=1 value=1>
                             </div>

@@ -41,14 +41,15 @@ if ($_POST) {
                 $query = $db->prepare($sql);
                 $query->bindValue(':id_hebergement', $form['id_hebergement'], PDO::PARAM_INT);
                 $query->execute();
+                $resultbd = $query->fetch(PDO::FETCH_ASSOC);
 
-                $result = $query->fetch(PDO::FETCH_ASSOC);
-                $file = "photo/" . $result['photo' . $i];
 
-                if (!(empty($form['photo' . $i]))) {
+                if (empty($resultbd['photo' . $i])) {
                     $form['photo' . $i] =  'photo_' . $i . '_' . date("Y_m_d_H_i") . $extension;
+                } else {
+                    // $form['photo' . $i] = $resultbd['photo' . $i];
+                    $filetodel = "photo/" . $resultbd['photo' . $i];
                 }
-
 
                 $maphoto = $_FILES['photo' . $i]['name'];
                 $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
@@ -61,8 +62,12 @@ if ($_POST) {
                 ))) {
                     $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
                 } else {
-                    unlink($file);
-                    move_uploaded_file($maphoto_tmp, "photo/" . $result['photo' . $i]);
+                    if (empty($resultbd['photo' . $i])) {
+                        move_uploaded_file($maphoto_tmp, "photo/" . $form['photo' . $i]);
+                    } else {
+                        unlink($filetodel);
+                        move_uploaded_file($maphoto_tmp, "photo/" . $resultbd['photo' . $i]);
+                    }
                 }
             } else {
                 
