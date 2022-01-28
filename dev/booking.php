@@ -1,33 +1,32 @@
 <?php
 session_start();
-require_once('connect.php');
-require_once('tools.php');
+require_once('toolformikadev.php');
+
 //doit etre obtenu pour l'identification
 $_SESSION['email'] = "jkasperski@free.fr";
 $_SESSION["id_user"] = 1;
+$_SESSION['personne'] = 2 /*$_POST['personne']*/;
 //doit etre obtenu par la recherche
 
-$sql1 = 'SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
+
+$hebergement = selectHebergementbyIdFull($_POST['id_hebergement']);
+$jour_free = selectJourFreebyId($_POST['id_hebergement']);
+
+/*$sql1 = "SELECT * FROM `jour` WHERE id_periode=:id AND etat=0";
 $query1 = $db->prepare($sql1);
-$query1->bindValue(':id', $_POST['id_hebergement'], PDO::PARAM_INT);
+$query1->bindValue(':id', $_POST['id_hebergement']);
 $query1->execute();
-$hebergement = $query1->fetch(PDO::FETCH_ASSOC);
+$jour_free= $query1->fetchALL(PDO::FETCH_ASSOC);*/
 
 
-$_SESSION["nb_personne"] = 2;
-$sql = 'SELECT * FROM `jour` WHERE `id_periode` = :id AND etat=0';
-echo '<hr>';
-var_dump($_SESSION);
+//$jour_free = selectJourFreebyId($_POST['id_hebergement']);
+
+
 echo '<hr>';
 echo "date de reservation de l'utilisateur pour l'hebergement n°<br>";
 echo '<hr>';
-var_dump($_POST);
-echo '<hr>';
-$sql = 'SELECT date_jour FROM `jour` WHERE `id_periode` = :id AND etat=0';
-$query = $db->prepare($sql);
-$query->bindValue(':id', $_POST['id_hebergement'], PDO::PARAM_INT);
-$query->execute();
-$jour_free = $query->fetchALL(PDO::FETCH_ASSOC);
+
+$jour_free = 
 $tabReserdisponible = array();
 echo "on recupere les jours disponibles pour la periode de l'hebergement:" . $_POST['id_hebergement'] . "<br>";
 echo "<hr>";
@@ -99,13 +98,12 @@ if (isset($indice)) {
             mail($mailto, $sujet, $message, $headers);
 
             $SESSION['message'] = "mail envoyé";
-            header('Location: formbooking.php');
         }
     } else {
         $SESSION['warning'] = "problème de date pour la reservation";
-        header('Location: formbooking.php');
+        echo "pb";
     }
 } else {
     $SESSION['warning'] = "problème d'identification";
-    header('Location: formbooking.php');
+    echo "pb";
 }
