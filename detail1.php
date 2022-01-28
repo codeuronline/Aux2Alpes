@@ -59,7 +59,7 @@ $hebergement = selectHebergementbyIdFull($_GET['id']);
     </div>
     <div class='formulaire'>
 
-    <form method="POST" action="booking.php"><input type="hidden" value="<?=$hebergement['id_hebergement']?>" name="id_hebergement">
+    <form method="POST" action="booking1.php"><input type="hidden" value="<?=$hebergement['id_hebergement']?>" name="id_hebergement">
 
         <?php //ici pour demander a l utilisateur de s'enregristré  
                             
@@ -74,17 +74,17 @@ $hebergement = selectHebergementbyIdFull($_GET['id']);
                             echo "<input type='hidden' name='couchage' value='".$hebergement['couchage']."'>";
                             echo "<input type='hidden' name='id_hebergement' value='".$hebergement['id_hebergement']."'>";?>
                             
-                            <form method="POST" action="booking.php">
-                             <input type='date' value='<?=date('Y-m-d')?>' name='debut'>
-                            <input type='date' value='' name='fin'>
+                            
+                            <input type='date' value='<?=date('Y-m-d')?>' name='debut'>
+                            <input type='date' value='' name='fin'><br>
                         
 
-                        </form>
+                            <button class=btn-inscription-connexion type='submit' class='bg-text-light'>Reservation</button>
 
 
                         
     </form>
-    <button class=btn-inscription-connexion type='submit' class='bg-text-light'>Reservation</button>
+    
     </div>
     
 </div>
