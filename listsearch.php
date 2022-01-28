@@ -51,7 +51,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
             <?= ($hebergement['fumeur'] == "1") ? "<img src='image/fumeurpictorouge.png' width='50'>" : "<img src='image/fumeurpicto.png' width='50'>"; ?>
             <?= ($hebergement['piscine'] == "1") ? "<img src='image/piscinepictorouge.png' width='50'>" : "<img src='image/piscinepicto.png' width='50'>"; ?>
             <?= ($hebergement['taxi'] == "1") ? "<img src='image/taxipictorouge.png' width='50'>" : "<img src='image/taxipicto.png' width='50'>"; ?>
-            <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>"; ?><br><a
+            <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>"; ?><br>
                 href='detail.php'><button class='btn-recherche' type=submit>Details</button></a></div>
                 
         <div class="c"></span><img src='<?php echo "dev/photo/" . $hebergement['photo1'] ?>'></div>
