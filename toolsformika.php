@@ -31,7 +31,7 @@ function selectHebergementbyIdFull($id)
     require_once 'dev/connect.php';
     require_once 'dev/tools.php';
 
-    $sql = "SELECT * FROM `hebergement`,`periode` WHERE `id_hebergement` = :id AND `id_periode`=`id_hebergement`";
+    $sql = "SELECT * FROM hebergement,periode WHERE hebergement.id_hebergement = :id AND periode.id_periode = hebergement.id_hebergement";
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id);
     $query->execute();
@@ -44,7 +44,7 @@ function selectHebergementbyId($id)
     require_once 'dev/tools.php';
 
 
-    $sql = "SELECT * FROM `hebergement`,`periode` WHERE `id_hebergement` = :id";
+    $sql = "SELECT * FROM hebergement WHERE id_hebergement = :id";
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id);
     $query->execute();

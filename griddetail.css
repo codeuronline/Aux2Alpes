@@ -1,77 +1,107 @@
-.container {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 00px 00px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "logo logo logo"
-      "photo1 photo2 photo3"
-      "photo1 photo4 photo5"
-      "nom nom nom"
-      "description description description"
-      "option option option"
-      "formulaire"
-      ". . ."
-      ". . .";
-  }
-  
-  .logo { grid-area: logo; }
-  
-  .photo1 { grid-area: photo1; }
-  
-  .photo2 { grid-area: photo2; }
-  
-  .photo3 { grid-area: photo3; }
-  
-  .photo4 { grid-area: photo4; }
-  
-  .photo5 { grid-area: photo5; }
-  
-  .nom {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      ". . disponible"
-      ". . couchage"
-      ". . prix";
-    grid-area: nom;
-  }
-  
-  .disponible { grid-area: disponible; }
-  
-  .couchage { grid-area: couchage; }
-  
-  .prix { grid-area: prix; }
-  
-  .description { grid-area: description; }
-  
-  .option { grid-area: option; }
-  
-  .formulaire { grid-area: formulaire; }
-  
-  
-  html, body , .container {
-    height: 100%;
-    margin: 0;
-  }
-  
-  /* For presentation only, no need to copy the code below */
-  
-  .container * {
-    border: 1px solid red;
-    position: relative;
-  }
-  
-  .container *:after {
-    content:attr(class);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    align-items: center;
+:root
+{
+  --color: rgb(46, 37, 78);
+  --bord: border: solid rgb(255, 255, 255);
+}
+
+body{
+   
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
     justify-content: center;
-  }
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    max-height: 100vh;
+  
+}
+
+
+
+.container {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 00px 00px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "logo logo logo"
+    "album album album"
+    /*"photo1 photo2 photo3"*/
+    "photo1 photo4 photo5"
+    "nom nom nom"
+    "description description description"
+    "option option option"
+    "formulaire formulaire formulaire"
+    ". . ."
+    ". . .";
+}
+
+.logo { grid-area: logo; }
+
+.album { 
+  display: grid;
+  grid-template-columns: 50% 20% 25%;
+  max-width: 100%;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "photo1 photo2 photo3"
+    "photo1 photo4 photo5";
+  grid-area: album; }
+
+.photo1 { grid-area: photo1;
+max-width: 100%;
+border:solid --bord;
+display: flex;
+}
+
+.photo2 { grid-area: photo2;
+  border:solid --bord;
+  max-width: 100%;
+}
+
+.photo3 { grid-area: photo3;
+  border:solid --bord;
+  max-width: 50%;
+}
+
+.photo4 { grid-area: photo4;
+  border:solid --bord;
+  max-width: 100%;
+  
+}
+
+.photo5 { grid-area: photo5;
+  border:solid --bord;
+  max-width: 50%;
+}
+
+.nom {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . disponible"
+    ". . couchage"
+    ". . prix";
+  grid-area: nom;
+}
+
+.disponible { grid-area: disponible; }
+
+.couchage { grid-area: couchage; }
+
+.prix { grid-area: prix; }
+
+.description { grid-area: description; }
+
+.option { grid-area: option; }
+
+.formulaire { grid-area: formulaire; }

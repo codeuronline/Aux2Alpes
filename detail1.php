@@ -1,14 +1,9 @@
 <?php
 
 session_start();
-require_once('dev/connect.php');
-require_once('dev/tools.php');
+require_once('toolsformika.php');
 
-$sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
-    $query = $db->prepare($sql);
-    $query->bindValue(':id', $_POST['nom']);
-    $query->execute();
-    $hebergement = $query->fetch(PDO::FETCH_ASSOC);
+$hebergement = selectHebergementbyIdFull($_GET['id']);
 
 
 ?>
@@ -33,19 +28,23 @@ $sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
 <body>
 <div class="container">
 
-    <div class="logo"><a href="index.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a></div>
+    <div class="logo">
+        <a href="index1.php"><img class="logo1" src="image/logo.png" width="100px" height="100px" alt="Logo"></a>
+    </div>
 
+    <div class="album">
     <div class="photo1"><img src='<?php echo "dev/photo/".$hebergement['photo1']; ?>'></div>
     <div class="photo2"><img src='<?php echo "dev/photo/".$hebergement['photo2']; ?>'></div>
     <div class="photo3"><img src='<?php echo "dev/photo/".$hebergement['photo3']; ?>'></div>
     <div class="photo4"><img src='<?php echo "dev/photo/".$hebergement['photo4']; ?>'></div>
     <div class="photo5"><img src='<?php echo "dev/photo/".$hebergement['photo5']; ?>'></div>
+    </div>
 
     <div class="nom"><h1><?php echo $hebergement['nom'];?><br></h1>
 
     <div class="disponible"><img src=image/calendrierpicto.png height="50" width="50"><?php echo $hebergement['debut'];?>/<?php echo $hebergement['fin'];?></div>
     <div class="couchage"><img src=image/litpicto.png height="50" width="50">couchage: <?php echo $hebergement['couchage'];?></div>
-    <div class="prix"><?php echo $hebergement['prix'];?></div>
+    <div class="prix"><?php echo $hebergement['prix'];?><img src=image/europicto.png height="50" width="50"></div>
     </div>
 
     <div class="description">Description: <?php echo $hebergement['description'];?></div>
@@ -75,28 +74,12 @@ $sql='SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
                             echo "<input type='hidden' name='couchage' value='".$hebergement['couchage']."'>";
                             echo "<input type='hidden' name='id_hebergement' value='".$hebergement['id_hebergement']."'>";
                             
-                            
+
+                        ?>
 
 
-                            
-                            //requet sur periode & jour
-                            $sql="SELECT date_jour FROM jour WHERE id_periode=".$hebergement['id_periode'];
-                            $query=$db->prepare($sql);
-                            $query->execute();
-
-                            $result=$query->fetch(PDO::FETCH_ASSOC);
-                            
-                            
-                            echo "<input type='date' value='".$result['date_jour']."' name='debut'>";
-                            
-                            echo "<input type='date' value='' name='fin'>";
-                        
-
-                        ?></div>
-
-
-                        <button class=btn-recherche type='submit' class='bg-text-light'>Reservation</button>
-                        </form>
+                        <!--<button class=btn-recherche type='submit' class='bg-text-light'>Reservation</button>-->
+    </form>
 
     </div>
 </div>

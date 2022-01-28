@@ -1,39 +1,25 @@
 <?php
-
 session_start();
 require_once('toolsformika.php');
 $recherche = $_POST['recherche'];
 $personne = $_POST['personne'];
-$hebergement = researchHebergementAll($recherche, $personne);
-
-
-
+$hebergements = researchHebergementAll($recherche, $personne);
 ?>
 
 
 
 <?php
-require_once 'dev/connect.php';
-session_start();
-
-
-echo "";
-
-
-
-
-
 unset($_SESSION['id_user']);
 if (isset($_SESSION['id_user'])) {
 } else {
 echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
 echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
 }
-
-$query = $db->prepare($sql);
-$query->execute();
-$result = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -51,7 +37,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     
         <?php
         
-    foreach ($result as $hebergement) { ?>
+    foreach ($hebergements as $hebergement) { ?>
         <div class="list">
         <div class="a"><span class=h1><?= $hebergement['nom']; ?></span></div>
         <hr>
@@ -64,7 +50,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
             <?= ($hebergement['piscine'] == "1") ? "<img src='image/piscinepictorouge.png' width='50'>" : "<img src='image/piscinepicto.png' width='50'>"; ?>
             <?= ($hebergement['taxi'] == "1") ? "<img src='image/taxipictorouge.png' width='50'>" : "<img src='image/taxipicto.png' width='50'>"; ?>
             <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>"; ?><br>
-                href='detail.php'><button class='btn-recherche' type=submit>Details</button></a></div>
+                <a href='detail1.php?id=<?=$hebergement["id_hebergement"]?>'><button class='btn-recherche' type=submit>Details</button></a></div>
                 
         <div class="c"></span><img src='<?php echo "dev/photo/" . $hebergement['photo1'] ?>'></div>
         </div><?php }
@@ -74,5 +60,4 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
     ?>
     
 </body>
-
 </html>
