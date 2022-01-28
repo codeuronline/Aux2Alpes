@@ -72,16 +72,21 @@ $hebergement = selectHebergementbyIdFull($_GET['id']);
                             echo  "<label><input placeholder='mail' type='email'></label><br>";
                             }
                             echo "<input type='hidden' name='couchage' value='".$hebergement['couchage']."'>";
-                            echo "<input type='hidden' name='id_hebergement' value='".$hebergement['id_hebergement']."'>";
+                            echo "<input type='hidden' name='id_hebergement' value='".$hebergement['id_hebergement']."'>";?>
                             
+                            <form method="POST" action="booking.php">
+                             <input type='date' value='<?=date('Y-m-d')?>' name='debut'>
+                            <input type='date' value='' name='fin'>
+                        
 
-                        ?>
+                        </form>
 
 
-                        <!--<button class=btn-recherche type='submit' class='bg-text-light'>Reservation</button>-->
+                        
     </form>
-
+    <button class=btn-inscription-connexion type='submit' class='bg-text-light'>Reservation</button>
     </div>
+    
 </div>
 
 </body>

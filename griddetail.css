@@ -1,7 +1,7 @@
 :root
 {
   --color: rgb(46, 37, 78);
-  --bord: border: solid rgb(255, 255, 255);
+  --bord: rgb(255, 255, 255);
 }
 
 body{
@@ -12,22 +12,16 @@ body{
     background-size: cover;
     justify-content: center;
     text-align: center;
-    margin-left: 25%;
-    margin-right: 25%;
     display: flex;
-    max-height: 100vh;
-  
+    max-height: 125vh;
 }
 
 
 
 .container {
-  margin-left: 10px;
-  margin-right: 10px;
   display: grid;
-  grid-template-columns: 300px 300px 300px;
+  grid-template-columns: 400px 400px 400px;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 00px 00px;
   grid-auto-flow: row;
   grid-template-areas:
     "logo logo logo"
@@ -44,42 +38,34 @@ body{
 
 .logo { grid-area: logo; }
 
-.album { 
+.album { grid-area: album;
   display: grid;
-  grid-template-columns: 50% 20% 25%;
+  grid-template-columns: 50% 25% 25%;
   max-width: 100%;
-  gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "photo1 photo2 photo3"
     "photo1 photo4 photo5";
-  grid-area: album; }
+}
 
 .photo1 { grid-area: photo1;
-max-width: 100%;
-border:solid --bord;
 display: flex;
 }
 
 .photo2 { grid-area: photo2;
-  border:solid --bord;
-  max-width: 100%;
+  display: flex;
 }
 
 .photo3 { grid-area: photo3;
-  border:solid --bord;
-  max-width: 50%;
+  display: flex;
 }
 
 .photo4 { grid-area: photo4;
-  border:solid --bord;
-  max-width: 100%;
-  
+  display: flex;
 }
 
 .photo5 { grid-area: photo5;
-  border:solid --bord;
-  max-width: 50%;
+  display: flex;
 }
 
 .nom {  display: grid;
@@ -94,14 +80,34 @@ display: flex;
   grid-area: nom;
 }
 
-.disponible { grid-area: disponible; }
+.disponible {
+grid-area: disponible;
+border: solid 3px var(--bord);
+margin-bottom: 10px; }
 
-.couchage { grid-area: couchage; }
+.couchage { 
+grid-area: couchage;
+border: solid 3px var(--bord);
+margin-bottom: 10px; }
 
-.prix { grid-area: prix; }
+.prix { 
+grid-area: prix;
+border: solid 3px var(--bord);
+margin-bottom: 10px; }
 
 .description { grid-area: description; }
 
 .option { grid-area: option; }
 
-.formulaire { grid-area: formulaire; }
+.formulaire { grid-area: formulaire;
+margin-top: 30px; }
+
+.btn-inscription-connexion {
+  background:var(--color);
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  font-size: smol;
+  border-radius: 5rem;
+  margin-top: 30px;
+}
