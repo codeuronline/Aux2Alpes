@@ -1,19 +1,10 @@
 <?php
 session_start();
-require_once('dev/connect.php');
-require_once('dev/tools.php');
+require_once 'toolsmika.php';
 
-$sql = 'SELECT * FROM `hebergement`';
-$query = $db->prepare($sql);
-$query->execute();
-$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
-$recherche = "chambery";
-
-$sql2 = "SELECT * FROM `hebergement` ";
-$query2 = $db->prepare($sql2);
-$query2->execute();
-$result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+$result = selectAllHebergement();
+$result2 = selectAllHebergement();
 
 
 
@@ -56,16 +47,15 @@ $result2 = $query2->fetchAll(PDO::FETCH_ASSOC);
                         <div class='mb-9'>
                             <img class="groupepicto" src=image/picto-map-blanc.png height="70" width="70">
                             <div class="corpsformulaire">
-                                <input type="search" name="recherche" id="recherche"><br>
-                                
+                                <input type="search" name="recherche" id="recherche" placeholder="ville"><br>
                             </div>
                         </div>
 
                         <div class='mb-4'>
                             <img class="groupepicto" src=image/groupepicto.png height="70" width="70">
                             <div class="corpsformulaire">
-                                <label for="couchage"></label>
-                                <input type="number" min=1 name="personne" id="personne">
+                                <label for="personne"></label>
+                                <input type="number" min="1" name="personne" id="personne" placeholder="personne">
                             </div>
                         </div>
 
