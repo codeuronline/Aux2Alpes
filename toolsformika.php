@@ -2,6 +2,7 @@
 
 function selectAllHebergement()
 {
+    global $db;
     require_once 'dev/connect.php';
     require_once 'dev/tools.php';
 
@@ -12,6 +13,7 @@ function selectAllHebergement()
 }
 function selectHebergementbyAllFull($id)
 {
+    global $db;
     require_once 'dev/connect.php';
     require_once 'dev/tools.php';
 
@@ -25,6 +27,7 @@ function selectHebergementbyAllFull($id)
 
 function selectHebergementbyIdFull($id)
 {
+    global $db;
     require_once 'dev/connect.php';
     require_once 'dev/tools.php';
 
@@ -48,15 +51,14 @@ function selectHebergementbyId($id)
     require_once 'dev/close.php';
     return $query->fetch(PDO::FETCH_ASSOC);
 }
-function researchHebergement($recherche, $personne)
+function researchHebergementAll($recherche, $personne)
 {
+    global $db;
     require_once 'dev/connect.php';
     require_once 'dev/tools.php';
-    $recherche = $_POST['recherche'];
-    $personne = $_POST['personne'];
     $sql = "SELECT * FROM `hebergement` WHERE ville like '%$recherche%' AND couchage>=$personne";
     $query = $db->prepare($sql);
     $query->execute();
     require_once 'dev/close.php';
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
 }
