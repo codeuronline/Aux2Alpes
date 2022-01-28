@@ -32,6 +32,7 @@ echo "on recupere les jours disponibles pour la periode de l'hebergement:" . $_P
 echo "<hr>";
 var_dump($jour_free);
 echo "<hr>";
+
 foreach ($jour_free as $element) {
     array_push($tabReserdisponible, $element['date_jour']);
 }
