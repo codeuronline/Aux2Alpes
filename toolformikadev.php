@@ -20,11 +20,10 @@ function selectHebergementbyAllFull($id)
     require_once 'dev/connect.php';
     require_once 'dev/tools.php';
 
-    $sql = "SELECT * FROM `hebergement`,`periode`";
+    $sql = "SELECT * FROM `hebergement`";
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id);
     $query->execute();
-    require_once 'dev/close.php';
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -39,7 +38,6 @@ function selectHebergementbyIdFull($id)
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id);
     $query->execute();
-    require_once 'dev/close.php';
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 //renvoie les jours associés a un id_periode
@@ -49,12 +47,11 @@ function selectJourFreebyId($id)
     require_once 'dev/connect.php';
     require_once 'dev/tools.php';
 
-    $sql = "SELECT * FROM jourperiode WHERE periode.id_periode = :id AND etat=0";
-    $query = $db->prepare($sql);
-    $query->bindValue(':id', $id);
-    $query->execute();
-    require_once 'dev/close.php';
-    return $query->fetchAll(PDO::FETCH_ASSOC);
+    $sql1 = "SELECT * FROM `jour` WHERE id_periode=:id AND etat=0";
+    $query1 = $db->prepare($sql1);
+    $query1->bindValue(':id', $id);
+    $query1->execute();
+    return $query1->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function selectHebergementbyId($id)
@@ -67,7 +64,6 @@ function selectHebergementbyId($id)
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id);
     $query->execute();
-    require_once 'dev/close.php';
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 // renvoie le resultat de la recherche d'hebergements avec 
@@ -81,15 +77,13 @@ function researchHebergementAll($recherche, $personne)
     $sql = "SELECT * FROM `hebergement` WHERE ville like '%$recherche%' AND couchage>=$personne";
     $query = $db->prepare($sql);
     $query->execute();
-    require_once 'dev/close.php';
+
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 function updateJour($id, $debut, $fin)
 {
     global $db;
     require_once 'dev/connect.php';
-    require_once 'dev/tools.php';
-
     $indice['intervalle'] = dateDiff($id, $debut, $fin);
     for ($i = 0; $i <= $indice['intervalle']; $i++) {
         $value = date("Y-m-d", strtotime($_POST['debutReserv'] . "+ $i days"));

@@ -1,45 +1,48 @@
 <?php
-session_start();
+//nous sert de passerel pour recuperer les donné utilisateur et les envoyer par email a l utilisateur
+
+//session_start();
 require_once('toolformikadev.php');
 
 //doit etre obtenu pour l'identification
 $_SESSION['email'] = "jkasperski@free.fr";
-$_SESSION["id_user"] = 1;
-$_SESSION['personne'] = 2 /*$_POST['personne']*/;
+$_SESSION['personne'] = 1 /*$_POST['personne']*/;
+$_SESSION['user'] = 1;
+$_SESSION['id_user'] = 1;
 //doit etre obtenu par la recherche
 
 
 $hebergement = selectHebergementbyIdFull($_POST['id_hebergement']);
 $jour_free = selectJourFreebyId($_POST['id_hebergement']);
 
-/*$sql1 = "SELECT * FROM `jour` WHERE id_periode=:id AND etat=0";
+$sql1 = "SELECT * FROM `jour` WHERE id_periode=:id AND etat=0";
 $query1 = $db->prepare($sql1);
 $query1->bindValue(':id', $_POST['id_hebergement']);
 $query1->execute();
-$jour_free= $query1->fetchALL(PDO::FETCH_ASSOC);*/
+$jour_free = $query1->fetchALL(PDO::FETCH_ASSOC);
 
 
 //$jour_free = selectJourFreebyId($_POST['id_hebergement']);
 
 
 echo '<hr>';
-echo "date de reservation de l'utilisateur pour l'hebergement n°<br>";
+echo "date de reservation de l'utilisateur pour l'hebergement n°<br>" . $_POST['id_hebergement'];
 echo '<hr>';
 
-$jour_free = 
 $tabReserdisponible = array();
-echo "on recupere les jours disponibles pour la periode de l'hebergement:" . $_POST['id_hebergement'] . "<br>";
+echo "on recupere les jours disponibles pour la periode de l'hebergement:" . $_POST['id_hebergement'] . "//" . $_POST['debut'] . "||" . $_POST['fin'] . "\\<br>";
 echo "<hr>";
 var_dump($jour_free);
 echo "<hr>";
+
 foreach ($jour_free as $element) {
     array_push($tabReserdisponible, $element['date_jour']);
 }
 echo "<hr>";
-if (in_array($_POST['debutReserv'], $tabReserdisponible)) {
+if (in_array($_POST['debut'], $tabReserdisponible)) {
     $indice['debut'] = true;
 }
-if (in_array($_POST['finReserv'], $tabReserdisponible)) {
+if (in_array($_POST['fin'], $tabReserdisponible)) {
     $indice['fin'] = true;
 }
 echo "On transforme cette liste en un tableau a 1 dimension:<br>";
@@ -54,9 +57,9 @@ echo "<hr>";
 if (isset($indice)) {
     if (($indice['debut'] == true) && ($indice['fin'] == true)) {
         //mise a jour de l'etat pour la table jour
-        $indice['intervalle'] = dateDiff($_POST['debutReserv'], $_POST['finReserv']);
+        $indice['intervalle'] = dateDiff($_POST['debut'], $_POST['fin']);
         for ($i = 0; $i <= $indice['intervalle']; $i++) {
-            $value = date("Y-m-d", strtotime($_POST['debutReserv'] . "+ $i days"));
+            $value = date("Y-m-d", strtotime($_POST['debut'] . "+ $i days"));
             $compteur = $i + 1;
             echo "valeur à reserver:" . $value . "<br>";
             $sql5 = 'UPDATE `jour` SET etat=1 WHERE id_periode=:id_periode AND date_jour=:date_jour';
@@ -69,15 +72,15 @@ if (isset($indice)) {
         $query6 = $db->prepare($sql6);
         $query6->bindValue(":id_user", $_SESSION['id_user']);
         $query6->bindValue(":id_hebergement", $_POST['id_hebergement']);
-        $query6->bindValue(":debut", $_POST['debutReserv']);
-        $query6->bindValue(":fin", $_POST['finReserv']);
+        $query6->bindValue(":debut", $_POST['debut']);
+        $query6->bindValue(":fin", $_POST['fin']);
         $query6->execute();
         //envoyer un mail a l'utilisateur
 
         //calcul des element du mail
         $prix = $hebergement['prix'];
         $nb_jour = $indice['intervalle'] + 1;
-        $nb_personne = $_SESSION['nb_personne'];
+        $nb_personne = $_SESSION['personne'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // on recupere les donnée
             $mailto     = $_SESSION['email'];
@@ -107,3 +110,7 @@ if (isset($indice)) {
     $SESSION['warning'] = "problème d'identification";
     echo "pb";
 }
+
+
+var_dump($_POST);
+var_dump($_SESSION);
