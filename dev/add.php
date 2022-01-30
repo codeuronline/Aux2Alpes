@@ -63,7 +63,7 @@ if ($_POST) {
         $form['couchage'] = intval($form['couchage']);
         $form['sdb'] = intval($form['sdb']);
 
-        $sql1 = 'INSERT INTO periode (debut,fin ) VALUES ( :debut, :fin )';
+        $sql1 = 'INSERT INTO periode (debut,fin) VALUES ( :debut, :fin )';
         $query1 = $db->prepare($sql1);
         $query1->bindValue(':debut', $periode['debut']);
         $query1->bindValue(':fin', $periode['fin']);
@@ -92,7 +92,7 @@ if ($_POST) {
         }
 
 
-        // on s'assure que le formulaire est bien rempli
+        // on s'assure que le formulaire est bien rempli car il doit contenir 5 images
         for ($i = 1; $i < 6; $i++) {
             if (empty(@$form['photo' . $i])) {
                 $form['photo' . $i] = "";
