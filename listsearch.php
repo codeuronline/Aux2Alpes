@@ -36,20 +36,14 @@ if (isset($_SESSION['id_user'])) {
 
 <body>
 
-
-
     <div class="nbh">
-        Nombre d'hébergement(s) trouvé(s) correspondant à votre recherche : <?= count($hebergements) ?>
+        <h1> Nombre d'hébergement(s) trouvé(s) correspondant à votre recherche : <?= count($hebergements) ?></h1>
     </div>
     <?php
-    //if (count($hebergements) > 1) {
-
-
     foreach ($hebergements as $hebergement) { ?>
     <div class="list">
         <div class="a"><span class=h1><?= $hebergement['nom']; ?></span></div>
         <hr>
-
         <div class="b">Description:<?= $hebergement['description']; ?>Prix:<?= $hebergement['prix']; ?>€ /pers.
             Capacité:<?= $hebergement['couchage']; ?>
             <?= ($hebergement['animaux'] == "1") ? "<img src='image/animauxpictorouge.png' width='50'>" : "<img src='image/animauxpicto.png' width='50'>"; ?>
@@ -61,7 +55,6 @@ if (isset($_SESSION['id_user'])) {
             <a href='detail.php?id=<?= $hebergement["id_hebergement"] ?>'><button class='btn-recherche'
                     type=submit>Details</button></a>
         </div>
-
         <div class="c">
             <!--insertion d'un carrouselici-->
             <div class="carousel-container">
@@ -79,19 +72,14 @@ if (isset($_SESSION['id_user'])) {
                     <img src="dev/photo/<?= $hebergement['photo1'] ?>" id="firstClone" alt="photo">
                 </div>
             </div>
-
         </div>
     </div>
-    <?php
-        require_once 'dev/close.php';
-        //}
-        /* } elseif (count($hebergements) == 1) {
-        header("Location: detail.php?id=" . $hebergements[0]['id_hebergement']);
-    } else {
-        echo "aucun hébergement disponible ne correspond a votre recherche";*/
+    <?php require_once 'dev/close.php';
     }
     ?>
     <script src='carrousel.js'></script>
+
+
 </body>
 
 </html>
