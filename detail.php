@@ -3,7 +3,7 @@
 session_start();
 require_once('toolsformika.php');
 
-$hebergement = selectHebergementbyIdFull($_GET['id']);
+$hebergement = selectHebergementbyIdFull(intval(strip_tags($_GET['id'])));
 
 
 ?>
@@ -77,8 +77,9 @@ $hebergement = selectHebergementbyIdFull($_GET['id']);
                 }
                 echo "<input type='hidden' name='personne' value='" . $hebergement['couchage'] . "'>";
                 echo "<input type='hidden' name='id_hebergement' value='" . $hebergement['id_hebergement'] . "'>"; ?>
-                <input type='date' value='<?= date('Y-m-d') ?>' name='debut'>
-                <input type='date' value='' name='fin'><br>
+                <input type='date' min="<?= date('Y-m-d') ?>" max="<?= $hebergement['fin'] ?>"
+                    value='<?= date('Y-m-d') ?>' name='debut'>
+                <input type='date' min="<?= date('Y-m-d') ?>" max="<?= $hebergement['fin'] ?>" value='' name='fin'><br>
                 <button class=btn-inscription-connexion type='submit' class='bg-text-light'>Reservation</button>
 
             </form>

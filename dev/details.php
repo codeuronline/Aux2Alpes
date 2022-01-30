@@ -1,20 +1,23 @@
 <?php
+
 session_start();
+require_once('toolformikadev.php');
 if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     require_once('connect.php');
     //traite les element de la table hebergement
-    $id = strip_tags(($_GET['id_hebergement']));
+    /* $id = strip_tags(($_GET['id_hebergement']));
     $sql = 'SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
     $query = $db->prepare($sql);
     $query->bindValue(':id', $id);
     $query->execute();
-    $hebergement = $query->fetch(PDO::FETCH_ASSOC);
+    $hebergement = $query->fetch(PDO::FETCH_ASSOC);*/
+    $hebergement = selectHebergementbyIdFull(intval(strip_tags($_GET['id_hebergement'])));
     //traite les elements de la table periode
-    $sql1 = 'SELECT * FROM `periode`  WHERE `id_periode` = :id';
+    /*$sql1 = 'SELECT * FROM `periode`  WHERE `id_periode` = :id';
     $query1 = $db->prepare($sql1);
     $query1->bindValue(':id', intval($hebergement['id_periode']));
     $query1->execute();
-    $periode = $query1->fetch(PDO::FETCH_ASSOC);
+    $periode = $query1->fetch(PDO::FETCH_ASSOC);*/
 
 
     //traite les elmements de la table jours
@@ -38,7 +41,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="gitebonbon.css">
-
+    <link rel="stylesheet" href="radio.css">
 
     <title>Détails de l'hébergement</title>
 </head>
@@ -57,16 +60,17 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 <p>Couchage: <?= $hebergement['couchage'] ?></p>
                 <p>Sdb: <?= $hebergement['sdb'] ?></p>
                 <p>
-                    <?= ($hebergement['animaux'] == "1") ? "<img src='../image/animauxpictorouge.png' width='50'>" : "<img src='../image/animauxpicto.png' width='50'>";  ?>
-                    <?= ($hebergement['wifi'] == "1") ? "<img src='../image/wifipictorouge.png' width='50'>" : "<img src='../image/wifipicto.png' width='50'>";  ?>
-                    <?= ($hebergement['fumeur'] == "1") ? "<img src='../image/fumeurpictorouge.png' width='50'>" : "<img src='../image/fumeurpicto.png' width='50'>";  ?>
-                    <?= ($hebergement['piscine'] == "1") ? "<img src='../image/piscinepictorouge.png' width='50'>" : "<img src='../image/piscinepicto.png' width='50'>";  ?>
-                    <?= ($hebergement['taxi'] == "1") ? "<img src='../image/taxipictorouge.png' width='50'>" : "<img src='../image/taxipicto.png' width='50'>";  ?>
-                    <?= ($hebergement['douche'] == "1") ? "<img src='../image/douchepictorouge.png' width='50'>" : "<img src='../image/douchepicto.png' width='50'>";  ?>
+                    <?= ($hebergement['animaux'] == "1") ? "<img src='../image/animauxpicto.png' width='50'>" : "<img src='../image/animauxpictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['wifi'] == "1") ? "<img src='../image/wifipicto.png' width='50'>" : "<img src='../image/wifipictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['fumeur'] == "1") ? "<img src='../image/fumeurpicto.png' width='50'>" : "<img src='../image/fumeurpictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['piscine'] == "1") ? "<img src='../image/piscinepicto.png' width='50'>" : "<img src='../image/piscinepictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['taxi'] == "1") ? "<img src='../image/taxipicto.png' width='50'>" : "<img src='../image/taxipictorouge.png' width='50'>";  ?>
+                    <?= ($hebergement['douche'] == "1") ? "<img src='../image/douchepicto.png' width='50'>" : "<img src='../image/douchepictorouge.png' width='50'>";  ?>
                 </p>
 
-                <p>
+                <p>Photo :
                     <input type="hidden" id="id_periode" name="id_periode" value=<?= $hebergement['id_periode'] ?>>
+
 
                     <?php
                     for ($i = 1; $i < 6; $i++) {
@@ -77,8 +81,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                         }
                     } ?>
                 </p>
-                <p>Debut: <?= $periode['debut']; ?></p>
-                <p>Fin: <?= $periode['fin']; ?></p>
+                <p>Debut: <?= $hebergement['debut']; ?></p>
+                <p>Fin: <?= $hebergement['fin']; ?></p>
                 <p>
                     <a href='index.php' class='btn btn-primary'>Retour<a>
                             <a href="edit.php?id_hebergement=<?= $hebergement['id_hebergement']; ?>"
