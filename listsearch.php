@@ -4,6 +4,7 @@ require_once('toolsformika.php');
 $recherche = $_POST['recherche'];
 $personne = $_POST['personne'];
 $hebergements = researchHebergementAll($recherche, $personne);
+
 ?>
 
 
@@ -12,8 +13,8 @@ $hebergements = researchHebergementAll($recherche, $personne);
 unset($_SESSION['id_user']);
 if (isset($_SESSION['id_user'])) {
 } else {
-echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
-echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
+    echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
+    echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
 }
 ?>
 
@@ -34,11 +35,15 @@ echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexio
 
 
 
-    
-        <?php
-        
-    foreach ($hebergements as $hebergement) { ?>
-        <div class="list">
+    <div class="nbh">
+        Nombre d'hébergement(s) trouvé(s) correspondant à votre recherche : <?= count($hebergements) ?>
+    </div>
+    <?php
+    if (count($hebergements) > 1) {
+
+
+        foreach ($hebergements as $hebergement) { ?>
+    <div class="list">
         <div class="a"><span class=h1><?= $hebergement['nom']; ?></span></div>
         <hr>
 
@@ -50,14 +55,22 @@ echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexio
             <?= ($hebergement['piscine'] == "1") ? "<img src='image/piscinepictorouge.png' width='50'>" : "<img src='image/piscinepicto.png' width='50'>"; ?>
             <?= ($hebergement['taxi'] == "1") ? "<img src='image/taxipictorouge.png' width='50'>" : "<img src='image/taxipicto.png' width='50'>"; ?>
             <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>"; ?><br>
-                <a href='detail.php?id=<?=$hebergement["id_hebergement"]?>'><button class='btn-recherche' type=submit>Details</button></a></div>
-                
+            <a href='detail.php?id=<?= $hebergement["id_hebergement"] ?>'><button class='btn-recherche'
+                    type=submit>Details</button></a>
+        </div>
+
         <div class="c"></span><img src='<?php echo "dev/photo/" . $hebergement['photo1'] ?>'></div>
-        </div><?php }
+    </div><?php }
 
 
-    require_once 'dev/close.php';
-    ?>
-    
+                require_once 'dev/close.php';
+            } elseif (count($hebergements) == 1) {
+                header("Location: detail.php?id=" . $hebergements[0]['id_hebergement']);
+            } else {
+                echo "aucun hébergement disponible ne correspond a votre recherche";
+            }
+                    ?>
+
 </body>
+
 </html>

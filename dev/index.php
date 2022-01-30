@@ -1,11 +1,13 @@
 <?php
 session_start();
-require_once('connect.php');
+//require_once('connect.php');
+require_once('../toolformikadev.php');
 require_once('tools.php');
-$sql = 'SELECT * FROM `hebergement`';
+/*$sql = 'SELECT * FROM `hebergement`';
 $query = $db->prepare($sql);
-$query->execute();
-$result = $query->fetchAll(PDO::FETCH_ASSOC);
+$query->execute();*/
+$result = selectAllHebergement();
+//$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
 // on recupere les elements pour chaque pour chaque id_periode
@@ -32,7 +34,7 @@ require_once('hebergement.class.php');
         <div class=row>
             <section class="col-12">
                 <?php
-if (!empty($_SESSION['warning'])) {
+                if (!empty($_SESSION['warning'])) {
                     echo '<DIV class="alert alert-warning" role="alert">' . $_SESSION['warning'] . '
                     </DIV>';
                     $_SESSION['warning'] = "";
@@ -54,18 +56,18 @@ if (!empty($_SESSION['warning'])) {
                     <th>Id Hébergement</th>
                     <th>Catégorie</th>
                     <th>Nom</th>
-                    <th>prix</th>
-                    <th>adresse</th>
+                    <th>Prix</th>
+                    <th>Ville</th>
                     <th>Taux de disponibilité</th>
-                    <th>action</th>
+                    <th>Action</th>
                     <tbody>
                         <?php
                         foreach ($result as $hebergement) {
 
                             $sql = 'SELECT count(id_periode) FROM `jour` id_periode=';
                             $query = $db->prepare($sql);
-                            $query->execute().
-                            $sql1 = 'SELECT count(id_jour) AS max_jour FROM `jour` WHERE id_periode=:id'; // max de jour
+                            $query->execute() .
+                                $sql1 = 'SELECT count(id_jour) AS max_jour FROM `jour` WHERE id_periode=:id'; // max de jour
                             $query1 = $db->prepare($sql1);
                             $query1->bindValue(':id', $hebergement['id_periode']);
                             $query1->execute();
@@ -85,7 +87,7 @@ if (!empty($_SESSION['warning'])) {
                             <td><?= $hebergement['categorie'] ?></td>
                             <td><?= $hebergement['nom'] ?></td>
                             <td><?= $hebergement['prix'] ?></td>
-                            <td><?= $hebergement['adresse'] ?></td>
+                            <td><?= $hebergement['ville'] ?></td>
                             <td>
 
 

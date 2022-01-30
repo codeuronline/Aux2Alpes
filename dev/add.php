@@ -56,25 +56,6 @@ if ($_POST) {
         }
 
 
-        /*for ($i = 1; $i < 6; $i++) {
-            if ((isset($_FILES['photo' . $i]['name'])) &&  (is_uploaded_file($_FILES['photo' . $i]['tmp_name']))) {
-                // test si le repertoire de destination exist sinon il le crée
-                IsDir_or_CreateIt("photo");
-                $maphoto = $_FILES['photo' . $i]['name'];
-                $maphoto_tmp = $_FILES['photo' . $i]['tmp_name'];
-
-                $extension = substr($maphoto, strrpos($maphoto, '.'));
-                // Contrôle de l'extension du fichier
-                if (!(in_array($extension, $extensionsAutorisees_image))) {
-                    $_SESSION['erreur'] = 'photo' . $i . ": Format non conforme";
-                } else {
-                    $form['photo' . $i] =  'photo_' . $i . '_' . date("Y_m_d_H_i") . $extension;
-                    copy($maphoto_tmp, "photo/" . $form['photo' . $i]);
-                }
-            } else {
-                $form['photo' . $i] = "";
-            }
-        }*/
         //on insere les elements la table periode
         //puis on insere les elements dans la table de hebergement et dans la table
         // 3 etapes pb des nombres convertient en chaine de caracetres par stip_tags
@@ -112,17 +93,17 @@ if ($_POST) {
 
 
         // on s'assure que le formulaire est bien rempli
-        //for ($i = 1; $i < 6; $i++) {
-        //       if (empty(@$form['photo' . $i])) {
-        //           $form['photo' . $i] = "";
-        //       }
-        //}
+        for ($i = 1; $i < 6; $i++) {
+            if (empty(@$form['photo' . $i])) {
+                $form['photo' . $i] = "";
+            }
+        }
 
 
         //traiter le cas du gps
         $form['gps'] = "";
 
-
+        
         $sql3 =
             'INSERT INTO `hebergement` 
         (nom,description,prix,adresse,gps,wifi,fumeur,piscine,animaux,douche,taxi,categorie,couchage,sdb,ville,pays,photo1,photo2,photo3,photo4,photo5,id_periode)
@@ -134,6 +115,8 @@ if ($_POST) {
             $query3->bindValue(":$key", $value);
         }
         $query3->execute();
+        
+        
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
 
