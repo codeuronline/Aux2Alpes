@@ -254,7 +254,10 @@ input[type="radio"].douche:checked + label {
 
 .b { grid-area: b; }
 
-.c { grid-area: c; }
+.c { grid-area: c; 
+  padding: 0px;
+  margin:0px;
+  box-sizing: border-box;}
 
 .d { grid-area: d; }
 
@@ -288,14 +291,9 @@ input[type="radio"].douche:checked + label {
 .a > .h1{
   font-size: xx-large;
 }
-  .b { grid-area: b;
-    
-  }
+  .b { grid-area: b;  }
   
   
-  .c { grid-area: c; 
-    
-  }
+  .c { grid-area: c;  }
   
 
-  @media 

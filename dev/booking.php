@@ -98,13 +98,14 @@ if (isset($indice)) {
             $message = $entetemessage . $message . "\r\n";
             mail($mailto, $sujet, $message, $headers);
 
-            $SESSION['message'] = "mail envoyé";
+            $SESSION['message'] = "Confirmation envoyé par mail";
+            header('Location: index.php');
         }
     } else {
         $SESSION['warning'] = "problème de date pour la reservation";
-        echo "pb";
+        echo "pb de date";
     }
 } else {
     $SESSION['warning'] = "problème d'identification";
-    echo "pb";
+    echo "pb authentification";
 }

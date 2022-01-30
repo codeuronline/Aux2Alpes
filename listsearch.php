@@ -4,6 +4,7 @@ require_once('toolsformika.php');
 $recherche = $_POST['recherche'];
 $personne = $_POST['personne'];
 $hebergements = researchHebergementAll($recherche, $personne);
+
 ?>
 
 
@@ -12,8 +13,8 @@ $hebergements = researchHebergementAll($recherche, $personne);
 unset($_SESSION['id_user']);
 if (isset($_SESSION['id_user'])) {
 } else {
-echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
-echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
+    echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
+    echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
 }
 ?>
 
@@ -27,18 +28,25 @@ echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexio
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="gitebonbon.css">
+    <link rel="stylesheet" href="carrousel.css">
 </head>
 
 <body>
 
 
 
-    
-        <?php
-        
+    <div class="nbh">
+        Nombre d'hébergement(s) trouvé(s) correspondant à votre recherche : <?= count($hebergements) ?>
+    </div>
+    <?php
+    //if (count($hebergements) > 1) {
+
+
     foreach ($hebergements as $hebergement) { ?>
-        <div class="list">
+    <div class="list">
         <div class="a"><span class=h1><?= $hebergement['nom']; ?></span></div>
         <hr>
 
@@ -50,14 +58,40 @@ echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexio
             <?= ($hebergement['piscine'] == "1") ? "<img src='image/piscinepictorouge.png' width='50'>" : "<img src='image/piscinepicto.png' width='50'>"; ?>
             <?= ($hebergement['taxi'] == "1") ? "<img src='image/taxipictorouge.png' width='50'>" : "<img src='image/taxipicto.png' width='50'>"; ?>
             <?= ($hebergement['douche'] == "1") ? "<img src='image/douchepictorouge.png' width='50'>" : "<img src='image/douchepicto.png' width='50'>"; ?><br>
-                <a href='detail.php?id=<?=$hebergement["id_hebergement"]?>'><button class='btn-recherche' type=submit>Details</button></a></div>
-                
-        <div class="c"></span><img src='<?php echo "dev/photo/" . $hebergement['photo1'] ?>'></div>
-        </div><?php }
+            <a href='detail.php?id=<?= $hebergement["id_hebergement"] ?>'><button class='btn-recherche'
+                    type=submit>Details</button></a>
+        </div>
 
+        <div class="c">
+            <!--insertion d'un carrouselici-->
+            <div class="carousel-container">
+                <i class="fas fa-arrow-left" id='prevBtn'></i>
+                <i class="fas fa-arrow-right" id='nextBtn'></i>
+                <div class="carousel-slide">
+                    <img src="dev/photo/<?= @$hebergement['photo5'] ?>" id='lastClone' alt='photo'>
+                    <?php
+                        for ($i = 1; $i < 6; $i++) {
+                            if (empty(@$hebergement['photo' . $i])) {
+                                echo "<img src='image/vide.png' alt='vide'>";
+                            }
+                            echo "<img src='dev/photo/" . @$hebergement['photo' . $i] . "' alt='photo'>";
+                        } ?>
+                    <img src="dev/photo/<?= $hebergement['photo1'] ?>" id="firstClone" alt="photo">
+                </div>
+            </div>
 
-    require_once 'dev/close.php';
+        </div>
+    </div>
+    <?php
+        require_once 'dev/close.php';
+        //}
+        /* } elseif (count($hebergements) == 1) {
+        header("Location: detail.php?id=" . $hebergements[0]['id_hebergement']);
+    } else {
+        echo "aucun hébergement disponible ne correspond a votre recherche";*/
+    }
     ?>
-    
+    <script src='carrousel.js'></script>
 </body>
+
 </html>
