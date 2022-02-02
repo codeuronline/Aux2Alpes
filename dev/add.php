@@ -103,7 +103,7 @@ if ($_POST) {
         //traiter le cas du gps
         $form['gps'] = "";
 
-        
+
         $sql3 =
             'INSERT INTO `hebergement` 
         (nom,description,prix,adresse,gps,wifi,fumeur,piscine,animaux,douche,taxi,categorie,couchage,sdb,ville,pays,photo1,photo2,photo3,photo4,photo5,id_periode)
@@ -115,8 +115,8 @@ if ($_POST) {
             $query3->bindValue(":$key", $value);
         }
         $query3->execute();
-        
-        
+
+
         require_once 'close.php';
         $_SESSION['message'] = "Hébergement Ajouté";
 
@@ -137,7 +137,7 @@ if ($_POST) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--<link rel="stylesheet" href="radio.css">-->
-    <link rel="stylesheet" href="gitebonbon.css">
+    <link rel="stylesheet" href="../gitebonbon.css">
     <title>Détails du Produit</title>
 </head>
 

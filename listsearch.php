@@ -1,26 +1,19 @@
 <?php
 session_start();
-require_once('librairies/toolformikadev.php');
+//require_once('librairies/toolformikadev.php');
+require_once('librairies/models/Hebergement.php');
 $recherche = $_POST['recherche'];
 $personne = $_POST['personne'];
-$hebergements = researchHebergementAll($recherche, $personne);
-
-?>
-
-
-
-<?php
-unset($_SESSION['id_user']);
+$modelHebergement = new Hebergement();
+$hebergements = $modelHebergement->researchAll($recherche, $personne);
+//$hebergements = researchHebergementAll($recherche, $personne);
+//unset($_SESSION['id_user']);
 if (isset($_SESSION['id_user'])) {
 } else {
     echo " <a href='inscription.php'><button class='btn-recherche' type=submit>Inscription</button></a>";
     echo "<a href='connexion.php'><button class='btn-recherche' type=submit>Connexion</button></a>";
 }
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -35,7 +28,6 @@ if (isset($_SESSION['id_user'])) {
 </head>
 
 <body>
-
     <div class="nbh">
         <h1> Nombre d'hébergement(s) trouvé(s) correspondant à votre recherche : <?= count($hebergements) ?></h1>
     </div>
@@ -78,8 +70,6 @@ if (isset($_SESSION['id_user'])) {
     }
     ?>
     <script src='carrousel.js'></script>
-
-
 </body>
 
 </html>

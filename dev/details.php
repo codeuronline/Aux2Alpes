@@ -1,26 +1,12 @@
 <?php
 
 session_start();
-require_once('toolformikadev.php');
+//require_once('toolformikadev.php');
+require_once('../librairies/models/Hebergement.php');
 if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
-    require_once('connect.php');
-    //traite les element de la table hebergement
-    /* $id = strip_tags(($_GET['id_hebergement']));
-    $sql = 'SELECT * FROM `hebergement` WHERE `id_hebergement` = :id';
-    $query = $db->prepare($sql);
-    $query->bindValue(':id', $id);
-    $query->execute();
-    $hebergement = $query->fetch(PDO::FETCH_ASSOC);*/
-    $hebergement = selectHebergementbyIdFull(intval(strip_tags($_GET['id_hebergement'])));
-    //traite les elements de la table periode
-    /*$sql1 = 'SELECT * FROM `periode`  WHERE `id_periode` = :id';
-    $query1 = $db->prepare($sql1);
-    $query1->bindValue(':id', intval($hebergement['id_periode']));
-    $query1->execute();
-    $periode = $query1->fetch(PDO::FETCH_ASSOC);*/
+    $herbergementModel =   new Hebergement();
+    $hebergement = $herbergementModel->selectFull(intval(strip_tags($_GET['id_hebergement'])));
 
-
-    //traite les elmements de la table jours
     //on verifie si le hebergement existe
     if (!$hebergement) {
         $_SESSION['erreur'] = "Cet ID n'existe pas";
@@ -40,7 +26,7 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="gitebonbon.css">
+    <link rel="stylesheet" href="../gitebonbon.css">
     <link rel="stylesheet" href="radio.css">
 
     <title>Détails de l'hébergement</title>

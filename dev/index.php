@@ -1,8 +1,11 @@
 <?php
 session_start();
-//require_once('../librairies/database.php');
+
+require_once('../librairies/models/Hebergement.php');
 require_once('../librairies/toolformikadev.php');
 require_once('../librairies/utils.php');
+
+
 
 
 
@@ -10,7 +13,8 @@ require_once('../librairies/utils.php');
 /*$sql = 'SELECT * FROM `hebergement`';
 $query = $db->prepare($sql);
 $query->execute();*/
-$result = selectAllHebergement();
+$modelhebergement = new Hebergement();
+$hebergements = $modelhebergement->selectAll();
 //$result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
@@ -28,7 +32,7 @@ $result = selectAllHebergement();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="gitebonbon.css">
+    <link rel="stylesheet" href="../gitebonbon.css">
 
     <title>Liste des hébergement(s))</title>
 </head>
@@ -65,7 +69,7 @@ $result = selectAllHebergement();
                     <th>Taux de disponibilité</th>
                     <th>Action</th>
                     <tbody>
-                        <?php foreach ($result as $hebergement) : ?>
+                        <?php foreach ($hebergements as $hebergement) : ?>
                         <tr>
                             <td><?= $hebergement['id_hebergement'] ?></td>
                             <td><?= $hebergement['categorie'] ?></td>
@@ -79,7 +83,7 @@ $result = selectAllHebergement();
                                     <div class="col-md-12">
                                         <div class="progress-1 align-items-center">
                                             <div class="progress">
-                                                <?= barProgress(maxDayById($hebergement['id_periode']), nbJourFreebyId($hebergement['id_periode'])) ?>
+                                                <?= barProgress(maxDaybyId($hebergement['id_periode']), nbJourFreebyId($hebergement['id_periode'])) ?>
                                             </div>
                                         </div>
                                     </div>
