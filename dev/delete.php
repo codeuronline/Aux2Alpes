@@ -1,10 +1,12 @@
 <?php
 session_start();
+require('../librairies/models/Hebergement.php');
+$modelHebergement = new Hebergement();
 require_once('toolformikadev.php');
 if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
 
-    $id_hebergement = intval(strip_tags(($_GET['id_hebergement'])));
-    $hebergement = delHebergementbyId($id_hebergement);
+    $hebergement = $modelHebergement->del(intval(strip_tags(($_GET['id_hebergement']))));
+    
     //6-> on renvoie le message de fin de traitement
     
     $_SESSION['message'] = "Hébergement supprimé";
