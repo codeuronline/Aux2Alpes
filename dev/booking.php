@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('librairies/toolformikadev.php');
+include_once('librairies/toolformikadev.php');
 
 //doit etre obtenu pour l'identification
 $_SESSION['email'] = "jkasperski@free.fr";

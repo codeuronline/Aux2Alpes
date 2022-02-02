@@ -86,7 +86,7 @@ function updateJour($id, $debut, $fin)
 {
     global $db;
     require_once 'connect.php';
-    $indice['intervalle'] = dateDiff($id, $debut, $fin);
+    $indice['intervalle'] = dateDiff($debut, $fin);
     for ($i = 0; $i <= $indice['intervalle']; $i++) {
         $value = date("Y-m-d", strtotime($_POST['debutReserv'] . "+ $i days"));
         $compteur = $i + 1;

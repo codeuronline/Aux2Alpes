@@ -96,7 +96,7 @@ function updateAllDayWithId($id, $debut, $fin): void
 {
     require_once('utils.php');
     $db = getPDO();
-    $indice['intervalle'] = dateDiff($id, $debut, $fin);
+    $indice['intervalle'] = dateDiff($debut, $fin);
     for ($i = 0; $i <= $indice['intervalle']; $i++) {
         $value = date("Y-m-d", strtotime($debut . "+ $i days"));
         $compteur = $i + 1;
@@ -112,10 +112,10 @@ function updateAllDayWithId($id, $debut, $fin): void
 function addReservation($idUser, $idHebergement, $debut, $fin): void
 {
     $db = getPDO();
-    $sql = "INSERT INTO `reservation` (id_user,id_hebergement,debut,fin) VALUES (:id_user,:id_hebergement,:debut,:fin)";
+    $sql = "INSERT INTO `reservation` (id_hebergement,id_utilisateur,debut,fin) VALUES (:id_hebergement,:id_utilisateur,:debut,:fin)";
     $query = $db->prepare($sql);
-    $query->bindValue(":id_user", $idUser);
     $query->bindValue(":id_hebergement", $idHebergement);
+    $query->bindValue(":id_utilisateur", $idUser);
     $query->bindValue(":debut", $debut);
     $query->bindValue(":fin", $fin);
     $query->execute();
