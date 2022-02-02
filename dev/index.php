@@ -1,8 +1,12 @@
 <?php
 session_start();
-//require_once('connect.php');
-require_once('../toolformikadev.php');
-require_once('tools.php');
+//require_once('../librairies/database.php');
+require_once('../librairies/toolformikadev.php');
+require_once('../librairies/utils.php');
+
+
+
+//require_once('tools.php');
 /*$sql = 'SELECT * FROM `hebergement`';
 $query = $db->prepare($sql);
 $query->execute();*/
@@ -13,7 +17,7 @@ $result = selectAllHebergement();
 // on recupere les elements pour chaque pour chaque id_periode
 
 
-require_once('hebergement.class.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -64,22 +68,19 @@ require_once('hebergement.class.php');
                         <?php
                         foreach ($result as $hebergement) {
 
-                            $sql = 'SELECT count(id_periode) FROM `jour` id_periode=';
-                            $query = $db->prepare($sql);
-                            $query->execute() .
-                                $sql1 = 'SELECT count(id_jour) AS max_jour FROM `jour` WHERE id_periode=:id'; // max de jour
+                            /*$sql1 = 'SELECT count(id_jour) AS max_jour FROM `jour` WHERE id_periode=:id'; // max de jour
                             $query1 = $db->prepare($sql1);
                             $query1->bindValue(':id', $hebergement['id_periode']);
                             $query1->execute();
-                            $result1 = $query1->fetch(PDO::FETCH_ASSOC);
-                            $hebergement['max_jour'] = intval($result1['max_jour']);
+                            $result1 = $query1->fetch();*/
+                            $hebergement['max_jour'] = maxDayById($hebergement['id_periode']);
 
-                            $sql2 = 'SELECT count(id_jour) AS max_jour_libre FROM `jour` WHERE id_periode=:id AND etat=0'; // nb jour libre
+                            /* $sql2 = 'SELECT count(id_jour) AS max_jour_libre FROM `jour` WHERE id_periode=:id AND etat=0'; // nb jour libre
                             $query2 = $db->prepare($sql2);
                             $query2->bindValue(':id', $hebergement['id_periode']);
                             $query2->execute();
-                            $result2 = $query2->fetch(PDO::FETCH_ASSOC);
-                            $hebergement['max_jour_libre'] = intval($result2['max_jour_libre']);
+                            $result2 = $query2->fetch();*/
+                            $hebergement['max_jour_libre'] = intval(nbJourFreebyId($hebergement['id_periode']));
 
                         ?>
                         <tr>
