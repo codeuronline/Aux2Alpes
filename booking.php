@@ -1,36 +1,25 @@
 <?php
-//nous sert de passerel pour recuperer les donné utilisateur et les envoyer par email a l utilisateur
-
-//session_start();
-require_once('toolformikadev.php');
+session_start();
+include_once('librairies/toolformikadev.php');
 
 //doit etre obtenu pour l'identification
 $_SESSION['email'] = "jkasperski@free.fr";
-$_SESSION['personne'] = 1 /*$_POST['personne']*/;
-$_SESSION['user'] = 1;
-$_SESSION['id_user'] = 1;
+$_SESSION["id_user"] = 1;
+$_SESSION['personne'] = 2 /*$_POST['personne']*/;
 //doit etre obtenu par la recherche
 
 
 $hebergement = selectHebergementbyIdFull($_POST['id_hebergement']);
 $jour_free = selectJourFreebyId($_POST['id_hebergement']);
 
-$sql1 = "SELECT * FROM `jour` WHERE id_periode=:id AND etat=0";
-$query1 = $db->prepare($sql1);
-$query1->bindValue(':id', $_POST['id_hebergement']);
-$query1->execute();
-$jour_free = $query1->fetchALL(PDO::FETCH_ASSOC);
-
-
-//$jour_free = selectJourFreebyId($_POST['id_hebergement']);
-
-
 echo '<hr>';
-echo "date de reservation de l'utilisateur pour l'hebergement n°<br>" . $_POST['id_hebergement'];
+echo "date de reservation de l'utilisateur pour l'hebergement n°<br>";
+echo "debut : " . $_POST['debut'] . "<br>";
+echo "fin : " . $_POST['fin'] . "<br>";
 echo '<hr>';
 
 $tabReserdisponible = array();
-echo "on recupere les jours disponibles pour la periode de l'hebergement:" . $_POST['id_hebergement'] . "//" . $_POST['debut'] . "||" . $_POST['fin'] . "\\<br>";
+echo "on recupere les jours disponibles pour la periode de l'hebergement:" . $_POST['id_hebergement'] . "<br>";
 echo "<hr>";
 var_dump($jour_free);
 echo "<hr>";
@@ -56,30 +45,14 @@ echo "<hr>";
 //mise a jour de l'etat pour la table jour
 if (isset($indice)) {
     if (($indice['debut'] == true) && ($indice['fin'] == true)) {
-        //mise a jour de l'etat pour la table jour
-        $indice['intervalle'] = dateDiff($_POST['debut'], $_POST['fin']);
-        for ($i = 0; $i <= $indice['intervalle']; $i++) {
-            $value = date("Y-m-d", strtotime($_POST['debut'] . "+ $i days"));
-            $compteur = $i + 1;
-            echo "valeur à reserver:" . $value . "<br>";
-            $sql5 = 'UPDATE `jour` SET etat=1 WHERE id_periode=:id_periode AND date_jour=:date_jour';
-            $query5 = $db->prepare($sql5);
-            $query5->bindValue(":id_periode", $_POST['id_hebergement']);
-            $query5->bindValue(":date_jour", $value);
-            $query5->execute();
-        }
-        $sql6 = "INSERT INTO `reservation` (id_user,id_hebergement,debut,fin) VALUES (:id_user,:id_hebergement,:debut,:fin)";
-        $query6 = $db->prepare($sql6);
-        $query6->bindValue(":id_user", $_SESSION['id_user']);
-        $query6->bindValue(":id_hebergement", $_POST['id_hebergement']);
-        $query6->bindValue(":debut", $_POST['debut']);
-        $query6->bindValue(":fin", $_POST['fin']);
-        $query6->execute();
+        updateAllDayWithId($_POST['id_hebergement'], $_POST['debut'], $_POST['fin']);
+        addReservation($_SESSION['id_user'], $_POST['id_hebergement'], $_POST['debut'], $_POST['fin']);
         //envoyer un mail a l'utilisateur
 
         //calcul des element du mail
         $prix = $hebergement['prix'];
-        $nb_jour = $indice['intervalle'] + 1;
+        //$indice['intervalle'] = dateDiff($_POST['debut'], $_POST['fin']);
+        $nb_jour = dateDiff($_POST['debut'], $_POST['fin']) + 1;
         $nb_personne = $_SESSION['personne'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // on recupere les donnée
@@ -92,7 +65,6 @@ if (isset($indice)) {
                 'From' => $mailfrom,
                 'Reply-To' => $mailfrom
             );
-
             $entetemessage = "Bonjour,\r\n";
             $entetemessage .= "Cher(s) clients,\r\n";
             //construction du message final avant envoi
@@ -100,17 +72,15 @@ if (isset($indice)) {
             $message = $entetemessage . $message . "\r\n";
             mail($mailto, $sujet, $message, $headers);
 
-            $SESSION['message'] = "mail envoyé";
+            $SESSION['message'] = "Confirmation envoyé par mail";
+          
+          //  header('Location: index.php');
         }
     } else {
         $SESSION['warning'] = "problème de date pour la reservation";
-        echo "pb";
+        echo "pb de date";
     }
 } else {
     $SESSION['warning'] = "problème d'identification";
-    echo "pb";
+    echo "pb authentification";
 }
-
-
-var_dump($_POST);
-var_dump($_SESSION);
