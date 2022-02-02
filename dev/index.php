@@ -53,8 +53,8 @@ $result = selectAllHebergement();
                     </DIV>';
                     $_SESSION['message'] = "";
                 }
-
                 ?>
+
                 <h1>Liste des Hébergement(s)</h1>
                 <table class="table">
                     <th>Id Hébergement</th>
@@ -65,24 +65,7 @@ $result = selectAllHebergement();
                     <th>Taux de disponibilité</th>
                     <th>Action</th>
                     <tbody>
-                        <?php
-                        foreach ($result as $hebergement) {
-
-                            /*$sql1 = 'SELECT count(id_jour) AS max_jour FROM `jour` WHERE id_periode=:id'; // max de jour
-                            $query1 = $db->prepare($sql1);
-                            $query1->bindValue(':id', $hebergement['id_periode']);
-                            $query1->execute();
-                            $result1 = $query1->fetch();*/
-                            $hebergement['max_jour'] = maxDayById($hebergement['id_periode']);
-
-                            /* $sql2 = 'SELECT count(id_jour) AS max_jour_libre FROM `jour` WHERE id_periode=:id AND etat=0'; // nb jour libre
-                            $query2 = $db->prepare($sql2);
-                            $query2->bindValue(':id', $hebergement['id_periode']);
-                            $query2->execute();
-                            $result2 = $query2->fetch();*/
-                            $hebergement['max_jour_libre'] = intval(nbJourFreebyId($hebergement['id_periode']));
-
-                        ?>
+                        <?php foreach ($result as $hebergement) : ?>
                         <tr>
                             <td><?= $hebergement['id_hebergement'] ?></td>
                             <td><?= $hebergement['categorie'] ?></td>
@@ -96,7 +79,7 @@ $result = selectAllHebergement();
                                     <div class="col-md-12">
                                         <div class="progress-1 align-items-center">
                                             <div class="progress">
-                                                <?= barProgress($hebergement['max_jour'], $hebergement['max_jour_libre']) ?>
+                                                <?= barProgress(maxDayById($hebergement['id_periode']), nbJourFreebyId($hebergement['id_periode'])) ?>
                                             </div>
                                         </div>
                                     </div>
@@ -106,8 +89,7 @@ $result = selectAllHebergement();
                                 <a href="delete.php?id_hebergement=<?= $hebergement['id_hebergement'] ?>">Supprimer</a>
                             </td>
                         </tr>
-                        <?php }
-                        ?>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
                 <a href='add.php' class='btn btn-primary'>Ajouter d'un Hébergement<a>

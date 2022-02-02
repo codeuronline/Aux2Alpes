@@ -33,6 +33,7 @@ function selectHebergementbyIdFull($id)
     return $query->fetch(PDO::FETCH_ASSOC);
 }
 //renvoie le nb jours free
+
 function nbJourFreebyId($id): INT
 {
     $db = getPDO();
@@ -43,12 +44,7 @@ function nbJourFreebyId($id): INT
     $result = $query->fetch();
     return $result['max_jour_libre'];
 }
-/*
-$sql1 = 'SELECT count(id_jour) AS max_jour FROM `jour` WHERE id_periode=:id'; // max de jour
-$query1 = $db->prepare($sql1);
-$query1->bindValue(':id', $hebergement['id_periode']);
-$query1->execute();
-$result1 = $query1->fetch();*/
+
 //renvoie le max de jour d'une periode
 function maxDayById($id): int
 {
@@ -82,6 +78,7 @@ function selectHebergementbyId($id)
     $query->execute();
     return $query->fetch(PDO::FETCH_ASSOC);
 }
+
 // renvoie le resultat de la recherche d'hebergements avec 
 // $recherhe qui doit etre une ville
 // $personne qui correspond à nombre de couchage 
@@ -94,18 +91,32 @@ function researchHebergementAll($recherche, $personne)
 
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
-function updateJour($id, $debut, $fin)
+
+function updateAllDayWithId($id, $debut, $fin): void
 {
+    require_once('utils.php');
     $db = getPDO();
     $indice['intervalle'] = dateDiff($id, $debut, $fin);
     for ($i = 0; $i <= $indice['intervalle']; $i++) {
-        $value = date("Y-m-d", strtotime($_POST['debutReserv'] . "+ $i days"));
+        $value = date("Y-m-d", strtotime($debut . "+ $i days"));
         $compteur = $i + 1;
         echo "valeur à reserver:" . $value . "<br>";
-        $sql5 = 'UPDATE `jour` SET etat=1 WHERE id_periode=:id_periode AND date_jour=:date_jour';
-        $query5 = $db->prepare($sql5);
-        $query5->bindValue(":id_periode", $_POST['id_hebergement']);
-        $query5->bindValue(":date_jour", $value);
-        $query5->execute();
+        $sql = 'UPDATE `jour` SET etat=1 WHERE id_periode=:id_periode AND date_jour=:date_jour';
+        $query = $db->prepare($sql);
+        $query->bindValue(":id_periode", $id);
+        $query->bindValue(":date_jour", $value);
+        $query->execute();
     }
+}
+
+function addReservation($idUser, $idHebergement, $debut, $fin): void
+{
+    $db = getPDO();
+    $sql = "INSERT INTO `reservation` (id_user,id_hebergement,debut,fin) VALUES (:id_user,:id_hebergement,:debut,:fin)";
+    $query = $db->prepare($sql);
+    $query->bindValue(":id_user", $idUser);
+    $query->bindValue(":id_hebergement", $idHebergement);
+    $query->bindValue(":debut", $debut);
+    $query->bindValue(":fin", $fin);
+    $query->execute();
 }

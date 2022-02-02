@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('toolformikadev.php');
+require_once('librairies/toolformikadev.php');
 
 //doit etre obtenu pour l'identification
 $_SESSION['email'] = "jkasperski@free.fr";
@@ -11,16 +11,6 @@ $_SESSION['personne'] = 2 /*$_POST['personne']*/;
 
 $hebergement = selectHebergementbyIdFull($_POST['id_hebergement']);
 $jour_free = selectJourFreebyId($_POST['id_hebergement']);
-
-/*$sql1 = "SELECT * FROM `jour` WHERE id_periode=:id AND etat=0";
-$query1 = $db->prepare($sql1);
-$query1->bindValue(':id', $_POST['id_hebergement']);
-$query1->execute();
-$jour_free= $query1->fetchALL(PDO::FETCH_ASSOC);*/
-
-
-//$jour_free = selectJourFreebyId($_POST['id_hebergement']);
-
 
 echo '<hr>';
 echo "date de reservation de l'utilisateur pour l'hebergement n°<br>";
@@ -55,7 +45,7 @@ echo "<hr>";
 if (isset($indice)) {
     if (($indice['debut'] == true) && ($indice['fin'] == true)) {
         //mise a jour de l'etat pour la table jour
-        $indice['intervalle'] = dateDiff($_POST['debutReserv'], $_POST['finReserv']);
+        /*$indice['intervalle'] = dateDiff($_POST['debutReserv'], $_POST['finReserv']);
         for ($i = 0; $i <= $indice['intervalle']; $i++) {
             $value = date("Y-m-d", strtotime($_POST['debutReserv'] . "+ $i days"));
             $compteur = $i + 1;
@@ -65,14 +55,16 @@ if (isset($indice)) {
             $query5->bindValue(":id_periode", $_POST['id_hebergement']);
             $query5->bindValue(":date_jour", $value);
             $query5->execute();
-        }
-        $sql6 = "INSERT INTO `reservation` (id_user,id_hebergement,debut,fin) VALUES (:id_user,:id_hebergement,:debut,:fin)";
+        }*/
+        updateAllDayWithId($_POST['id_hebergement'], $_POST['debutReserv'], $_POST['finReserv']);
+        /*$sql6 = "INSERT INTO `reservation` (id_user,id_hebergement,debut,fin) VALUES (:id_user,:id_hebergement,:debut,:fin)";
         $query6 = $db->prepare($sql6);
         $query6->bindValue(":id_user", $_SESSION['id_user']);
         $query6->bindValue(":id_hebergement", $_POST['id_hebergement']);
         $query6->bindValue(":debut", $_POST['debutReserv']);
         $query6->bindValue(":fin", $_POST['finReserv']);
-        $query6->execute();
+        $query6->execute();*/
+        addReservation($_SESSION['id_user'], $_POST['id_hebergement'], $_POST['debutReserv'], $_POST['finReserv']);
         //envoyer un mail a l'utilisateur
 
         //calcul des element du mail
