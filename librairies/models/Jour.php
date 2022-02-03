@@ -5,10 +5,7 @@ require_once('librairies/utils.php');
 class Jour
 {
 
-    public function __construct($id, $debut, $fin)
-    {
-    }
-
+    
     public function add($id, $debut, $fin)
     {
         $pdo = getPDO();
@@ -24,17 +21,17 @@ class Jour
         }
     }
 
-    function updateReserved($id, $debut, $fin): void
+    function updateReserved($form): void
     {
         $pdo = getPDO();
-        $indice['intervalle'] = dateDiff($debut, $fin);
-        for ($i = 0; $i <= $indice['intervalle']; $i++) {
+        extract($form);
+        for ($i = 0; $i <= dateDiff($debut, $fin); $i++) {
             $value = date("Y-m-d", strtotime($debut . "+ $i days"));
             $compteur = $i + 1;
             //echo "valeur à reserver:" . $value . "<br>";
             $sql = 'UPDATE `jour` SET etat=1 WHERE id_periode=:id_periode AND date_jour=:date_jour';
             $query = $pdo->prepare($sql);
-            $query->bindValue(":id_periode", $id);
+            $query->bindValue(":id_periode", $id_periode);
             $query->bindValue(":date_jour", $value);
             $query->execute();
         }
