@@ -9,7 +9,7 @@ class Reservation
         $this->pdo = getPDO();
     }
 
-    public function addReservation($idUser, $idHebergement, $debut, $fin): void
+    public function add($idUser, $idHebergement, $debut, $fin): void
     {
         $db = getPDO();
         $sql = "INSERT INTO `reservation` (id_hebergement,id_utilisateur,debut,fin) VALUES (:id_hebergement,:id_utilisateur,:debut,:fin)";
