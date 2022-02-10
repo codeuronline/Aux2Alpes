@@ -1,6 +1,7 @@
 <?php
 session_start();
 //require_once('librairies/toolformikadev.php');
+require_once('../lespalaisbonbons/librairies/models/Hebergement.php');
 require_once('librairies/models/Hebergement.php');
 $recherche = $_POST['recherche'];
 $personne = $_POST['personne'];

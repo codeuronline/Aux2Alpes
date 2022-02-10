@@ -1,8 +1,9 @@
 <?php
 session_start();
-require ('../librairies/models/Periode.php');
-require('../librairies/models/Jour.php');
-require('../librairies/models/Hebergement.php');
+require_once('../librairies/models/Periode.php');
+//require_once('libraires/models/Periode.php');
+require_once('../librairies/models/Jour.php');
+require_once('../librairies/models/Hebergement.php');
 $modelHebergement = new Hebergement();
 require_once('toolformikadev.php');
 if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {

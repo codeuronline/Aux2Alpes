@@ -1,5 +1,6 @@
-<?
+<?php
 require_once('../librairies/database.php');
+
 class Periode
 {
     public function add($id, $debut, $fin): void
