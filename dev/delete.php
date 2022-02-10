@@ -1,5 +1,7 @@
 <?php
 session_start();
+require ('../librairies/models/Periode.php');
+require('../librairies/models/Jour.php');
 require('../librairies/models/Hebergement.php');
 $modelHebergement = new Hebergement();
 require_once('toolformikadev.php');
