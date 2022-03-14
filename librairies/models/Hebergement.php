@@ -17,7 +17,6 @@ class Hebergement
         return $query->fetchAll();
     }
 
-
     public function selectFull($id)
     {
         $sql = "SELECT * FROM hebergement,periode WHERE hebergement.id_hebergement = :id AND periode.id_periode = hebergement.id_hebergement";
