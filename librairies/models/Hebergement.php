@@ -1,5 +1,6 @@
 <?php
-require_once('../librairies/database.php');
+require_once'./librairies/database.php';
+//require_once'../librairies/database.php';
 class Hebergement
 {
     private $pdo;

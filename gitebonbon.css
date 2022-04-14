@@ -243,7 +243,9 @@ input[type="radio"].douche:checked + label {
 
 /*---------------grid-----------------------*/
 
-.container4 {  display: grid;
+.container {  
+  border: 1px solid  rgb(46, 37, 78);;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
     "a b c"
