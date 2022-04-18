@@ -1,5 +1,5 @@
 <?php
-
+$web='dev';
 session_start();
 // il faut d'abord traité la table periode pour ensuite  traiter la table hebergement
 if ($_POST) {

@@ -1,5 +1,5 @@
 <?php
-
+$web='dev';
 session_start();
 //require_once('toolformikadev.php');
 require_once('../librairies/models/Hebergement.php');

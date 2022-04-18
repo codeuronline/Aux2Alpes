@@ -1,4 +1,5 @@
 <?php
+$web='dev';
 session_start();
 if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     require_once('connect.php');
@@ -35,7 +36,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="gitebonbon.css">
     <link rel="stylesheet" href="radio.css">
     <link rel="stylesheet" href="test.css">
@@ -104,7 +106,8 @@ if (isset($_GET['id_hebergement']) && !empty($_GET['id_hebergement'])) {
                 <p>Fin: <?= $periode['fin']; ?></p>
                 <p>
                     <a href='index.php' class='btn btn-primary'>Retour<a>
-                            <a href="edit.php?id_hebergement=<?= $hebergement['id_hebergement']; ?>" class='btn btn-primary'>Modifier</a>
+                            <a href="edit.php?id_hebergement=<?= $hebergement['id_hebergement']; ?>"
+                                class='btn btn-primary'>Modifier</a>
                 </p>
             </section>
         </div>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$web='dev';
 if ($_POST) {
     if (
         isset($_POST['categorie']) && !empty($_POST['categorie'])
