@@ -1,4 +1,5 @@
 <?php
+$web='site';
 session_start();
 //require_once('librairies/toolformikadev.php');
 require_once('../lespalaisbonbons/librairies/models/Hebergement.php');

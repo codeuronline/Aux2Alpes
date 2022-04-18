@@ -1,13 +1,10 @@
 <?php
 session_start();
-
-require_once('../librairies/models/Hebergement.php');
-require_once('../librairies/toolformikadev.php');
-require_once('../librairies/utils.php');
-
-
-
-
+$web= 'dev';
+$dev= "../librairies/";
+require_once($dev."models/Hebergement.php");
+require_once($dev.'toolformikadev.php');
+require_once($dev.'utils.php');
 
 //require_once('tools.php');
 /*$sql = 'SELECT * FROM `hebergement`';

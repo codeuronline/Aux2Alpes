@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$web='site';
 ?>
 
 <!DOCTYPE html>

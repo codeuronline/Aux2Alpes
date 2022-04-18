@@ -1,6 +1,14 @@
 <?php
-require_once'./librairies/database.php';
-//require_once'../librairies/database.php';
+switch ($web) {
+    case 'site':
+            require_once'./librairies/database.php';
+        break;
+    case 'dev':
+            require_once'../librairies/database.php';    
+    break;
+    }
+//
+
 class Hebergement
 {
     private $pdo;
