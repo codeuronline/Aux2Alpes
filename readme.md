@@ -1,14 +1,13 @@
                                                                                                           #######
 # DESCRIPTION : SITE WEB EN BINOME avec MICKAEL(FRONT) et MOI(BACK)
-## Site web (gite like) 
-## CRUD (procedurale->POO) de gite par 1 administrateur
-## BACK : AUTHENTIFICATION ADMIN
-## BACK : LISTING DES GITES AVEC AJOUT SUPPRESSION ET MODFICATION D'UN GITE
+### Site web (gite like) 
+### CRUD (procedurale->POO) de gite par 1 administrateur
+### BACK : AUTHENTIFICATION ADMIN(BACK) -> OK
+### BACK : LISTING DES GITES AVEC AJOUT SUPPRESSION ET MODFICATION D'UN GITE
 ### Interface de Login/Enregistrement gestion des SESSION en php avec retour sur interface en html
 ### Languages employés: PHP, HTML, SASS/CSS , SQL, JAVASCRIPT
-### PROCESSUS 
-#### DE RESERVATION 
-#### DE FILTRAGE DES GITES OPERATIONNEL(BACK)-> fini
+### PROCESSUS DE RESERVATION (BACK) -> fini 
+#### DE FILTRAGE DES GITES OPERATIONNEL (BACK)-> fini
 #### DE VALIDATION ET ENVOI D'EMAIL (BACK)-> fini
 ### AJOUT d'un carrousel pour gérer les images en FRONT traité par le BACK(moi)
 ### ETAT Projet : NON TERMINE
