@@ -7,8 +7,8 @@
 ### BACK : LISTING DES GITES AVEC AJOUT SUPPRESSION ET MODFICATION D'UN GITE(BACK)-> fini
 ### Interface de Login/Enregistrement gestion des SESSION en php avec retour sur interface en html(BACK)->fini
 ### GESTION DU PROCESSUS DE RESERVATION (BACK) -> fini 
-#### DE FILTRAGE DES GITES OPERATIONNEL (BACK)-> fini
-#### DE VALIDATION ET ENVOI D'EMAIL (BACK)-> fini
+#### GESTION DU FILTRAGE DES GITES OPERATIONNEL (BACK)-> fini
+#### GESTION DE LA VALIDATION ET ENVOI D'EMAIL (BACK)-> fini
 ### AJOUT d'un carrousel pour gérer les images en FRONT traité par le BACK(moi)
 
 ### ETAT Projet : NON TERMINE
