@@ -4,7 +4,7 @@
 ### Languages employés: PHP, HTML, SASS/CSS , SQL, JAVASCRIPT
 ### CRUD (Procedurale->POO) de gite par 1 administrateur
 ### BACK : AUTHENTIFICATION ADMIN(BACK) -> fini
-### BACK : LISTING DES GITES AVEC AJOUT SUPPRESSION ET MODFICATION D'UN GITE(BACK)-> fini
+### BACK : LISTING DES GITES AVEC AJOUT SUPPRESSION ET MODIFICATION D'UN GITE(BACK)-> fini
 ### Interface de Login/Enregistrement gestion des SESSION en php avec retour sur interface en html(BACK)->fini
 ### GESTION DU PROCESSUS DE RESERVATION (BACK) -> fini 
 #### GESTION DU FILTRAGE DES GITES OPERATIONNEL (BACK)-> fini
